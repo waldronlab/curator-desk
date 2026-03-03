@@ -2,7 +2,7 @@
 
 **Curator dashboard for reviewing BioAnalyzer predictions** — sortable table, field-level feedback, submit via GitHub Issues & PRs. Built with R, Quarto, and DT; runs on **GitHub Pages** so curators can use it from the browser (no server or Docker).
 
-## Features (aligned with Streamlit app)
+## Features (aligned with Streamlit app in BioAnalyzer-Backend)
 
 - **Data:** Load CSV (or Parquet if `arrow` is installed) from a path or URL at build time.
 - **Table:** Sortable, searchable, filterable (DT DataTables); Priority Score; PubMed links.
