@@ -1,0 +1,567 @@
+---
+title: "Curator Desk"
+format:
+  html:
+    toc: false
+---
+
+This dashboard provides a **sortable, searchable, filterable** table of BioAnalyzer predictions for candidate curatable PubMed articles.
+
+- Curators review predictions and capture feedback by PMID.
+- Stored: predicted statuses, curator ground truth, correctness flags.
+- Export suitable for confusion matrices, per-field error profiling, and MCC (e.g. for PARTIALLY_PRESENT).
+
+::: {.callout-note collapse="false"}
+## Data source
+
+The table is built from data in the **`data/`** folder. **You** add your analyzed papers: put your CSV (or Parquet) in `data/`—e.g. `data/sample.csv`—then run `quarto render`. The system reads `data/sample.csv` by default, or set `CURATOR_DATA_PATH` to another path (e.g. `data/analyzed_papers.csv`) when building. For a remote file, set `CURATOR_DATA_URL`.
+
+**Expected columns:** PMID (required); Title, Journal, Year, Summary recommended. Status values: `ABSENT` | `PARTIALLY_PRESENT` | `PRESENT`.
+:::
+
+## Candidate curatable articles {.tabset #candidate-papers}
+
+::: {.panel-tabset}
+
+## Table
+
+Tip: Sort by **Priority Score** (descending) to review the most promising candidates first. Use the search box and column filters to narrow the list.
+
+```{r}
+#| label: setup
+#| include: false
+
+# ---- Load dependencies ----
+source("R/config.R")
+source("R/data.R")
+source("R/feedback.R")
+
+# ---- Resolve data source ----
+
+resolve_data_path <- function() {
+  path <- Sys.getenv("CURATOR_DATA_URL", "")
+  if (!nzchar(trimws(path))) path <- Sys.getenv("CURATOR_DATA_PATH", "")
+  if (!nzchar(trimws(path))) path <- "data/sample.csv"
+  path
+}
+
+data_path <- resolve_data_path()
+
+# ---- Load and normalize dataset ----
+
+raw_df <- load_data(data_path)
+df <- normalize_dataset(raw_df)
+
+# ---- Validate expected status columns ----
+
+missing_status <- setdiff(STATUS_COLUMNS, names(df))
+
+if (length(missing_status) > 0) {
+  warning(
+    sprintf(
+      "Missing expected status columns: %s. Priority and filtering may be partial.",
+      paste(missing_status, collapse = ", ")
+    )
+  )
+}
+```
+
+```{r}
+#| label: table-display
+#| echo: false
+#| warning: false
+#| message: false
+
+if (nrow(df) == 0) {
+  
+  cat(
+    "No data loaded. Set `CURATOR_DATA_URL` or `CURATOR_DATA_PATH`, ",
+    "or add `data/sample.csv` and rebuild."
+  )
+  
+} else {
+  
+  # ---- Inform about missing status columns ----
+  
+  if (length(missing_status) > 0) {
+    cat(
+      "**Note:** Missing status columns: ",
+      paste(missing_status, collapse = ", "),
+      ". Priority and filtering may be partial.\n\n"
+    )
+  }
+  
+  # ---- Select display columns ----
+  
+  desired_columns <- c(
+    "PMID",
+    "PubMed Link",
+    "Priority Score",
+    "Title",
+    "Journal",
+    "Year",
+    STATUS_COLUMNS,
+    "Summary"
+  )
+  
+  display_columns <- intersect(desired_columns, names(df))
+  show_df <- df[, display_columns, drop = FALSE]
+  
+  # ---- Convert PubMed Link to clickable column ----
+  
+  if ("PubMed Link" %in% names(show_df)) {
+    
+    show_df$PubMed <- paste0(
+      '<a href="',
+      show_df[["PubMed Link"]],
+      '" target="_blank" rel="noopener">Open</a>'
+    )
+    
+    show_df[["PubMed Link"]] <- NULL
+    
+    # Place PubMed column immediately after PMID; label as "Published" (Open = link to paper on PubMed)
+    if ("PMID" %in% names(show_df)) {
+      show_df <- show_df[
+        ,
+        c("PMID", "PubMed",
+          setdiff(names(show_df), c("PMID", "PubMed"))
+        ),
+        drop = FALSE
+      ]
+    }
+    names(show_df)[names(show_df) == "PubMed"] <- "Published"
+  }
+  
+  # ---- Configure DataTable options ----
+  
+  dt_options <- list(
+    pageLength = 50,
+    lengthMenu = c(50, 100, 300, 500, 1000),
+    scrollX = TRUE,
+    stateSave = TRUE
+  )
+  
+  priority_index <- which(names(show_df) == "Priority Score")
+  
+  if (length(priority_index) == 1) {
+    dt_options$order <- list(list(priority_index - 1, "desc"))
+  }
+  
+  # ---- Render table ----
+  
+  DT::datatable(
+    show_df,
+    filter = "top",
+    options = dt_options,
+    escape = FALSE,
+    rownames = FALSE
+  )
+}
+```
+
+**Rows in table:** `r nrow(df)`
+
+## Curator feedback
+
+Use the table above to find papers (the **Open** button in the **Published** column opens the paper on PubMed). Then select or enter a PMID below; the page will scroll to the field-by-field validation form where you can enter your review. Feedback uses the same schema as the Streamlit app; because this site is static, **saving is done by downloading a CSV** per row—submit via your usual process (e.g. email or GitHub issue).
+
+1. **Quick select** a PMID from the dropdown, or type a PMID and click **Load row** (the form will scroll into view).
+2. For each field, review **BioAnalyzer predicted** and set **Curator TRUE label** and **Was BioAnalyzer correct?**
+3. Click **Download feedback CSV** to save one row; submit as needed.
+
+```{r}
+#| label: table-json
+#| echo: false
+#| results: asis
+# Export table rows as JSON for the form's "Load row" button (PMID -> pred values)
+if (nrow(df) > 0) {
+  want <- c("PMID", "Title", STATUS_COLUMNS)
+  export_cols <- intersect(want, names(df))
+  rows_json <- jsonlite::toJSON(
+    df[, export_cols, drop = FALSE],
+    auto_unbox = TRUE,
+    dataframe = "rows"
+  )
+  cat(sprintf('<script type="application/json" id="curator-table-data">%s</script>', rows_json))
+}
+```
+
+```{r}
+#| label: curator-config
+#| echo: false
+#| results: asis
+# Defaults for form (same as Python CONFIG)
+cat(sprintf('<script type="application/json" id="curator-config">%s</script>',
+            jsonlite::toJSON(list(curator_id_default = CONFIG$curator_id_default,
+                                 bioanalyzer_version_default = CONFIG$bioanalyzer_version_default,
+                                 feedback_issue_url = CONFIG$feedback_issue_url),
+                            auto_unbox = TRUE)))
+```
+
+::: {#feedback-form .card .shadow-sm}
+::: {.card-header .bg-light .py-3}
+**Curator feedback form**
+:::
+::: {.card-body}
+::: {.mb-3}
+**Curator ID / initials**  
+<input type="text" id="curator_id" class="form-control" placeholder="e.g. Ronald Ouma" style="max-width: 320px;">
+:::
+::: {.mb-3}
+**Quick select for feedback** — Select a PMID from the table, or type below.
+:::
+
+```{r}
+#| label: quick-select-pmid
+#| echo: false
+#| results: asis
+if (nrow(df) > 0 && "PMID" %in% names(df)) {
+  opts <- df[, c("PMID", if ("Title" %in% names(df)) "Title" else NULL), drop = FALSE]
+  cat('<select id="quick-select-pmid" class="form-select" style="max-width: 480px;"><option value="">— Select a PMID —</option>')
+  for (i in seq_len(nrow(opts))) {
+    pm <- opts$PMID[i]
+    lbl <- if ("Title" %in% names(opts)) paste0(pm, " — ", substr(opts$Title[i], 1, 50), if (nchar(as.character(opts$Title[i])) > 50) "…" else "") else as.character(pm)
+    lbl <- gsub("&", "&amp;", gsub("<", "&lt;", gsub(">", "&gt;", lbl)))
+    cat(sprintf('<option value="%s">%s</option>', pm, lbl))
+  }
+  cat('</select>')
+}
+```
+
+::: {.mb-3}
+**PMID**  
+<div class="input-group" style="max-width: 360px;">
+  <input type="text" id="fb_pmid" class="form-control" placeholder="e.g. 31215600">
+  <button type="button" id="btn-load-row" class="btn btn-outline-secondary">Load row</button>
+</div>
+:::
+::: {.mb-3}
+**Title (from table)**  
+<span id="title-prefill" class="text-muted fst-italic"></span>
+:::
+
+::: {.mb-3}
+**Overall paper verdict**  
+<select id="overall_verdict" class="form-select" style="max-width: 280px;">
+  <option value="Curatable">Curatable</option>
+  <option value="Not curatable">Not curatable</option>
+  <option value="Uncertain">Uncertain</option>
+  <option value="Not reviewed">Not reviewed</option>
+</select>
+:::
+::: {.mb-3}
+**Comment (optional)**  
+<textarea id="comment" class="form-control" rows="3" placeholder="Evidence, edge case, missing field, false positive reason..." style="max-width: 520px;"></textarea>
+:::
+::: {.mb-3}
+**BioAnalyzer version** (fixed for all submissions)  
+<input type="text" id="bioanalyzer_version" class="form-control" readonly style="max-width: 200px; background-color: var(--bs-light, #f8f9fa);" title="Version is set at build time.">
+:::
+
+### Field-by-field validation (ground truth) {#field-validation-section}
+
+For each field, provide the **curator TRUE label** (ground truth). Optionally mark whether BioAnalyzer's predicted status was correct.
+
+::: {.grid}
+
+```{r}
+#| label: feedback-fields
+#| echo: false
+#| results: asis
+for (col in STATUS_COLUMNS) {
+  s <- safe_col(col)
+  label <- gsub(" Status", "", col)
+  cat(sprintf('
+<div class="feedback-field">
+  <strong>%s</strong>
+  <p class="bioanalyzer-pred-line"><span id="pred_%s" class="bioanalyzer-pred"></span></p>
+  <small>Curator TRUE label for %s:</small>
+  <select id="true_%s">
+    <option value="Not reviewed">Not reviewed</option>
+    <option value="ABSENT">ABSENT</option>
+    <option value="PARTIALLY_PRESENT">PARTIALLY_PRESENT</option>
+    <option value="PRESENT">PRESENT</option>
+  </select>
+  <small>Was BioAnalyzer correct for %s?</small>
+  <select id="col_fb_%s">
+    <option value="Not reviewed">Not reviewed</option>
+    <option value="Correct">Correct</option>
+    <option value="Incorrect">Incorrect</option>
+    <option value="Unclear">Unclear</option>
+  </select>
+</div>
+', label, s, label, s, label, s))
+}
+```
+
+:::
+
+**Submit review** — Opens GitHub to create an issue with your feedback (no file download). A bot will then open a Pull Request with the feedback CSV so the maintainer can view and download it (including your initials and comments).
+
+::: {.mt-2}
+<button type="button" id="btn-submit-review" class="btn btn-primary me-2">Submit review</button>
+<button type="button" id="btn-download-csv" class="btn btn-outline-secondary">Download CSV only</button>
+:::
+
+::: {.mt-3 .pt-3 .border-top .small .text-muted}
+**Notes:** Submissions are stored in the repo folder `curator-feedback/`. Set `BIOANALYZER_VERSION` or `GITHUB_REPO` (e.g. https://github.com/owner/repo) in the environment when building.
+:::
+:::
+:::
+
+::: {#thank-you-modal .thank-you-overlay}
+::: {.thank-you-card}
+**Thank you** for your time and input in helping to complete this review.  
+Your feedback has been submitted; an issue and pull request are being created in the background.
+
+Would you like to continue reviewing other papers?
+
+::: {.thank-you-actions .mt-3}
+<button type="button" id="btn-continue-review" class="btn btn-primary me-2">Yes</button>
+<button type="button" id="btn-go-to-index" class="btn btn-outline-secondary">No</button>
+:::
+:::
+:::
+
+<script>
+(function() {
+  const schema = [
+    "PMID","curator_id","overall_verdict","comment","timestamp","bioanalyzer_version",
+    "pred__Host_Species_Status","pred__Body_Site_Status","pred__Condition_Status",
+    "pred__Sequencing_Type_Status","pred__Taxa_Level_Status","pred__Sample_Size_Status",
+    "true__Host_Species_Status","true__Body_Site_Status","true__Condition_Status",
+    "true__Sequencing_Type_Status","true__Taxa_Level_Status","true__Sample_Size_Status",
+    "col_feedback__Host_Species_Status","col_feedback__Body_Site_Status","col_feedback__Condition_Status",
+    "col_feedback__Sequencing_Type_Status","col_feedback__Taxa_Level_Status","col_feedback__Sample_Size_Status"
+  ];
+  const statusCols = [
+    "Host Species Status","Body Site Status","Condition Status",
+    "Sequencing Type Status","Taxa Level Status","Sample Size Status"
+  ];
+  const safeCol = c => c.replace(/ /g, "_");
+
+  let tableData = [];
+  const el = document.getElementById("curator-table-data");
+  if (el) try { tableData = JSON.parse(el.textContent); } catch (_) {}
+
+  const configEl = document.getElementById("curator-config");
+  let feedbackIssueUrl = "";
+  if (configEl) {
+    try {
+      const cfg = JSON.parse(configEl.textContent);
+      if (cfg.curator_id_default) document.getElementById("curator_id").value = cfg.curator_id_default;
+      const verEl = document.getElementById("bioanalyzer_version");
+      if (verEl) verEl.value = cfg.bioanalyzer_version_default || "1.0.0";
+      if (cfg.feedback_issue_url) feedbackIssueUrl = cfg.feedback_issue_url;
+    } catch (_) {}
+  }
+  if (!feedbackIssueUrl && typeof window !== "undefined" && window.location.hostname.endsWith(".github.io")) {
+    var path = window.location.pathname.replace(/\/index\.html$/i, "").replace(/^\//, "").split("/").filter(Boolean);
+    var repo = path[0];
+    if (repo) {
+      var user = window.location.hostname.replace(".github.io", "");
+      feedbackIssueUrl = "https://github.com/" + user + "/" + repo + "/issues/new";
+    }
+  }
+
+  function setTitleFromPmid(pmid) {
+    const row = tableData.find(r => String(r.PMID) === String(pmid));
+    const titleEl = document.getElementById("title-prefill");
+    if (row) {
+      titleEl.textContent = row.Title || "(no title)";
+      updatePredictionsForRow(row);
+      const section = document.getElementById("field-validation-section");
+      if (section) section.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      titleEl.textContent = "(PMID not in table)";
+      clearPredictions();
+    }
+  }
+
+  function updatePredictionsForRow(row) {
+    statusCols.forEach(function(col) {
+      const s = safeCol(col);
+      const predEl = document.getElementById("pred_" + s);
+      if (!predEl) return;
+      const val = (row[col] !== undefined && row[col] !== null) ? String(row[col]).trim() : "";
+      predEl.textContent = val ? "BioAnalyzer predicted: " + val : "";
+      predEl.className = "bioanalyzer-pred pred-" + (val ? val.toUpperCase().replace(/\s+/g, "_") : "none");
+    });
+  }
+
+  function clearPredictions() {
+    statusCols.forEach(function(col) {
+      const s = safeCol(col);
+      const predEl = document.getElementById("pred_" + s);
+      if (predEl) { predEl.textContent = ""; predEl.className = "bioanalyzer-pred"; }
+    });
+  }
+
+  const quickSelect = document.getElementById("quick-select-pmid");
+  if (quickSelect) {
+    quickSelect.addEventListener("change", function() {
+      const pmid = this.value;
+      const fbPmid = document.getElementById("fb_pmid");
+      if (fbPmid) fbPmid.value = pmid;
+      if (pmid) setTitleFromPmid(pmid);
+    });
+  }
+
+  const loadBtn = document.getElementById("btn-load-row");
+  if (loadBtn) {
+    loadBtn.addEventListener("click", function() {
+      const pmid = document.getElementById("fb_pmid").value.trim();
+      if (pmid) setTitleFromPmid(pmid);
+    });
+  }
+
+  function escapeCsv(s) {
+    if (s == null) return "";
+    s = String(s);
+    if (/[,"\n\r]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
+    return s;
+  }
+
+  function buildFeedbackCsv() {
+    const pmid = document.getElementById("fb_pmid").value.trim();
+    const curatorId = document.getElementById("curator_id").value.trim();
+    if (!pmid || !curatorId) {
+      alert("Please fill Curator ID and PMID.");
+      return null;
+    }
+    const row = tableData.find(r => String(r.PMID) === String(pmid));
+    const pred = row || {};
+    const ts = new Date().toISOString();
+    const rowObj = {
+      "PMID": pmid,
+      "curator_id": curatorId,
+      "overall_verdict": document.getElementById("overall_verdict").value,
+      "comment": document.getElementById("comment").value.replace(/\r?\n/g, " "),
+      "timestamp": ts,
+      "bioanalyzer_version": document.getElementById("bioanalyzer_version").value
+    };
+    statusCols.forEach(col => {
+      const s = safeCol(col);
+      rowObj["pred__" + s] = (pred[col] !== undefined && pred[col] !== null) ? pred[col] : "";
+      rowObj["true__" + s] = (document.getElementById("true_" + s) || {}).value || "Not reviewed";
+      rowObj["col_feedback__" + s] = (document.getElementById("col_fb_" + s) || {}).value || "Not reviewed";
+    });
+    const header = schema.map(escapeCsv).join(",");
+    const line = schema.map(k => escapeCsv(rowObj[k])).join(",");
+    return { csv: header + "\n" + line + "\n", pmid: pmid };
+  }
+
+  function resetFormAfterSubmit() {
+    const commentEl = document.getElementById("comment");
+    if (commentEl) commentEl.value = "";
+    statusCols.forEach(col => {
+      const s = safeCol(col);
+      const t = document.getElementById("true_" + s);
+      const c = document.getElementById("col_fb_" + s);
+      if (t) t.value = "Not reviewed";
+      if (c) c.value = "Not reviewed";
+    });
+  }
+
+  const downloadBtn = document.getElementById("btn-download-csv");
+  if (downloadBtn) {
+    downloadBtn.addEventListener("click", function() {
+      const out = buildFeedbackCsv();
+      if (!out) return;
+      const blob = new Blob([out.csv], { type: "text/csv" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "curator_feedback_" + out.pmid + ".csv";
+      a.click();
+      URL.revokeObjectURL(a.href);
+      resetFormAfterSubmit();
+    });
+  }
+
+  const submitBtn = document.getElementById("btn-submit-review");
+  if (submitBtn) {
+    submitBtn.addEventListener("click", function() {
+      const out = buildFeedbackCsv();
+      if (!out) return;
+      if (!feedbackIssueUrl) {
+        alert("Submit review needs the GitHub repo URL. Set GITHUB_REPO when building (e.g. export GITHUB_REPO=https://github.com/YOUR_USER/curator_table_r && quarto render), or use the site from GitHub Pages so it can be detected automatically.");
+        return;
+      }
+      var bodyText = "Curator feedback submission. The CSV below contains the full feedback (curator initials, comments, field-by-field validation). A pull request will be created automatically with this file for the maintainer to review and download.\n\n```csv\n" + out.csv.trim() + "\n```";
+      var url = feedbackIssueUrl + "?title=" + encodeURIComponent("Curator feedback submission") + "&body=" + encodeURIComponent(bodyText);
+      window.open(url, "_blank");
+      resetFormAfterSubmit();
+      try { sessionStorage.setItem("curator-thank-you", "1"); } catch (e) {}
+      window.location.reload();
+    });
+  }
+
+  var thankYouModal = document.getElementById("thank-you-modal");
+  if (thankYouModal) {
+    try {
+      if (sessionStorage.getItem("curator-thank-you") === "1") {
+        sessionStorage.removeItem("curator-thank-you");
+        thankYouModal.classList.add("show");
+      }
+    } catch (e) {}
+    var btnYes = document.getElementById("btn-continue-review");
+    var btnNo = document.getElementById("btn-go-to-index");
+    if (btnYes) btnYes.addEventListener("click", function() {
+      thankYouModal.classList.remove("show");
+      var el = document.getElementById("candidate-papers");
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    if (btnNo) btnNo.addEventListener("click", function() {
+      window.location.href = "./";
+    });
+  }
+})();
+</script>
+
+<style>
+.thank-you-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+.thank-you-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+.thank-you-card {
+  background: var(--bs-body-bg, #fff);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 2rem rgba(0,0,0,0.2);
+  max-width: 420px;
+  text-align: center;
+}
+.thank-you-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem; }
+
+#feedback-form .card-body { padding: 1.25rem 1.5rem; }
+.feedback-field {
+  margin-bottom: 1.25rem;
+  padding: 0.75rem;
+  background: var(--bs-light, #f8f9fa);
+  border-radius: 0.35rem;
+  border: 1px solid rgba(0,0,0,.06);
+}
+.feedback-field strong { display: block; margin-bottom: 0.35rem; }
+.feedback-field .bioanalyzer-pred-line { margin: 0.35rem 0 0.5rem 0; min-height: 1.4em; }
+.bioanalyzer-pred { font-size: 0.95em; font-weight: 500; }
+.bioanalyzer-pred.pred-PRESENT { color: #198754; }
+.bioanalyzer-pred.pred-ABSENT { color: #dc3545; }
+.bioanalyzer-pred.pred-PARTIALLY_PRESENT { color: #fd7e14; }
+.feedback-field select { margin-right: 0.5rem; margin-top: 0.25rem; max-width: 12em; }
+.feedback-field small { color: var(--bs-secondary); }
+@media (min-width: 768px) {
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.5rem; }
+}
+</style>

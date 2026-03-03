@@ -1,0 +1,4 @@
+/* Minimal, readable overrides for curator table site */
+.quarto-title-banner { padding: 1.5rem 0; }
+.card { border-radius: 0.4rem; }
+#feedback-form .card-header { font-weight: 600; }

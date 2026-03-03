@@ -1,0 +1,2 @@
+# Place your analyzed papers CSV here (e.g. sample.csv).
+# The site reads from data/sample.csv by default, or set CURATOR_DATA_PATH when building.

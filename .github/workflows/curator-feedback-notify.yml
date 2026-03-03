@@ -1,0 +1,120 @@
+# When a curator submits feedback (issue with CSV in body), create a PR with the CSV and notify maintainer
+name: Curator feedback
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  process:
+    if: contains(github.event.issue.title, 'Curator feedback')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Extract CSV from issue body
+        id: csv
+        env:
+          BODY: ${{ github.event.issue.body }}
+        run: |
+          # Write body to file to avoid quoting issues, then extract ```csv ... ``` block
+          printf '%s' "$BODY" > issue_body.txt
+          awk '/^```csv$/ { f=1; next } /^```$/ { if(f) exit } f' issue_body.txt > extracted_feedback.csv
+          if [ ! -s extracted_feedback.csv ]; then
+            awk '/^```$/ { f=!f; next } f' issue_body.txt > extracted_feedback.csv
+          fi
+          if [ -s extracted_feedback.csv ] && head -1 extracted_feedback.csv | grep -q "PMID"; then
+            echo "has_csv=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_csv=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Save CSV and create branch
+        if: steps.csv.outputs.has_csv == 'true'
+        run: |
+          mkdir -p curator-feedback
+          ISSUE="${{ github.event.issue.number }}"
+          TS=$(date +%Y%m%d-%H%M%S)
+          FNAME="curator-feedback/feedback_issue${ISSUE}_${TS}.csv"
+          cp extracted_feedback.csv "$FNAME"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          BRANCH="curator-feedback/issue-${ISSUE}"
+          git checkout -b "$BRANCH"
+          git add "$FNAME"
+          git commit -m "Add curator feedback from issue #${ISSUE}"
+          git push -u origin "$BRANCH"
+          echo "branch=$BRANCH" >> $GITHUB_ENV
+          echo "fname=$FNAME" >> $GITHUB_ENV
+
+      - name: Create Pull Request
+        if: steps.csv.outputs.has_csv == 'true'
+        id: pr
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const branch = process.env.BRANCH;
+            const issueNum = context.issue.number;
+            const defaultBranch = context.repo.default_branch || 'main';
+            const { data } = await github.rest.pulls.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Curator feedback from issue #${issueNum}`,
+              head: branch,
+              base: defaultBranch,
+              body: `Feedback submitted via the curator table.\n\n- **Issue:** #${issueNum}\n- **CSV file:** The feedback file is attached in this PR. The maintainer can **download it** to view all details (curator initials, comments, field-by-field validation).\n\nPlease review and merge to add this feedback to the \`curator-feedback/\` folder.`
+            });
+            core.setOutput('pr_url', data.html_url);
+            core.setOutput('pr_number', data.number);
+
+      - name: Comment on issue with PR link
+        if: steps.csv.outputs.has_csv == 'true' && steps.pr.outputs.pr_url != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: 'Thank you for your feedback. A pull request has been created with your feedback CSV. The maintainer will review it and can download the file to see all details (your initials, comments, and field-by-field validation).\n\n**Pull request:** ' + '${{ steps.pr.outputs.pr_url }}'
+            });
+
+      - name: Comment on issue (no CSV found)
+        if: steps.csv.outputs.has_csv != 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: 'Thank you for opening this issue. No CSV block was found in the body. When using **Submit review** on the curator table, the issue is pre-filled with the feedback CSV. If you submitted manually, please add the feedback CSV in a code block (```csv ... ```).'
+            });
+
+      - name: Notify maintainer by email
+        if: steps.csv.outputs.has_csv == 'true' && steps.pr.outputs.pr_url != '' && secrets.SMTP_SERVER != ''
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ secrets.SMTP_SERVER }}
+          server_port: ${{ secrets.SMTP_PORT }}
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: "Curator feedback – PR created (issue #${{ github.event.issue.number }})"
+          to: ronald2ouma2@gmail.com
+          from: ${{ secrets.MAIL_FROM }}
+          body: |
+            A new curator feedback submission was received and a Pull Request has been created.
+
+            Issue: ${{ github.event.issue.html_url }}
+            Pull Request: ${{ steps.pr.outputs.pr_url }}
+
+            The PR contains the feedback CSV file. You can download it to view all details (curator initials, comments, and field-by-field validation).
+          ignore_errors: true

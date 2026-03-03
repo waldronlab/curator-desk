@@ -1,0 +1,25 @@
+# Curator Desk (R/Quarto) — GitHub Pages
+# Build: quarto render (or quarto preview)
+# Deploy: push docs/ to GitHub and set Pages to "Deploy from branch" -> docs/
+
+project:
+  type: website
+  output-dir: docs
+  execute-dir: project   # R chunks run with project root as wd (R/, data/ resolve)
+
+website:
+  title: "Curator Desk"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Curator Desk
+  page-navigation: true
+
+format:
+  html:
+    theme: litera
+    toc: false
+    code-fold: false
+    embed-resources: true   # single-file HTML for easier deployment
+    minify: true
+    css: styles.css

@@ -1,0 +1,18 @@
+# Quarto
+.quarto/
+
+# R
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Installers
+*.deb
+
+/.quarto/
+**/*.quarto_ipynb
