@@ -51,23 +51,6 @@ quarto render
 
 To update the table with new data, re-run `quarto render` (or use a CI job that does this and publishes `docs/`).
 
-## Deploy to GitHub Pages
-
-1. **Build** the site (see above). The project is set up to write output to `docs/`.
-
-2. **Publish `docs/`:**
-   - **Option A — Branch `main` / folder `docs`:**  
-     Push the repo. In GitHub: **Settings → Pages → Source**: “Deploy from a branch”. Branch: `main`, folder: `/docs`. Save. The site will be at `https://<org>.github.io/<repo>/`.
-   - **Option B — Branch `gh-pages`:**  
-     Set `output-dir` in `_quarto.yml` to a different directory (e.g. `_site`) and use a GitHub Action to build and push to the `gh-pages` branch; then set Pages to deploy from `gh-pages`.
-
-3. Add a **`.nojekyll`** file in the root of the deployed content (e.g. in `docs/`) so GitHub Pages doesn’t treat it as Jekyll:
-
-   ```bash
-   touch docs/.nojekyll
-   ```
-
-   Commit and push so `docs/.nojekyll` is in the repo.
 
 ## Feedback workflow (GitHub Pages)
 
@@ -77,14 +60,12 @@ To update the table with new data, re-run `quarto render` (or use a CI job that 
    - Extracts the CSV from the issue body.
    - Saves it to **`curator-feedback/`** on a new branch.
    - Opens a **Pull Request** with that file so the maintainer can view and **download** the CSV (with curator initials, comments, and field-by-field validation).
-   - Comments on the issue with the PR link and notifies **ronald2ouma2@gmail.com** (if SMTP secrets are set).
+   - Comments on the issue with the PR link and notifies **ronald2ouma2@gmail.com**
 
 **Build-time options:**
 
 - Set **`GITHUB_REPO`** (e.g. `https://github.com/owner/repo`) so Submit review opens your repo’s new-issue page with the feedback in the body.
 - Set **`BIOANALYZER_VERSION`** (default `1.0.0`) so the version field is fixed for all curators.
-
-**Email notification:** Add repository secrets `SMTP_SERVER`, `SMTP_PORT`, `SMTP_USERNAME`, `SMTP_PASSWORD`, `MAIL_FROM` to send the maintainer an email when a PR is created. Without them, the Action still creates the PR and comments on the issue.
 
 ## File layout
 
