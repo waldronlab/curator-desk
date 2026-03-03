@@ -53,6 +53,10 @@ quarto render
 
 To update the table with new data, re-run `quarto render` (or use a CI job that does this and publishes `docs/`).
 
+## CI and deployment
+
+- **CI (`.github/workflows/ci.yml`)** runs on every **pull request** and **push** to `main`: builds the site with Quarto, installs R dependencies (with cache), and checks that `docs/index.html` is produced. Use it as a **required status check** so PRs must pass before merge: **Settings → Branches → Branch protection rules** for `main` → Require status checks → select **"Build & validate"**.
+- **Deploy (`.github/workflows/quarto-publish.yml`)** runs on **push to `main`** only: builds the site, uploads the artifact, and deploys to GitHub Pages. R package caching is enabled to speed up runs.
 
 ## Feedback workflow (GitHub Pages)
 
