@@ -46,6 +46,8 @@ jobs:
           version: release
 
       - name: Render Quarto site
+        env:
+          GITHUB_REPO: https://github.com/${{ github.repository }}
         run: quarto render
 
       - name: Verify build output

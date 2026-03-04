@@ -355,12 +355,16 @@ Would you like to continue reviewing other papers?
       if (cfg.feedback_issue_url) feedbackIssueUrl = cfg.feedback_issue_url;
     } catch (_) {}
   }
-  if (!feedbackIssueUrl && typeof window !== "undefined" && window.location.hostname.endsWith(".github.io")) {
-    var path = window.location.pathname.replace(/\/index\.html$/i, "").replace(/^\//, "").split("/").filter(Boolean);
-    var repo = path[0];
-    if (repo) {
-      var user = window.location.hostname.replace(".github.io", "");
-      feedbackIssueUrl = "https://github.com/" + user + "/" + repo + "/issues/new";
+  if (!feedbackIssueUrl && typeof window !== "undefined") {
+    if (window.location.hostname.endsWith(".github.io")) {
+      var path = window.location.pathname.replace(/\/index\.html$/i, "").replace(/^\//, "").split("/").filter(Boolean);
+      var repo = path[0];
+      if (repo) {
+        var user = window.location.hostname.replace(".github.io", "");
+        feedbackIssueUrl = "https://github.com/" + user + "/" + repo + "/issues/new";
+      }
+    } else if (window.location.hostname === "waldronlab.io" && window.location.pathname.indexOf("curator-desk") !== -1) {
+      feedbackIssueUrl = "https://github.com/waldronlab/curator-desk/issues/new";
     }
   }
 
