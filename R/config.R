@@ -5,7 +5,7 @@ CONFIG <- list(
   feedback_dir = Sys.getenv("FEEDBACK_DIR", "results"),
   curator_id_default = Sys.getenv("USER", ""),
   bioanalyzer_version_default = Sys.getenv("BIOANALYZER_VERSION", "1.0.0"),
-  # Base URL for new issue; JS will append title and body (with CSV in body)
+  # Base URL for new issue; Submit review opens this with title and body pre-filled
   feedback_issue_url = if (nzchar(trimws(Sys.getenv("GITHUB_REPO", ""))))
     paste0(trimws(Sys.getenv("GITHUB_REPO")), "/issues/new")
   else ""
