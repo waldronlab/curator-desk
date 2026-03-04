@@ -41,6 +41,7 @@ jobs:
         run: Rscript -e 'install.packages(c("DT", "jsonlite"), repos = "https://cloud.r-project.org")'
 
       - name: Set up Quarto
+        # Use quarto-actions/setup (not deprecated setup-quarto)
         uses: quarto-dev/quarto-actions/setup@v2
         with:
           version: release
