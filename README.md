@@ -58,20 +58,20 @@ To update the table with new data, re-run `quarto render` (or use a CI job that 
 - **CI (`.github/workflows/ci.yml`)** runs on every **pull request** and **push** to `main`: builds the site with Quarto, installs R dependencies (with cache), and checks that `docs/index.html` is produced. Use it as a **required status check** so PRs must pass before merge: **Settings → Branches → Branch protection rules** for `main` → Require status checks → select **"Build & validate"**.
 - **Deploy (`.github/workflows/quarto-publish.yml`)** runs on **push to `main`** only: builds the site, uploads the artifact, and deploys to GitHub Pages. R package caching is enabled to speed up runs.
 
-## Feedback workflow (GitHub Pages)
+## Feedback workflow (GitHub Pages only)
 
-1. **Curators** open the table, pick a PMID, fill the feedback form, and click **Submit review** (no file download).
-2. A new browser tab opens on your repo’s **new-issue** page with the feedback **pre-filled** in the body (CSV in a code block). The curator clicks **Submit** once on GitHub to create the issue.
-3. A **GitHub Action** (`.github/workflows/curator-feedback-notify.yml`) runs when an issue titled "Curator feedback submission" is opened:
-   - Extracts the CSV from the issue body.
-   - Saves it to **`curator-feedback/`** on a new branch.
-   - Opens a **Pull Request** with that file so the maintainer can view and **download** the CSV (with curator initials, comments, and field-by-field validation).
-   - Comments on the issue with the PR link and notifies **ronald2ouma2@gmail.com**
+This project uses **only GitHub Pages**; no other platform (e.g. Vercel) is required.
+
+1. **Curators** fill the feedback form and click **Submit review**.
+2. A new tab opens on your repo’s **new-issue** page with the title and body **pre-filled** (the feedback CSV is in the body). The curator clicks **Create** on GitHub to create the issue.
+3. **Maintainers review in the issue** — the full feedback (curator initials, comments, field-by-field validation) is in the issue body as a CSV block.
+
+Optionally, the **GitHub Action** (`.github/workflows/curator-feedback-notify.yml`) runs when an issue titled "Curator feedback submission" is opened: it extracts the CSV, saves it under **`curator-feedback/`** on a new branch, opens a **Pull Request** with that file, comments on the issue with the PR link, and can notify the maintainer by email (if SMTP secrets are set). Review can still be done directly in the issue.
 
 **Build-time options:**
 
-- Set **`GITHUB_REPO`** (e.g. `https://github.com/owner/repo`) so Submit review opens your repo’s new-issue page with the feedback in the body.
-- Set **`BIOANALYZER_VERSION`** (default `1.0.0`) so the version field is fixed for all curators.
+- **`GITHUB_REPO`** — repo URL (e.g. `https://github.com/owner/repo`) so Submit review opens the correct new-issue page. Set in your deploy workflow or locally before `quarto render`.
+- **`BIOANALYZER_VERSION`** (default `1.0.0`) — fixed version in the form.
 
 ## File layout
 

@@ -274,7 +274,7 @@ for (col in STATUS_COLUMNS) {
   cat(sprintf('
 <div class="feedback-field">
   <strong>%s</strong>
-  <p class="bioanalyzer-pred-line"><span id="pred_%s" class="bioanalyzer-pred"></span></p>
+  <p class="bioanalyzer-pred-line"><span id="pred_%s" class="bioanalyzer-pred text-muted">Select a PMID above and click Load row to see BioAnalyzer&rsquo;s prediction.</span></p>
   <small>Curator TRUE label for %s:</small>
   <select id="true_%s">
     <option value="Not reviewed">Not reviewed</option>
@@ -382,14 +382,25 @@ Would you like to continue reviewing other papers?
     }
   }
 
+  function getPredictionValue(row, col) {
+    if (!row) return "";
+    const withSpaces = row[col];
+    if (withSpaces !== undefined && withSpaces !== null && String(withSpaces).trim() !== "") return String(withSpaces).trim();
+    const withUnderscores = row[col.replace(/\s+/g, "_")];
+    if (withUnderscores !== undefined && withUnderscores !== null && String(withUnderscores).trim() !== "") return String(withUnderscores).trim();
+    return "";
+  }
+
+  const predictionPlaceholder = "Select a PMID above and click Load row to see BioAnalyzer's prediction.";
+
   function updatePredictionsForRow(row) {
     statusCols.forEach(function(col) {
       const s = safeCol(col);
       const predEl = document.getElementById("pred_" + s);
       if (!predEl) return;
-      const val = (row[col] !== undefined && row[col] !== null) ? String(row[col]).trim() : "";
-      predEl.textContent = val ? "BioAnalyzer predicted: " + val : "";
-      predEl.className = "bioanalyzer-pred pred-" + (val ? val.toUpperCase().replace(/\s+/g, "_") : "none");
+      const val = getPredictionValue(row, col);
+      predEl.textContent = val ? "BioAnalyzer predicted: " + val : predictionPlaceholder;
+      predEl.className = "bioanalyzer-pred " + (val ? "pred-" + val.toUpperCase().replace(/\s+/g, "_") : "text-muted");
     });
   }
 
@@ -397,7 +408,10 @@ Would you like to continue reviewing other papers?
     statusCols.forEach(function(col) {
       const s = safeCol(col);
       const predEl = document.getElementById("pred_" + s);
-      if (predEl) { predEl.textContent = ""; predEl.className = "bioanalyzer-pred"; }
+      if (predEl) {
+        predEl.textContent = predictionPlaceholder;
+        predEl.className = "bioanalyzer-pred text-muted";
+      }
     });
   }
 
@@ -488,11 +502,12 @@ Would you like to continue reviewing other papers?
       const out = buildFeedbackCsv();
       if (!out) return;
       if (!feedbackIssueUrl) {
-        alert("Submit review needs the GitHub repo URL. Set GITHUB_REPO when building (e.g. export GITHUB_REPO=https://github.com/YOUR_USER/curator_table_r && quarto render), or use the site from GitHub Pages so it can be detected automatically.");
+        alert("Submit review needs the GitHub repo URL. Set GITHUB_REPO when building (e.g. in your deploy workflow or locally: export GITHUB_REPO=https://github.com/owner/repo && quarto render).");
         return;
       }
-      var bodyText = "Curator feedback submission. The CSV below contains the full feedback (curator initials, comments, field-by-field validation). A pull request will be created automatically with this file for the maintainer to review and download.\n\n```csv\n" + out.csv.trim() + "\n```";
-      var url = feedbackIssueUrl + "?title=" + encodeURIComponent("Curator feedback submission") + "&body=" + encodeURIComponent(bodyText);
+      var bodyText = "Curator feedback submission. The CSV below contains the full feedback (curator initials, comments, field-by-field validation). Maintainers can review in this issue.\n\n```csv\n" + out.csv.trim() + "\n```";
+      var title = "Curator feedback submission";
+      var url = feedbackIssueUrl + "?title=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(bodyText);
       window.open(url, "_blank");
       resetFormAfterSubmit();
       try { sessionStorage.setItem("curator-thank-you", "1"); } catch (e) {}
