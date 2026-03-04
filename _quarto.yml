@@ -23,3 +23,5 @@ format:
     embed-resources: true   # single-file HTML for easier deployment
     minify: true
     css: styles.css
+    # Use more horizontal space so intro, table, and form are distributed evenly (not narrowly centered)
+    max-width: 1280px

@@ -1,4 +1,4 @@
-# When a curator submits feedback (issue with CSV in body), create a PR with the CSV and notify maintainer
+# When a curator submits feedback (issue with CSV in body), create a PR with the CSV
 name: Curator feedback
 
 on:
@@ -6,8 +6,27 @@ on:
     types: [opened]
 
 jobs:
+  # Always run so the workflow never shows "No jobs run"; process runs only for curator feedback issues
+  check:
+    name: Check issue
+    runs-on: ubuntu-latest
+    outputs:
+      is_curator_feedback: ${{ steps.detect.outputs.is_curator_feedback }}
+    steps:
+      - name: Detect curator feedback issue
+        id: detect
+        run: |
+          TITLE="${{ github.event.issue.title }}"
+          if echo "$TITLE" | grep -qi "curator feedback"; then
+            echo "is_curator_feedback=true" >> $GITHUB_OUTPUT
+          else
+            echo "is_curator_feedback=false" >> $GITHUB_OUTPUT
+          fi
+
   process:
-    if: contains(github.event.issue.title, 'Curator feedback')
+    name: Process feedback & create PR
+    needs: check
+    if: needs.check.outputs.is_curator_feedback == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -98,23 +117,3 @@ jobs:
               issue_number: context.issue.number,
               body: 'Thank you for opening this issue. No CSV block was found in the body. When using **Submit review** on the curator table, the issue is pre-filled with the feedback CSV. If you submitted manually, please add the feedback CSV in a code block (```csv ... ```).'
             });
-
-      - name: Notify maintainer by email
-        if: steps.csv.outputs.has_csv == 'true' && steps.pr.outputs.pr_url != '' && secrets.SMTP_SERVER != ''
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: ${{ secrets.SMTP_SERVER }}
-          server_port: ${{ secrets.SMTP_PORT }}
-          username: ${{ secrets.SMTP_USERNAME }}
-          password: ${{ secrets.SMTP_PASSWORD }}
-          subject: "Curator feedback – PR created (issue #${{ github.event.issue.number }})"
-          to: ronald2ouma2@gmail.com
-          from: ${{ secrets.MAIL_FROM }}
-          body: |
-            A new curator feedback submission was received and a Pull Request has been created.
-
-            Issue: ${{ github.event.issue.html_url }}
-            Pull Request: ${{ steps.pr.outputs.pr_url }}
-
-            The PR contains the feedback CSV file. You can download it to view all details (curator initials, comments, and field-by-field validation).
-          ignore_errors: true
