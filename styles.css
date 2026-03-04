@@ -2,3 +2,23 @@
 .quarto-title-banner { padding: 1.5rem 0; }
 .card { border-radius: 0.4rem; }
 #feedback-form .card-header { font-weight: 600; }
+
+/* Distribute content evenly: use full width so intro, table, and form are not narrowly centered */
+#quarto-content.quarto-container,
+.quarto-container.page-columns.page-layout-article {
+  max-width: min(1280px, 96vw);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+main.content {
+  max-width: 100%;
+}
+/* Let the DataTable and feedback card use full width of the content area */
+#quarto-document-content .cell-output-display,
+#quarto-document-content .datatables,
+#feedback-form.card {
+  width: 100%;
+  max-width: 100%;
+}

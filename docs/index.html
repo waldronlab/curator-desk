@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BioAnalyzer Curator Table</title>
+<title>Curator Desk</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -7613,6 +7613,25 @@ b&&(b.preventDefault(),b.stopPropagation())}else(l.isFocused||"single"===l.setti
 .quarto-title-banner { padding: 1.5rem 0; }
 .card { border-radius: 0.4rem; }
 #feedback-form .card-header { font-weight: 600; }
+
+#quarto-content.quarto-container,
+.quarto-container.page-columns.page-layout-article {
+max-width: min(1280px, 96vw);
+margin-left: auto;
+margin-right: auto;
+padding-left: 1.5rem;
+padding-right: 1.5rem;
+}
+main.content {
+max-width: 100%;
+}
+
+#quarto-document-content .cell-output-display,
+#quarto-document-content .datatables,
+#feedback-form.card {
+width: 100%;
+max-width: 100%;
+}
 </style>
 </head>
 
@@ -7624,7 +7643,7 @@ b&&(b.preventDefault(),b.stopPropagation())}else(l.isFocused||"single"===l.setti
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">BioAnalyzer Curator Table</span>
+    <span class="navbar-title">Curator Desk</span>
     </a>
   </div>
             <div id="quarto-search" class title="Search"></div>
@@ -7635,7 +7654,7 @@ b&&(b.preventDefault(),b.stopPropagation())}else(l.isFocused||"single"===l.setti
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text">Curator Table</span></a>
+<span class="menu-text">Curator Desk</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -7654,7 +7673,7 @@ b&&(b.preventDefault(),b.stopPropagation())}else(l.isFocused||"single"===l.setti
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">BioAnalyzer Curator Table</h1>
+<h1 class="title">Curator Desk</h1>
 </div>
 
 
@@ -7671,11 +7690,14 @@ b&&(b.preventDefault(),b.stopPropagation())}else(l.isFocused||"single"===l.setti
 </header>
 
 
-<p>This dashboard provides a <strong>sortable, searchable, filterable</strong> table of BioAnalyzer predictions for candidate curatable PubMed articles.</p>
+<section id="bioanalyzer-curation-hub-turning-predictions-into-progress" class="level1">
+<h1>BioAnalyzer Curation Hub: Turning Predictions into Progress</h1>
+<p>Welcome to your central workspace for refining PubMed literature discovery. This dashboard bridges the gap between AI-driven BioAnalyzer predictions and expert human insight, putting a searchable, high-performance table of candidate articles at your fingertips.</p>
+<p>As you review and capture ground truth for each PMID, the system works in the background to store statuses and track correctness flags in real-time. This seamless integration of human feedback allows you to:</p>
 <ul>
-<li>Curators review predictions and capture feedback by PMID.</li>
-<li>Stored: predicted statuses, curator ground truth, correctness flags.</li>
-<li>Export suitable for confusion matrices, per-field error profiling, and MCC (e.g. for PARTIALLY_PRESENT).</li>
+<li><strong>Streamline Validation:</strong> Effortlessly navigate and filter high-priority candidates.</li>
+<li><strong>Refine Model Accuracy:</strong> Log curator ground truth to build a robust data foundation.</li>
+<li><strong>Generate High-Level Analytics:</strong> Export data ready for deep-dive error profiling, confusion matrices, and MCC performance metrics to help evaluate BioAnalyzer package accuracy.</li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
@@ -7683,33 +7705,39 @@ b&&(b.preventDefault(),b.stopPropagation())}else(l.isFocused||"single"===l.setti
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Data source
+Data Source &amp; Setup
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<p>The table is built from data in the <strong><code>data/</code></strong> folder. <strong>You</strong> add your analyzed papers: put your CSV (or Parquet) in <code>data/</code>—e.g. <code>data/sample.csv</code>—then run <code>quarto render</code>. The system reads <code>data/sample.csv</code> by default, or set <code>CURATOR_DATA_PATH</code> to another path (e.g. <code>data/analyzed_papers.csv</code>) when building. For a remote file, set <code>CURATOR_DATA_URL</code>.</p>
-<p><strong>Expected columns:</strong> PMID (required); Title, Journal, Year, Summary recommended. Status values: <code>ABSENT</code> | <code>PARTIALLY_PRESENT</code> | <code>PRESENT</code>.</p>
+<p>The table is built from data stored in the <strong><code>data/</code></strong> folder. To analyze your own papers:</p>
+<ol type="1">
+<li>Place your CSV (or Parquet) file in <code>data/</code> (e.g., <code>data/sample.csv</code>).</li>
+<li>Run <code>quarto render</code>.</li>
+</ol>
+<p>The system reads <code>data/sample.csv</code> by default. To use a different source, set the <code>CURATOR_DATA_PATH</code> environment variable to your specific path (e.g., <code>data/analyzed_papers.csv</code>) or use <code>CURATOR_DATA_URL</code> for remote files.</p>
+<p><strong>Expected Columns:</strong> * <strong>Required:</strong> <code>PMID</code> * <strong>Recommended:</strong> <code>Title</code>, <code>Journal</code>, <code>Year</code>, <code>Summary</code> * <strong>Status Values:</strong> <code>ABSENT</code> | <code>PARTIALLY_PRESENT</code> | <code>PRESENT</code></p>
 </div>
 </div>
 </div>
+<hr>
 <section id="candidate-papers" class="level2 tabset">
-<h2 class="tabset anchored" data-anchor-id="candidate-papers">Candidate curatable articles</h2>
+<h2 class="tabset anchored" data-anchor-id="candidate-papers">Candidate Curatable Articles</h2>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Table</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Curator feedback</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Interactive Table</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p>Tip: Sort by <strong>Priority Score</strong> (descending) to review the most promising candidates first. Use the search box and column filters to narrow the list.</p>
+<p><strong>Tip:</strong> Sort by <strong>Priority Score</strong> (descending) to review the most promising candidates first. Use the search box and column filters to narrow your focus.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-86e12aea76229b54f060" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-86e12aea76229b54f060">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"30599284\" data-max=\"32075882\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"2\" data-max=\"6\" data-scale=\"1\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"logical\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\" disabled=\"\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;true&quot;,&quot;false&quot;,&quot;na&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"logical\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\" disabled=\"\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;true&quot;,&quot;false&quot;,&quot;na&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n<\/tr>","data":[[32075882,31215600,31160598,31126003,31123265,31053143,30919073,30888539,30875283,30867067,30866773,30854760,30813950,30803537,30791484,30791436,30770768,30764497,30719912,30707176,30696735,30682843,30678168,30665461,30664020,30661321,30642268,30633889,30604790,30599284],["<a href=\"https://pubmed.ncbi.nlm.nih.gov/32075882/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/31215600/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/31160598/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/31126003/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/31123265/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/31053143/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30919073/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30888539/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30875283/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30867067/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30866773/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30854760/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30813950/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30803537/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30791484/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30791436/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30770768/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30764497/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30719912/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30707176/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30696735/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30682843/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30678168/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30665461/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30664020/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30661321/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30642268/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30633889/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30604790/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30599284/\" target=\"_blank\" rel=\"noopener\">Open<\/a>"],[5.5,6,3.5,6,5.5,5,6,6,6,5,4.5,6,6,5.5,6,5.5,6,5,2,6,4.5,4.5,2.5,4,6,3.5,6,6,5,6],["Perinatal Antibiotic Exposure Affects the Transmission between Maternal and Neonatal Microbiota and Is Associated with Early-Onset Sepsis.","Relationship between acetaldehyde concentration in mouth air and characteristics of microbiota of tongue dorsum in Japanese healthy adults: a cross-sectional study.","Sex-specific association between gut microbiome and fat distribution.","Air pollution during the winter period and respiratory tract microbial imbalance in a healthy young population in Northeastern China.","Altered respiratory virome and serum cytokine profile associated with recurrent respiratory tract infections in children.","The combination of sport and sport-specific diet is associated with characteristics of gut microbiota: an observational study.","The oral microbiome of patients undergoing treatment for severe aplastic anemia: a pilot study.","Glutamate interactions with obesity, insulin resistance, cognition and gut microbiota composition.","Oral microbial dysbiosis in patients with Kostmann syndrome.","Prebiotic supplementation in frail older people affects specific gut microbiota taxa but not global diversity.","Differential effects of depot medroxyprogesterone acetate administration on vaginal microbiome in Hispanic White and Black women.","Prospective observational study of vaginal microbiota pre- and post-rescue cervical cerclage.","Environmental toxicants in breast milk of Norwegian mothers and gut bacteria composition and metabolites in their infants at 1 month.","Microbiome of Deep Dentinal Caries from Reversible Pulpitis to Irreversible Pulpitis.","Daidzein Intake Is Associated with Equol Producing Status through an Increase in the Intestinal Bacteria Responsible for Equol Production.","Effect of Selected Stilbenoids on Human Fecal Microbiota.","Genome-resolved metagenomics of eukaryotic populations during early colonization of premature infants and in hospital rooms.","Autism Spectrum Disorder (ASD) with and without Mental Regression is Associated with Changes in the Fecal Microbiota.","Modulation of Gut Microbiota by Soybean 7S Globulin Peptide That Involved Lipopolysaccharide-Peptide Interaction.","Gut microbiota analysis and its significance in vasovagal syncope in children.","Dynamics of Human Gut Microbiota and Short-Chain Fatty Acids in Response to Dietary Interventions with Three Fermentable Fibers.","The Effects of Dietary Pattern during Intensified Training on Stool Microbiota of Elite Race Walkers.","Impact of Grain Sorghum Polyphenols on Microbiota of Normal Weight and Overweight/Obese Subjects during In Vitro Fecal Fermentation.","Population structure of human gut bacteria in a diverse cohort from rural Tanzania and Botswana.","The effect of surgical fecal stream diversion of the healthy colon on the colonic microbiota.","Comparison of the Gut Microbiota of Centenarians in Longevity Villages of South Korea with Those of Other Age Groups.","Viral species richness and composition in young children with loose or watery stool in Ethiopia.","Establishment of vaginal microbiota composition in early pregnancy and its association with subsequent preterm prelabor rupture of the fetal membranes.","Modification of wheat bran particle size and tissue composition affects colonisation and metabolism by human faecal microbiota.","Pathogen reservoir hypothesis investigated by analyses of the adenotonsillar and middle ear microbiota."],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],["PRESENT","PRESENT","PARTIALLY_PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PARTIALLY_PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","ABSENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT"],["PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","ABSENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT"],["PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PARTIALLY_PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PARTIALLY_PRESENT","PRESENT","PARTIALLY_PRESENT","ABSENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT"],["PRESENT","PRESENT","ABSENT","PRESENT","PARTIALLY_PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PARTIALLY_PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PARTIALLY_PRESENT","PRESENT","ABSENT","PRESENT","ABSENT","PRESENT","PRESENT","PARTIALLY_PRESENT","PRESENT","PRESENT","ABSENT","PRESENT"],["PARTIALLY_PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PARTIALLY_PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","ABSENT","PARTIALLY_PRESENT","PRESENT","PRESENT","PARTIALLY_PRESENT","ABSENT","PARTIALLY_PRESENT","PRESENT","ABSENT","PRESENT","PRESENT","PRESENT","PRESENT"],["PRESENT","PRESENT","ABSENT","PRESENT","PRESENT","ABSENT","PRESENT","PRESENT","PRESENT","PARTIALLY_PRESENT","ABSENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","ABSENT","PRESENT","PRESENT","ABSENT","ABSENT","PARTIALLY_PRESENT","PRESENT","ABSENT","PRESENT","PRESENT","PRESENT","PRESENT"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>PMID<\/th>\n      <th>Published<\/th>\n      <th>Priority Score<\/th>\n      <th>Title<\/th>\n      <th>Journal<\/th>\n      <th>Host Species Status<\/th>\n      <th>Body Site Status<\/th>\n      <th>Condition Status<\/th>\n      <th>Sequencing Type Status<\/th>\n      <th>Taxa Level Status<\/th>\n      <th>Sample Size Status<\/th>\n      <th>Summary<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":50,"lengthMenu":[50,100,300,500,1000],"scrollX":true,"stateSave":true,"order":[[2,"desc"]],"columnDefs":[{"className":"dt-right","targets":[0,2]},{"name":"PMID","targets":0},{"name":"Published","targets":1},{"name":"Priority Score","targets":2},{"name":"Title","targets":3},{"name":"Journal","targets":4},{"name":"Host Species Status","targets":5},{"name":"Body Site Status","targets":6},{"name":"Condition Status","targets":7},{"name":"Sequencing Type Status","targets":8},{"name":"Taxa Level Status","targets":9},{"name":"Sample Size Status","targets":10},{"name":"Summary","targets":11}],"autoWidth":false,"orderClasses":false,"orderCellsTop":true}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-8dc2e11d727bc8c68a9e" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-8dc2e11d727bc8c68a9e">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"30599284\" data-max=\"32075882\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"2\" data-max=\"6\" data-scale=\"1\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"logical\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\" disabled=\"\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;true&quot;,&quot;false&quot;,&quot;na&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"logical\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\" disabled=\"\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;true&quot;,&quot;false&quot;,&quot;na&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n<\/tr>","data":[[32075882,31215600,31160598,31126003,31123265,31053143,30919073,30888539,30875283,30867067,30866773,30854760,30813950,30803537,30791484,30791436,30770768,30764497,30719912,30707176,30696735,30682843,30678168,30665461,30664020,30661321,30642268,30633889,30604790,30599284],["<a href=\"https://pubmed.ncbi.nlm.nih.gov/32075882/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/31215600/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/31160598/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/31126003/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/31123265/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/31053143/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30919073/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30888539/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30875283/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30867067/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30866773/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30854760/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30813950/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30803537/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30791484/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30791436/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30770768/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30764497/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30719912/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30707176/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30696735/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30682843/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30678168/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30665461/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30664020/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30661321/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30642268/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30633889/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30604790/\" target=\"_blank\" rel=\"noopener\">Open<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/30599284/\" target=\"_blank\" rel=\"noopener\">Open<\/a>"],[5.5,6,3.5,6,5.5,5,6,6,6,5,4.5,6,6,5.5,6,5.5,6,5,2,6,4.5,4.5,2.5,4,6,3.5,6,6,5,6],["Perinatal Antibiotic Exposure Affects the Transmission between Maternal and Neonatal Microbiota and Is Associated with Early-Onset Sepsis.","Relationship between acetaldehyde concentration in mouth air and characteristics of microbiota of tongue dorsum in Japanese healthy adults: a cross-sectional study.","Sex-specific association between gut microbiome and fat distribution.","Air pollution during the winter period and respiratory tract microbial imbalance in a healthy young population in Northeastern China.","Altered respiratory virome and serum cytokine profile associated with recurrent respiratory tract infections in children.","The combination of sport and sport-specific diet is associated with characteristics of gut microbiota: an observational study.","The oral microbiome of patients undergoing treatment for severe aplastic anemia: a pilot study.","Glutamate interactions with obesity, insulin resistance, cognition and gut microbiota composition.","Oral microbial dysbiosis in patients with Kostmann syndrome.","Prebiotic supplementation in frail older people affects specific gut microbiota taxa but not global diversity.","Differential effects of depot medroxyprogesterone acetate administration on vaginal microbiome in Hispanic White and Black women.","Prospective observational study of vaginal microbiota pre- and post-rescue cervical cerclage.","Environmental toxicants in breast milk of Norwegian mothers and gut bacteria composition and metabolites in their infants at 1 month.","Microbiome of Deep Dentinal Caries from Reversible Pulpitis to Irreversible Pulpitis.","Daidzein Intake Is Associated with Equol Producing Status through an Increase in the Intestinal Bacteria Responsible for Equol Production.","Effect of Selected Stilbenoids on Human Fecal Microbiota.","Genome-resolved metagenomics of eukaryotic populations during early colonization of premature infants and in hospital rooms.","Autism Spectrum Disorder (ASD) with and without Mental Regression is Associated with Changes in the Fecal Microbiota.","Modulation of Gut Microbiota by Soybean 7S Globulin Peptide That Involved Lipopolysaccharide-Peptide Interaction.","Gut microbiota analysis and its significance in vasovagal syncope in children.","Dynamics of Human Gut Microbiota and Short-Chain Fatty Acids in Response to Dietary Interventions with Three Fermentable Fibers.","The Effects of Dietary Pattern during Intensified Training on Stool Microbiota of Elite Race Walkers.","Impact of Grain Sorghum Polyphenols on Microbiota of Normal Weight and Overweight/Obese Subjects during In Vitro Fecal Fermentation.","Population structure of human gut bacteria in a diverse cohort from rural Tanzania and Botswana.","The effect of surgical fecal stream diversion of the healthy colon on the colonic microbiota.","Comparison of the Gut Microbiota of Centenarians in Longevity Villages of South Korea with Those of Other Age Groups.","Viral species richness and composition in young children with loose or watery stool in Ethiopia.","Establishment of vaginal microbiota composition in early pregnancy and its association with subsequent preterm prelabor rupture of the fetal membranes.","Modification of wheat bran particle size and tissue composition affects colonisation and metabolism by human faecal microbiota.","Pathogen reservoir hypothesis investigated by analyses of the adenotonsillar and middle ear microbiota."],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],["PRESENT","PRESENT","PARTIALLY_PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PARTIALLY_PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","ABSENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT"],["PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","ABSENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT"],["PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PARTIALLY_PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PARTIALLY_PRESENT","PRESENT","PARTIALLY_PRESENT","ABSENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT"],["PRESENT","PRESENT","ABSENT","PRESENT","PARTIALLY_PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PARTIALLY_PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PARTIALLY_PRESENT","PRESENT","ABSENT","PRESENT","ABSENT","PRESENT","PRESENT","PARTIALLY_PRESENT","PRESENT","PRESENT","ABSENT","PRESENT"],["PARTIALLY_PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PARTIALLY_PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","ABSENT","PARTIALLY_PRESENT","PRESENT","PRESENT","PARTIALLY_PRESENT","ABSENT","PARTIALLY_PRESENT","PRESENT","ABSENT","PRESENT","PRESENT","PRESENT","PRESENT"],["PRESENT","PRESENT","ABSENT","PRESENT","PRESENT","ABSENT","PRESENT","PRESENT","PRESENT","PARTIALLY_PRESENT","ABSENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","PRESENT","ABSENT","PRESENT","PRESENT","ABSENT","ABSENT","PARTIALLY_PRESENT","PRESENT","ABSENT","PRESENT","PRESENT","PRESENT","PRESENT"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>PMID<\/th>\n      <th>Published<\/th>\n      <th>Priority Score<\/th>\n      <th>Title<\/th>\n      <th>Journal<\/th>\n      <th>Host Species Status<\/th>\n      <th>Body Site Status<\/th>\n      <th>Condition Status<\/th>\n      <th>Sequencing Type Status<\/th>\n      <th>Taxa Level Status<\/th>\n      <th>Sample Size Status<\/th>\n      <th>Summary<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":50,"lengthMenu":[50,100,300,500,1000],"scrollX":true,"stateSave":true,"order":[[2,"desc"]],"columnDefs":[{"className":"dt-right","targets":[0,2]},{"name":"PMID","targets":0},{"name":"Published","targets":1},{"name":"Priority Score","targets":2},{"name":"Title","targets":3},{"name":"Journal","targets":4},{"name":"Host Species Status","targets":5},{"name":"Body Site Status","targets":6},{"name":"Condition Status","targets":7},{"name":"Sequencing Type Status","targets":8},{"name":"Taxa Level Status","targets":9},{"name":"Sample Size Status","targets":10},{"name":"Summary","targets":11}],"autoWidth":false,"orderClasses":false,"orderCellsTop":true}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p><strong>Rows in table:</strong> 30</p>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<section id="curator-feedback" class="level2">
+<h2 class="anchored" data-anchor-id="curator-feedback">Curator feedback</h2>
 <p>Use the table above to find papers (the <strong>Open</strong> button in the <strong>Published</strong> column opens the paper on PubMed). Then select or enter a PMID below; the page will scroll to the field-by-field validation form where you can enter your review. Feedback uses the same schema as the Streamlit app; because this site is static, <strong>saving is done by downloading a CSV</strong> per row—submit via your usual process (e.g. email or GitHub issue).</p>
 <ol type="1">
 <li><strong>Quick select</strong> a PMID from the dropdown, or type a PMID and click <strong>Load row</strong> (the form will scroll into view).</li>
@@ -7762,42 +7790,42 @@ Data source
 <div class="feedback-field">
 <strong>Host Species</strong>
 <p class="bioanalyzer-pred-line">
-<span id="pred_Host_Species_Status" class="bioanalyzer-pred"></span>
+<span id="pred_Host_Species_Status" class="bioanalyzer-pred text-muted">Select a PMID above and click Load row to see BioAnalyzer’s prediction.</span>
 </p>
 <p><small>Curator TRUE label for Host Species:</small> <select id="true_Host_Species_Status"> <option value="Not reviewed">Not reviewed</option> <option value="ABSENT">ABSENT</option> <option value="PARTIALLY_PRESENT">PARTIALLY_PRESENT</option> <option value="PRESENT">PRESENT</option> </select> <small>Was BioAnalyzer correct for Host Species?</small> <select id="col_fb_Host_Species_Status"> <option value="Not reviewed">Not reviewed</option> <option value="Correct">Correct</option> <option value="Incorrect">Incorrect</option> <option value="Unclear">Unclear</option> </select></p>
 </div>
 <div class="feedback-field">
 <strong>Body Site</strong>
 <p class="bioanalyzer-pred-line">
-<span id="pred_Body_Site_Status" class="bioanalyzer-pred"></span>
+<span id="pred_Body_Site_Status" class="bioanalyzer-pred text-muted">Select a PMID above and click Load row to see BioAnalyzer’s prediction.</span>
 </p>
 <p><small>Curator TRUE label for Body Site:</small> <select id="true_Body_Site_Status"> <option value="Not reviewed">Not reviewed</option> <option value="ABSENT">ABSENT</option> <option value="PARTIALLY_PRESENT">PARTIALLY_PRESENT</option> <option value="PRESENT">PRESENT</option> </select> <small>Was BioAnalyzer correct for Body Site?</small> <select id="col_fb_Body_Site_Status"> <option value="Not reviewed">Not reviewed</option> <option value="Correct">Correct</option> <option value="Incorrect">Incorrect</option> <option value="Unclear">Unclear</option> </select></p>
 </div>
 <div class="feedback-field">
 <strong>Condition</strong>
 <p class="bioanalyzer-pred-line">
-<span id="pred_Condition_Status" class="bioanalyzer-pred"></span>
+<span id="pred_Condition_Status" class="bioanalyzer-pred text-muted">Select a PMID above and click Load row to see BioAnalyzer’s prediction.</span>
 </p>
 <p><small>Curator TRUE label for Condition:</small> <select id="true_Condition_Status"> <option value="Not reviewed">Not reviewed</option> <option value="ABSENT">ABSENT</option> <option value="PARTIALLY_PRESENT">PARTIALLY_PRESENT</option> <option value="PRESENT">PRESENT</option> </select> <small>Was BioAnalyzer correct for Condition?</small> <select id="col_fb_Condition_Status"> <option value="Not reviewed">Not reviewed</option> <option value="Correct">Correct</option> <option value="Incorrect">Incorrect</option> <option value="Unclear">Unclear</option> </select></p>
 </div>
 <div class="feedback-field">
 <strong>Sequencing Type</strong>
 <p class="bioanalyzer-pred-line">
-<span id="pred_Sequencing_Type_Status" class="bioanalyzer-pred"></span>
+<span id="pred_Sequencing_Type_Status" class="bioanalyzer-pred text-muted">Select a PMID above and click Load row to see BioAnalyzer’s prediction.</span>
 </p>
 <p><small>Curator TRUE label for Sequencing Type:</small> <select id="true_Sequencing_Type_Status"> <option value="Not reviewed">Not reviewed</option> <option value="ABSENT">ABSENT</option> <option value="PARTIALLY_PRESENT">PARTIALLY_PRESENT</option> <option value="PRESENT">PRESENT</option> </select> <small>Was BioAnalyzer correct for Sequencing Type?</small> <select id="col_fb_Sequencing_Type_Status"> <option value="Not reviewed">Not reviewed</option> <option value="Correct">Correct</option> <option value="Incorrect">Incorrect</option> <option value="Unclear">Unclear</option> </select></p>
 </div>
 <div class="feedback-field">
 <strong>Taxa Level</strong>
 <p class="bioanalyzer-pred-line">
-<span id="pred_Taxa_Level_Status" class="bioanalyzer-pred"></span>
+<span id="pred_Taxa_Level_Status" class="bioanalyzer-pred text-muted">Select a PMID above and click Load row to see BioAnalyzer’s prediction.</span>
 </p>
 <p><small>Curator TRUE label for Taxa Level:</small> <select id="true_Taxa_Level_Status"> <option value="Not reviewed">Not reviewed</option> <option value="ABSENT">ABSENT</option> <option value="PARTIALLY_PRESENT">PARTIALLY_PRESENT</option> <option value="PRESENT">PRESENT</option> </select> <small>Was BioAnalyzer correct for Taxa Level?</small> <select id="col_fb_Taxa_Level_Status"> <option value="Not reviewed">Not reviewed</option> <option value="Correct">Correct</option> <option value="Incorrect">Incorrect</option> <option value="Unclear">Unclear</option> </select></p>
 </div>
 <div class="feedback-field">
 <strong>Sample Size</strong>
 <p class="bioanalyzer-pred-line">
-<span id="pred_Sample_Size_Status" class="bioanalyzer-pred"></span>
+<span id="pred_Sample_Size_Status" class="bioanalyzer-pred text-muted">Select a PMID above and click Load row to see BioAnalyzer’s prediction.</span>
 </p>
 <p><small>Curator TRUE label for Sample Size:</small> <select id="true_Sample_Size_Status"> <option value="Not reviewed">Not reviewed</option> <option value="ABSENT">ABSENT</option> <option value="PARTIALLY_PRESENT">PARTIALLY_PRESENT</option> <option value="PRESENT">PRESENT</option> </select> <small>Was BioAnalyzer correct for Sample Size?</small> <select id="col_fb_Sample_Size_Status"> <option value="Not reviewed">Not reviewed</option> <option value="Correct">Correct</option> <option value="Incorrect">Incorrect</option> <option value="Unclear">Unclear</option> </select></p>
 </div>
@@ -7864,6 +7892,18 @@ No
       if (cfg.feedback_issue_url) feedbackIssueUrl = cfg.feedback_issue_url;
     } catch (_) {}
   }
+  if (!feedbackIssueUrl && typeof window !== "undefined") {
+    if (window.location.hostname.endsWith(".github.io")) {
+      var path = window.location.pathname.replace(/\/index\.html$/i, "").replace(/^\//, "").split("/").filter(Boolean);
+      var repo = path[0];
+      if (repo) {
+        var user = window.location.hostname.replace(".github.io", "");
+        feedbackIssueUrl = "https://github.com/" + user + "/" + repo + "/issues/new";
+      }
+    } else if (window.location.hostname === "waldronlab.io" && window.location.pathname.indexOf("curator-desk") !== -1) {
+      feedbackIssueUrl = "https://github.com/waldronlab/curator-desk/issues/new";
+    }
+  }
 
   function setTitleFromPmid(pmid) {
     const row = tableData.find(r => String(r.PMID) === String(pmid));
@@ -7879,14 +7919,25 @@ No
     }
   }
 
+  function getPredictionValue(row, col) {
+    if (!row) return "";
+    const withSpaces = row[col];
+    if (withSpaces !== undefined && withSpaces !== null && String(withSpaces).trim() !== "") return String(withSpaces).trim();
+    const withUnderscores = row[col.replace(/\s+/g, "_")];
+    if (withUnderscores !== undefined && withUnderscores !== null && String(withUnderscores).trim() !== "") return String(withUnderscores).trim();
+    return "";
+  }
+
+  const predictionPlaceholder = "Select a PMID above and click Load row to see BioAnalyzer's prediction.";
+
   function updatePredictionsForRow(row) {
     statusCols.forEach(function(col) {
       const s = safeCol(col);
       const predEl = document.getElementById("pred_" + s);
       if (!predEl) return;
-      const val = (row[col] !== undefined && row[col] !== null) ? String(row[col]).trim() : "";
-      predEl.textContent = val ? "BioAnalyzer predicted: " + val : "";
-      predEl.className = "bioanalyzer-pred pred-" + (val ? val.toUpperCase().replace(/\s+/g, "_") : "none");
+      const val = getPredictionValue(row, col);
+      predEl.textContent = val ? "BioAnalyzer predicted: " + val : predictionPlaceholder;
+      predEl.className = "bioanalyzer-pred " + (val ? "pred-" + val.toUpperCase().replace(/\s+/g, "_") : "text-muted");
     });
   }
 
@@ -7894,7 +7945,10 @@ No
     statusCols.forEach(function(col) {
       const s = safeCol(col);
       const predEl = document.getElementById("pred_" + s);
-      if (predEl) { predEl.textContent = ""; predEl.className = "bioanalyzer-pred"; }
+      if (predEl) {
+        predEl.textContent = predictionPlaceholder;
+        predEl.className = "bioanalyzer-pred text-muted";
+      }
     });
   }
 
@@ -7985,11 +8039,12 @@ No
       const out = buildFeedbackCsv();
       if (!out) return;
       if (!feedbackIssueUrl) {
-        alert("Set GITHUB_REPO when building the site to use Submit review.");
+        alert("Submit review needs the GitHub repo URL. Set GITHUB_REPO when building (e.g. in your deploy workflow or locally: export GITHUB_REPO=https://github.com/owner/repo && quarto render).");
         return;
       }
-      var bodyText = "Curator feedback submission. The CSV below contains the full feedback (curator initials, comments, field-by-field validation). A pull request will be created automatically with this file for the maintainer to review and download.\n\n```csv\n" + out.csv.trim() + "\n```";
-      var url = feedbackIssueUrl + "?title=" + encodeURIComponent("Curator feedback submission") + "&body=" + encodeURIComponent(bodyText);
+      var bodyText = "Curator feedback submission. The CSV below contains the full feedback (curator initials, comments, field-by-field validation). Maintainers can review in this issue.\n\n```csv\n" + out.csv.trim() + "\n```";
+      var title = "Curator feedback submission";
+      var url = feedbackIssueUrl + "?title=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(bodyText);
       window.open(url, "_blank");
       resetFormAfterSubmit();
       try { sessionStorage.setItem("curator-thank-you", "1"); } catch (e) {}
@@ -8066,9 +8121,11 @@ border: 1px solid rgba(0,0,0,.06);
 </style>
 
 
+</section>
 </div>
 </div>
 </div>
+</section>
 </section>
 
 </main> <!-- /main -->

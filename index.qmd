@@ -1,32 +1,48 @@
----
+ ---
 title: "Curator Desk"
 format:
   html:
     toc: false
 ---
 
-This dashboard provides a **sortable, searchable, filterable** table of BioAnalyzer predictions for candidate curatable PubMed articles.
+# BioAnalyzer Curation Hub: Turning Predictions into Progress
 
-- Curators review predictions and capture feedback by PMID.
-- Stored: predicted statuses, curator ground truth, correctness flags.
-- Export suitable for confusion matrices, per-field error profiling, and MCC (e.g. for PARTIALLY_PRESENT).
+Welcome to your central workspace for refining PubMed literature discovery. This dashboard bridges the gap between AI-driven BioAnalyzer predictions and expert human insight, putting a searchable, high-performance table of candidate articles at your fingertips.
+
+As you review and capture ground truth for each PMID, the system works in the background to store statuses and track correctness flags in real-time. This seamless integration of human feedback allows you to:
+
+* **Streamline Validation:** Effortlessly navigate and filter high-priority candidates.
+* **Refine Model Accuracy:** Log curator ground truth to build a robust data foundation.
+* **Generate High-Level Analytics:** Export data ready for deep-dive error profiling, confusion matrices, and MCC performance metrics to help evaluate BioAnalyzer package accuracy.
 
 ::: {.callout-note collapse="false"}
-## Data source
+## Data Source & Setup
 
-The table is built from data in the **`data/`** folder. **You** add your analyzed papers: put your CSV (or Parquet) in `data/`—e.g. `data/sample.csv`—then run `quarto render`. The system reads `data/sample.csv` by default, or set `CURATOR_DATA_PATH` to another path (e.g. `data/analyzed_papers.csv`) when building. For a remote file, set `CURATOR_DATA_URL`.
+The table is built from data stored in the **`data/`** folder. To analyze your own papers: 
 
-**Expected columns:** PMID (required); Title, Journal, Year, Summary recommended. Status values: `ABSENT` | `PARTIALLY_PRESENT` | `PRESENT`.
+1.  Place your CSV (or Parquet) file in `data/` (e.g., `data/sample.csv`).
+2.  Run `quarto render`. 
+
+The system reads `data/sample.csv` by default. To use a different source, set the `CURATOR_DATA_PATH` environment variable to your specific path (e.g., `data/analyzed_papers.csv`) or use `CURATOR_DATA_URL` for remote files.
+
+**Expected Columns:** * **Required:** `PMID` 
+* **Recommended:** `Title`, `Journal`, `Year`, `Summary`
+* **Status Values:** `ABSENT` | `PARTIALLY_PRESENT` | `PRESENT`
 :::
 
-## Candidate curatable articles {.tabset #candidate-papers}
+---
+
+## Candidate Curatable Articles {.tabset #candidate-papers}
 
 ::: {.panel-tabset}
 
-## Table
+### Interactive Table
 
-Tip: Sort by **Priority Score** (descending) to review the most promising candidates first. Use the search box and column filters to narrow the list.
+**Tip:** Sort by **Priority Score** (descending) to review the most promising candidates first. Use the search box and column filters to narrow your focus.
 
+```{r}
+#| echo: false
+# Your code to render the table (DT or reactable) goes here
 ```{r}
 #| label: setup
 #| include: false
