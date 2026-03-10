@@ -66,7 +66,7 @@ This project uses **only GitHub Pages**; no other platform (e.g. Vercel) is requ
 2. A new tab opens on your repo’s **new-issue** page with the title and body **pre-filled** (the feedback CSV is in the body). The curator clicks **Create** on GitHub to create the issue.
 3. **Maintainers review in the issue** — the full feedback (curator initials, comments, field-by-field validation) is in the issue body as a CSV block.
 
-Optionally, the **GitHub Action** (`.github/workflows/curator-feedback-notify.yml`) runs when an issue titled "Curator feedback submission" is opened: it extracts the CSV, saves it under **`curator-feedback/`** on a new branch, opens a **Pull Request** with that file, and comments on the issue with the PR link. Review can be done directly in the issue or via the PR.
+Optionally, the **GitHub Action** (`.github/workflows/curator-feedback-notify.yml`) runs when an issue whose title contains "Curator feedback" is opened: it posts a short comment on the issue acknowledging the feedback. Review is done directly in the issue (the CSV is in the issue body).
 
 **Build-time options:**
 
