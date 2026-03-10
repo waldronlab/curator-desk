@@ -320,7 +320,8 @@ for (col in STATUS_COLUMNS) {
 :::
 
 ::: {.mt-3 .pt-3 .border-top .small .text-muted}
-**Notes:** Submissions are stored in the repo folder `curator-feedback/`. Set `BIOANALYZER_VERSION` or `GITHUB_REPO` (e.g. https://github.com/owner/repo) in the environment when building.
+**Notes:** Submissions are processed as issues and a tab will be opened for you to just click the create button. 
+Reviewers will be looking into you submittd issue to evaluate the results
 :::
 :::
 :::
