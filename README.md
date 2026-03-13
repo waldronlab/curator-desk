@@ -96,4 +96,3 @@ Column names and options match `curator_table/app.py`:
 - Status values: `ABSENT`, `PARTIALLY_PRESENT`, `PRESENT`
 - Feedback columns: `PMID`, `curator_id`, `overall_verdict`, `comment`, `timestamp`, `bioanalyzer_version`, plus `pred__*`, `true__*`, `col_feedback__*` for each status field.
 
-CSVs downloaded from this app can be combined with feedback from the Streamlit app for analysis.
