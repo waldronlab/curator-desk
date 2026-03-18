@@ -1,6 +1,6 @@
 # Curator Desk
 
-**Curator dashboard for reviewing BioAnalyzer predictions** — sortable table, field-level feedback, submit via GitHub Issues & PRs. Built with R, Quarto, and DT; runs on **GitHub Pages** so curators can use it from the browser (no server or Docker).
+**Curator dashboard for reviewing BioAnalyzer predictions** — sortable table + field-level feedback form. Built with R, Quarto, and DT and served on **GitHub Pages** (no server).
 
 **Live site:** [https://waldronlab.io/curator-desk/](https://waldronlab.io/curator-desk/)
 
@@ -8,7 +8,7 @@
 
 - **Data:** Load CSV (or Parquet if `arrow` is installed) from a path or URL at build time.
 - **Table:** Sortable, searchable, filterable (DT DataTables); Priority Score; PubMed links.
-- **Feedback:** Form for curator ID, PMID, overall verdict, comment, BioAnalyzer version, and field-by-field validation (curator TRUE label + “Was BioAnalyzer correct?”). Feedback is **downloaded as CSV** (one row per submission) for you to collect via email, GitHub Issues, or your own backend.
+- **Feedback:** Form for curator ID, PMID, overall verdict, comment, BioAnalyzer version, and field-by-field validation (curator TRUE label + “Was BioAnalyzer correct?”). Submit via a **GitHub issue** (CSV is pre-filled in the issue body). There’s also a “Download CSV only” option.
 
 ## Prerequisites
 

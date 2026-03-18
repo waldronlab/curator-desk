@@ -5,15 +5,15 @@ format:
     toc: false
 ---
 
-# BioAnalyzer Curation Hub: Turning Predictions into Progress
+# BioAnalyzer curator desk
 
-Welcome to your central workspace for refining PubMed literature discovery. This dashboard bridges the gap between AI-driven BioAnalyzer predictions and expert human insight, putting a searchable, high-performance table of candidate articles at your fingertips.
+Use this page to review BioAnalyzer’s predicted statuses for candidate papers and record curator ground truth for each PMID.
 
-As you review and capture ground truth for each PMID, the system works in the background to store statuses and track correctness flags in real-time. This seamless integration of human feedback allows you to:
+What you can do here:
 
-* **Streamline Validation:** Effortlessly navigate and filter high-priority candidates.
-* **Refine Model Accuracy:** Log curator ground truth to build a robust data foundation.
-* **Generate High-Level Analytics:** Export data ready for deep-dive error profiling, confusion matrices, and MCC performance metrics to help evaluate BioAnalyzer package accuracy.
+* **Find papers quickly:** Search, sort, and filter the table (Priority Score helps surface high‑value candidates).
+* **Record ground truth:** Enter curator TRUE labels and optional “was the prediction correct?” flags per field.
+* **Share feedback:** Submit feedback via a GitHub issue (CSV is pre-filled in the issue body).
 
 ::: {.callout-note collapse="false"}
 ## Data Source & Setup
@@ -25,9 +25,11 @@ The table is built from data stored in the **`data/`** folder. To analyze your o
 
 The system reads `data/sample.csv` by default. To use a different source, set the `CURATOR_DATA_PATH` environment variable to your specific path (e.g., `data/analyzed_papers.csv`) or use `CURATOR_DATA_URL` for remote files.
 
-**Expected Columns:** * **Required:** `PMID` 
+**Expected columns**
+
+* **Required:** `PMID`
 * **Recommended:** `Title`, `Journal`, `Year`, `Summary`
-* **Status Values:** `ABSENT` | `PARTIALLY_PRESENT` | `PRESENT`
+* **Status values:** `ABSENT` | `PARTIALLY_PRESENT` | `PRESENT`
 :::
 
 ---
@@ -42,7 +44,6 @@ The system reads `data/sample.csv` by default. To use a different source, set th
 
 ```{r}
 #| echo: false
-# Your code to render the table (DT or reactable) goes here
 ```{r}
 #| label: setup
 #| include: false
