@@ -80,13 +80,15 @@ if (length(missing_status) > 0) {
   )
 }
 ```
+:::
+
 
 ```{r}
 #| label: table-display
 #| echo: false
 #| warning: false
 #| message: false
-#| column: screen-inset
+#| column: screen
 
 library(dplyr)
 
@@ -169,6 +171,7 @@ if (nrow(df) == 0) {
   )
 }
 ```
+::: {.panel-tabset}
 
 **Rows in table:** `r nrow(df)`
 
