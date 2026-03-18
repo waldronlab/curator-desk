@@ -62,7 +62,7 @@ resolve_data_path <- function() {
 
 data_path <- resolve_data_path()
 
-# ---- Load and normalize dataset ----x
+# ---- Load and normalize dataset ----
 
 raw_df <- load_data(data_path)
 df <- normalize_dataset(raw_df)
