@@ -148,10 +148,10 @@ if (nrow(df) == 0) {
   
   dt_options <- list(
     pageLength = 50,
-    #lengthMenu = c(50, 100, 300, 500, 1000),
-    scrollX = TRUE,
+    lengthMenu = c(50, 100, 300, 500, 1000),
+    scrollX = FALSE,
     stateSave = TRUE,
-    responsive = FALSE
+    responsive = TRUE
   )
   
   priority_index <- which(names(show_df) == "Priority")
@@ -165,6 +165,7 @@ if (nrow(df) == 0) {
   DT::datatable(
     show_df,
     filter = "top",
+    extensions = c("Responsive"),
     options = dt_options,
     escape = FALSE,
     rownames = FALSE

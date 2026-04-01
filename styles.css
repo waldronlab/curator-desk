@@ -3,14 +3,15 @@
 .card { border-radius: 0.4rem; }
 #feedback-form .card-header { font-weight: 600; }
 
-/* Distribute content evenly: use full width so intro, table, and form are not narrowly centered */
+/* Full-width layout: let the table use the page */
 #quarto-content.quarto-container,
-.quarto-container.page-columns.page-layout-article {
-  max-width: min(1280px, 96vw);
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+.quarto-container.page-columns {
+  max-width: 100%;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 main.content {
   max-width: 100%;
@@ -21,4 +22,12 @@ main.content {
 #feedback-form.card {
   width: 100%;
   max-width: 100%;
+}
+
+/* Make the table easier to read when it’s wide */
+table.dataTable {
+  font-size: 0.92rem;
+}
+table.dataTable td, table.dataTable th {
+  white-space: normal;
 }
