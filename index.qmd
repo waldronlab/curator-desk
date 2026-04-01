@@ -11,7 +11,7 @@ Use this page to review BioAnalyzer’s predicted statuses for candidate papers 
 
 What you can do here:
 
-* **Find papers quickly:** Search, sort, and filter the table (Priority Score helps surface high‑value candidates).
+* **Find papers quickly:** Search, sort, and filter the table (Priority score helps surface high‑value candidates).
 * **Record ground truth:** Enter curator TRUE labels and optional “was the prediction correct?” flags per field.
 * **Share feedback:** Submit feedback via a GitHub issue (CSV is pre-filled in the issue body).
 
@@ -40,11 +40,9 @@ The system reads `data/sample.csv` by default. To use a different source, set th
 
 ### Interactive Table
 
-**Tip:** Sort by **Priority Score** (descending) to review the most promising candidates first. Use the search box and column filters to narrow your focus.
+**Tip:** Sort by **Priority** (descending) to review the most promising candidates first. Use the search box and column filters to narrow your focus.
 
-```{r}
-#| echo: false
-```{r}
+```{r echo = FALSE}
 #| label: setup
 #| include: false
 
@@ -82,12 +80,17 @@ if (length(missing_status) > 0) {
   )
 }
 ```
+:::
+
 
 ```{r}
 #| label: table-display
 #| echo: false
 #| warning: false
 #| message: false
+#| column: screen
+
+library(dplyr)
 
 if (nrow(df) == 0) {
   
@@ -112,42 +115,34 @@ if (nrow(df) == 0) {
   
   desired_columns <- c(
     "PMID",
-    "PubMed Link",
-    "Priority Score",
+    "Priority",
     "Title",
     "Journal",
     "Year",
     STATUS_COLUMNS,
-    "Summary"
+    "Summary",
+    "PubMed Link"
   )
   
   display_columns <- intersect(desired_columns, names(df))
   show_df <- df[, display_columns, drop = FALSE]
   
-  # ---- Convert PubMed Link to clickable column ----
+  # ---- Convert PMID to clickable column ----
   
   if ("PubMed Link" %in% names(show_df)) {
-    
-    show_df$PubMed <- paste0(
-      '<a href="',
-      show_df[["PubMed Link"]],
-      '" target="_blank" rel="noopener">Open</a>'
-    )
-    
-    show_df[["PubMed Link"]] <- NULL
-    
-    # Place PubMed column immediately after PMID; label as "Published" (Open = link to paper on PubMed)
-    if ("PMID" %in% names(show_df)) {
-      show_df <- show_df[
-        ,
-        c("PMID", "PubMed",
-          setdiff(names(show_df), c("PMID", "PubMed"))
-        ),
-        drop = FALSE
-      ]
-    }
-    names(show_df)[names(show_df) == "PubMed"] <- "Published"
+    show_df <- show_df |>
+      dplyr::mutate(PMID = paste0('<a href="', `PubMed Link`,
+                                  '" target="_blank" rel="noopener">',
+                                   PMID, '</a>')) |>
+    dplyr::select(-`PubMed Link`)
   }
+
+  # ---- Shorten status column names ----
+  
+  # Could this be shortened more easily by changing config.R?
+  show_df <- show_df |>
+    dplyr::rename_with(~ gsub(" Status", "", .x), dplyr::all_of(STATUS_COLUMNS))
+
   
   # ---- Configure DataTable options ----
   
@@ -159,7 +154,7 @@ if (nrow(df) == 0) {
     responsive = TRUE
   )
   
-  priority_index <- which(names(show_df) == "Priority Score")
+  priority_index <- which(names(show_df) == "Priority")
   
   if (length(priority_index) == 1) {
     dt_options$order <- list(list(priority_index - 1, "desc"))
@@ -177,6 +172,7 @@ if (nrow(df) == 0) {
   )
 }
 ```
+::: {.panel-tabset}
 
 **Rows in table:** `r nrow(df)`
 
