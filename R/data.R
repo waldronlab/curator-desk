@@ -12,7 +12,7 @@ normalize_status <- function(x) {
   x
 }
 
-#' Priority score: PRESENT = 1.0, PARTIALLY_PRESENT = 0.5
+#' Priority score: PRESENT = 1.0, PARTIALLY_PRESENT = 0.5; sum over STATUS_COLUMNS.
 priority_score <- function(row) {
   score <- 0
   for (col in STATUS_COLUMNS) {

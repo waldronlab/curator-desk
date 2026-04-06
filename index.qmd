@@ -115,7 +115,7 @@ if (nrow(df) == 0) {
   
   desired_columns <- c(
     "PMID",
-    "Priority",
+    "Priority Score",
     "Title",
     "Journal",
     "Year",
@@ -143,7 +143,10 @@ if (nrow(df) == 0) {
   show_df <- show_df |>
     dplyr::rename_with(~ gsub(" Status", "", .x), dplyr::all_of(STATUS_COLUMNS))
 
-  
+  if ("Priority Score" %in% names(show_df)) {
+    show_df <- show_df |> dplyr::rename(Priority = `Priority Score`)
+  }
+
   # ---- Configure DataTable options ----
   
   dt_options <- list(
