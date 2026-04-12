@@ -3,7 +3,9 @@ name: Quarto render & deploy
 
 on:
   push:
-    branches: [main, master]
+    branches: [main]
+  schedule:
+    - cron: "0 4 * * *"
   workflow_dispatch:
 
 permissions:
