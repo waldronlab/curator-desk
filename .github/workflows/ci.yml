@@ -16,6 +16,7 @@ jobs:
   build-and-validate:
     name: Build & validate
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -34,11 +35,16 @@ jobs:
           r-version: "release"
           use-public-rspm: true
 
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libuv1-dev
+
       - name: Install R dependencies
-        run: Rscript -e 'install.packages(c("DT", "jsonlite", "dplyr"), repos = "https://cloud.r-project.org")'
+        run: |
+          Rscript -e 'install.packages(c("DT", "jsonlite", "dplyr"), repos = "https://cloud.r-project.org")'
 
       - name: Set up Quarto
-        # Use quarto-actions/setup (not deprecated setup-quarto)
         uses: quarto-dev/quarto-actions/setup@v2
         with:
           version: release
