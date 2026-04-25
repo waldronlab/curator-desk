@@ -25,40 +25,29 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # ✅ Set up R
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
         with:
           r-version: "release"
           use-public-rspm: true
 
-      #  Force install into the SAME library Quarto uses
-      - name: Install R dependencies (forced)
-        run: |
-          Rscript -e 'install.packages(c("rmarkdown","knitr","DT","jsonlite","dplyr"), repos="https://cloud.r-project.org", lib=Sys.getenv("R_LIBS_USER"))'
+      # ✅ Reproducible dependency restore
+      - name: Restore R dependencies (renv)
+        uses: r-lib/actions/setup-r-dependencies@v2
 
-      #  Safety net (guarantee rmarkdown exists)
-      - name: Verify required packages
-        run: |
-          Rscript -e 'if (!requireNamespace("rmarkdown", quietly=TRUE)) stop("rmarkdown still missing!")'
-
-      #  Set up Quarto
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
           version: release
 
-      #  Render site
       - name: Render Quarto site
         env:
           GITHUB_REPO: https://github.com/${{ github.repository }}
         run: quarto render
 
-      #  Ensure output exists
       - name: Verify build output
         run: test -f docs/index.html || (echo "::error::docs/index.html missing" && exit 1)
 
-      #  Upload artifact
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -75,3 +64,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
+      
