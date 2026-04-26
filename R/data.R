@@ -76,7 +76,33 @@ normalize_dataset <- function(df) {
     if (col %in% names(df))
       df[[col]] <- vapply(df[[col]], normalize_status, character(1))
   }
-  df$"Priority Score" <- apply(df, 1, priority_score)
-  df$"PubMed Link" <- vapply(df$PMID, pmid_link, character(1))
+
+  for (col in BOOLEAN_COLUMNS) {
+    if (col %in% names(df)) {
+      normalized <- toupper(trimws(as.character(df[[col]])))
+      df[[col]] <- normalized %in% c("TRUE", "T", "1", "YES")
+    } else {
+      df[[col]] <- FALSE
+    }
+  }
+
+  if ("differential_abundance_confidence" %in% names(df)) {
+    df$differential_abundance_confidence <- suppressWarnings(
+      as.numeric(df$differential_abundance_confidence)
+    )
+    df$differential_abundance_confidence[is.na(df$differential_abundance_confidence)] <- 0.0
+  } else {
+    df$differential_abundance_confidence <- 0.0
+  }
+
+  if ("Year" %in% names(df)) {
+    df$Year <- suppressWarnings(as.integer(df$Year))
+  }
+
+  df$Priority <- apply(df, 1, priority_score)
+  df$`PubMed Link` <- paste0(
+    "<a href='https://pubmed.ncbi.nlm.nih.gov/", df$PMID,
+    "/' target='_blank'>", df$PMID, "</a>"
+  )
   df
 }
