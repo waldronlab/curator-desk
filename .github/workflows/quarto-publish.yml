@@ -31,9 +31,8 @@ jobs:
           r-version: "release"
           use-public-rspm: true
 
-      # ✅ Reproducible dependency restore
-      - name: Restore R dependencies (renv)
-        uses: r-lib/actions/setup-r-dependencies@v2
+      - name: Install R dependencies
+        run: Rscript -e 'install.packages(c("DT", "jsonlite", "dplyr", "rmarkdown"), repos = "https://cloud.r-project.org")'
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
