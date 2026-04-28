@@ -113,39 +113,28 @@ if (nrow(df) == 0) {
   
   # ---- Select display columns ----
   
-  desired_columns <- c(
-    "PMID",
-    "Priority Score",
+  DISPLAY_COLUMNS <- c(
+    "PubMed Link",
     "Title",
     "Journal",
     "Year",
-    STATUS_COLUMNS,
-    "Summary",
-    "PubMed Link"
+    "Host Species",
+    "Host Species Status",
+    "Body Site",
+    "Body Site Status",
+    "Condition",
+    "Condition Status",
+    "Sequencing Type",
+    "Sequencing Type Status",
+    "Sample Size",
+    "Sample Size Status",
+    "has_differential_abundance",
+    "differential_abundance_confidence",
+    "in_bugsigdb",
+    "Priority"
   )
-  
-  display_columns <- intersect(desired_columns, names(df))
-  show_df <- df[, display_columns, drop = FALSE]
-  
-  # ---- Convert PMID to clickable column ----
-  
-  if ("PubMed Link" %in% names(show_df)) {
-    show_df <- show_df |>
-      dplyr::mutate(PMID = paste0('<a href="', `PubMed Link`,
-                                  '" target="_blank" rel="noopener">',
-                                   PMID, '</a>')) |>
-    dplyr::select(-`PubMed Link`)
-  }
-
-  # ---- Shorten status column names ----
-  
-  # Could this be shortened more easily by changing config.R?
-  show_df <- show_df |>
-    dplyr::rename_with(~ gsub(" Status", "", .x), dplyr::all_of(STATUS_COLUMNS))
-
-  if ("Priority Score" %in% names(show_df)) {
-    show_df <- show_df |> dplyr::rename(Priority = `Priority Score`)
-  }
+  display_columns <- intersect(DISPLAY_COLUMNS, names(df))
+  df_display <- df[, display_columns, drop = FALSE]
 
   # ---- Configure DataTable options ----
   
@@ -157,22 +146,68 @@ if (nrow(df) == 0) {
     responsive = TRUE
   )
   
-  priority_index <- which(names(show_df) == "Priority")
+  priority_index <- which(names(df_display) == "Priority")
   
   if (length(priority_index) == 1) {
     dt_options$order <- list(list(priority_index - 1, "desc"))
   }
   
+  in_bugsigdb_index <- which(names(df_display) == "in_bugsigdb")
+  dt_column_defs <- list()
+  if (length(in_bugsigdb_index) == 1) {
+    dt_column_defs <- append(
+      dt_column_defs,
+      list(
+        list(
+          targets = in_bugsigdb_index - 1,
+          title = "In BugSigDB",
+          render = DT::JS(
+            "function(data, type, row) {",
+            "  if (type === 'display') {",
+            "    return data ? '<span class=\"bugsigdb-yes\">✓ Yes</span>' : '<span class=\"bugsigdb-no\">✗ No</span>';",
+            "  }",
+            "  return data;",
+            "}"
+          )
+        )
+      )
+    )
+  }
+
+  dt_options$columnDefs <- dt_column_defs
+
   # ---- Render table ----
-  
-  DT::datatable(
-    show_df,
+  dt_table <- DT::datatable(
+    df_display,
     filter = "top",
     extensions = c("Responsive"),
     options = dt_options,
     escape = FALSE,
     rownames = FALSE
   )
+
+  if ("in_bugsigdb" %in% names(df_display)) {
+    dt_table <- dt_table %>%
+      DT::formatStyle(
+        "in_bugsigdb",
+        backgroundColor = DT::styleEqual(c(TRUE, FALSE), c("#e8f5e9", "#ffffff"))
+      )
+  }
+
+  for (status_col in STATUS_COLUMNS) {
+    if (status_col %in% names(df_display)) {
+      dt_table <- dt_table %>%
+        DT::formatStyle(
+          status_col,
+          backgroundColor = DT::styleEqual(
+            c("PRESENT", "PARTIALLY_PRESENT", "ABSENT"),
+            c("#c8e6c9", "#fff9c4", "#ffcdd2")
+          )
+        )
+    }
+  }
+
+  dt_table
 }
 ```
 ::: {.panel-tabset}

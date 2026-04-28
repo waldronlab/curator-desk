@@ -22,6 +22,11 @@ STATUS_COLUMNS <- c(
   "Sample Size Status"
 )
 
+BOOLEAN_COLUMNS <- c(
+  "has_differential_abundance",
+  "in_bugsigdb"
+)
+
 VALID_STATES <- c("ABSENT", "PARTIALLY_PRESENT", "PRESENT")
 COL_FEEDBACK_OPTIONS <- c("Not reviewed", "Correct", "Incorrect", "Unclear")
 TRUE_LABEL_OPTIONS <- c("Not reviewed", "ABSENT", "PARTIALLY_PRESENT", "PRESENT")
