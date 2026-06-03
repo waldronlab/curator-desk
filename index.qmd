@@ -119,17 +119,17 @@ if (nrow(df) == 0) {
     "Journal",
     "Year",
     "Host Species",
-    "H.S Status",
+    "Host Species Status",
     "Body Site",
-    "B.S Status",
+    "Body Site Status",
     "Condition",
-    "C.Status",
+    "Condition Status",
     "Sequencing Type",
-    "S.T Status",
+    "Sequencing Type Status",
     "Sample Size",
-    "S.S Status",
+    "Sample Size Status",
     "has_differential_abundance",
-    "D.A confidence",
+    "differential_abundance_confidence",
     "in_bugsigdb",
     "Priority"
   )
@@ -180,7 +180,7 @@ if (nrow(df) == 0) {
   dt_table <- DT::datatable(
     df_display,
     filter = "top",
-    extensions = c("FixedHeader"),
+    extensions = c("FixedHeader"),,
     options = dt_options,
     escape = FALSE,
     rownames = FALSE
