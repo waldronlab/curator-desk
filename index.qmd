@@ -138,13 +138,13 @@ if (nrow(df) == 0) {
 
   # ---- Configure DataTable options ----
   
-  dt_options <- list(
-    pageLength = 50,
-    lengthMenu = c(50, 100, 300, 500, 1000),
-    scrollX = FALSE,
-    stateSave = TRUE,
-    responsive = TRUE
-  )
+ dt_options <- list(
+  pageLength = 50,
+  lengthMenu = c(50, 100, 300, 500, 1000),
+  scrollX = TRUE,
+  stateSave = TRUE,
+  fixedHeader = TRUE
+)
   
   priority_index <- which(names(df_display) == "Priority")
   
@@ -180,7 +180,7 @@ if (nrow(df) == 0) {
   dt_table <- DT::datatable(
     df_display,
     filter = "top",
-    extensions = c("Responsive"),
+    extensions = c("FixedHeader"),
     options = dt_options,
     escape = FALSE,
     rownames = FALSE

@@ -1,9 +1,8 @@
-/* Minimal, readable overrides for curator table site */
+/* ── Layout ──────────────────────────────────────────────── */
 .quarto-title-banner { padding: 1.5rem 0; }
 .card { border-radius: 0.4rem; }
 #feedback-form .card-header { font-weight: 600; }
 
-/* Full-width layout: let the table use the page */
 #quarto-content.quarto-container,
 .quarto-container.page-columns {
   max-width: 100%;
@@ -13,10 +12,8 @@
   padding-left: 1rem;
   padding-right: 1rem;
 }
-main.content {
-  max-width: 100%;
-}
-/* Let the DataTable and feedback card use full width of the content area */
+main.content { max-width: 100%; }
+
 #quarto-document-content .cell-output-display,
 #quarto-document-content .datatables,
 #feedback-form.card {
@@ -24,27 +21,168 @@ main.content {
   max-width: 100%;
 }
 
-/* Make the table easier to read when it’s wide */
-table.dataTable {
-  font-size: 0.92rem;
-}
-table.dataTable td, table.dataTable th {
-  white-space: normal;
+/* ── DataTable: scrollable, no responsive collapse ───────── */
+div.dataTables_wrapper {
+  overflow-x: auto;
+  width: 100%;
 }
 
-.bugsigdb-yes {
-  color: #2e7d32;
+table.dataTable {
+  font-size: 0.875rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100% !important;
+  min-width: 1400px;         /* forces all columns in one row */
+}
+
+table.dataTable thead th {
+  background: #f8f9fa;
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #495057;
+  border-bottom: 2px solid #dee2e6;
+  white-space: nowrap;
+  padding: 10px 10px;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+table.dataTable thead tr th input.form-control {
+  font-size: 0.78rem;
+  padding: 3px 6px;
+}
+
+table.dataTable tbody td {
+  white-space: normal;
+  word-break: break-word;
+  vertical-align: top;
+  padding: 8px 10px;
+  border-bottom: 0.5px solid #e9ecef;
+  max-width: 220px;
+  line-height: 1.45;
+  font-size: 0.875rem;
+}
+
+/* Alternate row shading */
+table.dataTable tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+table.dataTable tbody tr:hover {
+  background-color: #f0f4ff !important;
+  transition: background 0.1s;
+}
+
+/* Prevent child/detail rows — belt-and-suspenders */
+table.dataTable td.child,
+table.dataTable tr.child,
+tr.child { display: none !important; }
+tr.parent td:first-child::before { display: none !important; }
+
+/* ── Status badge pills ───────────────────────────────────── */
+table.dataTable td {
+  background-clip: padding-box;
+}
+
+/* PRESENT  → green */
+td[style*="#c8e6c9"] {
+  background-color: #e8f5e9 !important;
+  color: #1b5e20 !important;
   font-weight: 600;
 }
 
-.bugsigdb-no {
-  color: #9e9e9e;
+/* PARTIALLY_PRESENT → amber */
+td[style*="#fff9c4"] {
+  background-color: #fffde7 !important;
+  color: #7f6000 !important;
+  font-weight: 600;
 }
 
-.da-confidence-high { color: #2e7d32; }
-.da-confidence-medium { color: #f57f17; }
-.da-confidence-low { color: #c62828; }
+/* ABSENT → red */
+td[style*="#ffcdd2"] {
+  background-color: #ffebee !important;
+  color: #b71c1c !important;
+  font-weight: 600;
+}
 
-.priority-high { background: #c8e6c9; border-radius: 4px; padding: 2px 6px; }
-.priority-medium { background: #fff9c4; border-radius: 4px; padding: 2px 6px; }
-.priority-low { background: #ffcdd2; border-radius: 4px; padding: 2px 6px; }
+/* in_bugsigdb → green row */
+td[style*="#e8f5e9"] {
+  background-color: #f1faf3 !important;
+}
+
+/* ── BugSigDB badges ──────────────────────────────────────── */
+.bugsigdb-yes {
+  color: #1b5e20;
+  font-weight: 600;
+  background: #e8f5e9;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+}
+.bugsigdb-no {
+  color: #9e9e9e;
+  font-size: 0.8rem;
+}
+
+/* ── Priority / confidence badges ────────────────────────── */
+.priority-high   { background: #c8e6c9; color: #1b5e20; border-radius: 4px; padding: 2px 6px; font-size: 0.78rem; font-weight: 600; }
+.priority-medium { background: #fff9c4; color: #7f6000; border-radius: 4px; padding: 2px 6px; font-size: 0.78rem; font-weight: 600; }
+.priority-low    { background: #ffcdd2; color: #b71c1c; border-radius: 4px; padding: 2px 6px; font-size: 0.78rem; font-weight: 600; }
+
+.da-confidence-high   { color: #2e7d32; font-weight: 600; }
+.da-confidence-medium { color: #f57f17; font-weight: 600; }
+.da-confidence-low    { color: #c62828; font-weight: 600; }
+
+/* ── DataTables controls bar ─────────────────────────────── */
+div.dataTables_length label,
+div.dataTables_filter label {
+  font-size: 0.85rem;
+  color: #495057;
+}
+div.dataTables_info { font-size: 0.82rem; color: #6c757d; }
+div.dataTables_paginate .paginate_button {
+  font-size: 0.82rem;
+  border-radius: 4px;
+}
+
+/* ── Feedback form ────────────────────────────────────────── */
+#feedback-form .card-body { padding: 1.25rem 1.5rem; }
+.feedback-field {
+  margin-bottom: 1.25rem;
+  padding: 0.75rem;
+  background: var(--bs-light, #f8f9fa);
+  border-radius: 0.35rem;
+  border: 1px solid rgba(0,0,0,.06);
+}
+.feedback-field strong { display: block; margin-bottom: 0.35rem; }
+.feedback-field .bioanalyzer-pred-line { margin: 0.35rem 0 0.5rem 0; min-height: 1.4em; }
+.bioanalyzer-pred { font-size: 0.95em; font-weight: 500; }
+.bioanalyzer-pred.pred-PRESENT          { color: #198754; }
+.bioanalyzer-pred.pred-ABSENT           { color: #dc3545; }
+.bioanalyzer-pred.pred-PARTIALLY_PRESENT{ color: #fd7e14; }
+.feedback-field select { margin-right: 0.5rem; margin-top: 0.25rem; max-width: 12em; }
+.feedback-field small  { color: var(--bs-secondary); }
+@media (min-width: 768px) {
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.5rem; }
+}
+
+/* ── Thank-you modal ─────────────────────────────────────── */
+.thank-you-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 9999;
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+.thank-you-overlay.show { opacity: 1; visibility: visible; }
+.thank-you-card {
+  background: var(--bs-body-bg, #fff);
+  padding: 2rem; border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 2rem rgba(0,0,0,0.2);
+  max-width: 420px; text-align: center;
+}
+.thank-you-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem; }
