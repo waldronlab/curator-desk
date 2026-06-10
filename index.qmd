@@ -11,7 +11,7 @@ Use this page to review BioAnalyzer’s predicted statuses for candidate papers 
 
 What you can do here:
 
-* **Find papers quickly:** Search, sort, and filter the table (Priority score helps surface high‑value candidates).
+* **Find papers quickly:** Search, sort, and filter the table (**Priority Score** helps surface high‑value candidates).
 * **Record ground truth:** Enter curator TRUE labels and optional “was the prediction correct?” flags per field.
 * **Share feedback:** Submit feedback via a GitHub issue (CSV is pre-filled in the issue body).
 
@@ -40,7 +40,16 @@ The system reads `data/sample.csv` by default. To use a different source, set th
 
 ### Interactive Table
 
-**Tip:** Sort by **Priority** (descending) to review the most promising candidates first. Use the search box and column filters to narrow your focus.
+**Tip:** Sort by **Priority Score** (descending). By default, only papers with differential abundance reporting are emphasized (toggle below). Use column filters to narrow by condition, body site, or host species.
+
+<div id="triage-controls" class="mb-3">
+  <label><input type="checkbox" id="filter-da-only" checked> Show only papers with differential abundance (<code>has_differential_abundance = TRUE</code>)</label><br>
+  <label>Minimum differential abundance confidence:
+    <input type="range" id="filter-da-confidence" min="0" max="1" step="0.05" value="0">
+    <span id="filter-da-confidence-label">0.00</span>
+  </label><br>
+  <label><input type="checkbox" id="filter-hide-bugsigdb"> Hide papers already in BugSigDB</label>
+</div>
 
 ```{r echo = FALSE}
 #| label: setup
@@ -115,23 +124,30 @@ if (nrow(df) == 0) {
   
   DISPLAY_COLUMNS <- c(
     "PubMed Link",
+    "BugSigDB Link",
     "Title",
     "Journal",
     "Year",
     "Host Species",
-    "H.S Status",
+    "Host Species ID",
+    "Host Species Status",
+    "Host Species Mapping Confidence",
     "Body Site",
-    "B.S Status",
+    "Body Site ID",
+    "Body Site Status",
+    "Body Site Mapping Confidence",
     "Condition",
-    "C.Status",
+    "Condition ID",
+    "Condition Status",
+    "Condition Mapping Confidence",
     "Sequencing Type",
-    "S.T Status",
+    "Sequencing Type Status",
     "Sample Size",
-    "S.S Status",
+    "Sample Size Status",
     "has_differential_abundance",
-    "D.A confidence",
+    "differential_abundance_confidence",
     "in_bugsigdb",
-    "Priority"
+    "Priority Score"
   )
   display_columns <- intersect(DISPLAY_COLUMNS, names(df))
   df_display <- df[, display_columns, drop = FALSE]
@@ -146,7 +162,7 @@ if (nrow(df) == 0) {
   fixedHeader = TRUE
 )
   
-  priority_index <- which(names(df_display) == "Priority")
+  priority_index <- which(names(df_display) == "Priority Score")
   
   if (length(priority_index) == 1) {
     dt_options$order <- list(list(priority_index - 1, "desc"))
@@ -175,6 +191,53 @@ if (nrow(df) == 0) {
   }
 
   dt_options$columnDefs <- dt_column_defs
+
+  da_col_idx <- which(names(df_display) == "has_differential_abundance") - 1L
+  conf_col_idx <- which(names(df_display) == "differential_abundance_confidence") - 1L
+  bugsig_col_idx <- which(names(df_display) == "in_bugsigdb") - 1L
+  dt_options$initComplete <- DT::JS(sprintf(
+    "function(settings, json) {
+      var api = this.api();
+      var daIdx = %d, confIdx = %d, bugIdx = %d;
+      function applyTriage() {
+        var daOnly = document.getElementById('filter-da-only');
+        var confSlider = document.getElementById('filter-da-confidence');
+        var hideBug = document.getElementById('filter-hide-bugsigdb');
+        var minConf = confSlider ? parseFloat(confSlider.value || '0') : 0;
+        $.fn.dataTable.ext.search = $.fn.dataTable.ext.search.filter(function(fn) {
+          return !fn._curatorTriage;
+        });
+        $.fn.dataTable.ext.search.push(function(settings, data) {
+          if (daOnly && daOnly.checked && daIdx >= 0) {
+            var daVal = String(data[daIdx] || '').toLowerCase();
+            if (!(daVal === 'true' || daVal === '1' || daVal === 'yes')) return false;
+          }
+          if (confIdx >= 0 && minConf > 0) {
+            var c = parseFloat(data[confIdx]);
+            if (isNaN(c) || c < minConf) return false;
+          }
+          if (hideBug && hideBug.checked && bugIdx >= 0) {
+            var b = String(data[bugIdx] || '').toLowerCase();
+            if (b === 'true' || b === '1' || b === 'yes') return false;
+          }
+          return true;
+        });
+        $.fn.dataTable.ext.search[$.fn.dataTable.ext.search.length - 1]._curatorTriage = true;
+        api.draw();
+      }
+      ['filter-da-only','filter-da-confidence','filter-hide-bugsigdb'].forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) el.addEventListener('change', applyTriage);
+        if (el && id === 'filter-da-confidence') el.addEventListener('input', function() {
+          var lbl = document.getElementById('filter-da-confidence-label');
+          if (lbl) lbl.textContent = parseFloat(el.value).toFixed(2);
+          applyTriage();
+        });
+      });
+      applyTriage();
+    }",
+    da_col_idx, conf_col_idx, bugsig_col_idx
+  ))
 
   # ---- Render table ----
   dt_table <- DT::datatable(
@@ -216,7 +279,7 @@ if (nrow(df) == 0) {
 
 ## Curator feedback
 
-Use the table above to find papers (the **Open** button in the **Published** column opens the paper on PubMed). Then select or enter a PMID below; the page will scroll to the field-by-field validation form where you can enter your review. Feedback uses the same schema as the Streamlit app; because this site is static, **saving is done by downloading a CSV** per row—submit via your usual process (e.g. email or GitHub issue).
+Use the table above to find papers (click the **PMID** link to open PubMed, or **Curate** for BugSigDB). Then select or enter a PMID below; the page will scroll to the field-by-field validation form where you can enter your review. Feedback uses the same schema as the Streamlit app; because this site is static, **saving is done by downloading a CSV** per row—submit via your usual process (e.g. email or GitHub issue).
 
 1. **Quick select** a PMID from the dropdown, or type a PMID and click **Load row** (the form will scroll into view).
 2. For each field, review **BioAnalyzer predicted** and set **Curator TRUE label** and **Was BioAnalyzer correct?**
@@ -379,19 +442,8 @@ Would you like to continue reviewing other papers?
 
 <script>
 (function() {
-  const schema = [
-    "PMID","curator_id","overall_verdict","comment","timestamp","bioanalyzer_version",
-    "pred__Host_Species_Status","pred__Body_Site_Status","pred__Condition_Status",
-    "pred__Sequencing_Type_Status","pred__Taxa_Level_Status","pred__Sample_Size_Status",
-    "true__Host_Species_Status","true__Body_Site_Status","true__Condition_Status",
-    "true__Sequencing_Type_Status","true__Taxa_Level_Status","true__Sample_Size_Status",
-    "col_feedback__Host_Species_Status","col_feedback__Body_Site_Status","col_feedback__Condition_Status",
-    "col_feedback__Sequencing_Type_Status","col_feedback__Taxa_Level_Status","col_feedback__Sample_Size_Status"
-  ];
-  const statusCols = [
-    "Host Species Status","Body Site Status","Condition Status",
-    "Sequencing Type Status","Taxa Level Status","Sample Size Status"
-  ];
+  const schema = `r paste(shQuote(feedback_schema(), type = "cmd"), collapse = ", ")`.split(",").map(s => s.replace(/'/g, ""));
+  const statusCols = `r paste(shQuote(STATUS_COLUMNS, type = "cmd"), collapse = ", ")`.split(",").map(s => s.replace(/'/g, ""));
   const safeCol = c => c.replace(/ /g, "_");
 
   let tableData = [];

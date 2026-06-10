@@ -45,7 +45,15 @@ jobs:
       - name: Render Quarto site
         env:
           GITHUB_REPO: https://github.com/${{ github.repository }}
-        run: quarto render
+          CURATOR_DATA_PATH: ${{ vars.CURATOR_DATA_PATH || 'data/predictions.csv' }}
+          CURATOR_TRIAGE_DA_ONLY: "false"
+          BIOANALYZER_VERSION: ${{ vars.BIOANALYZER_VERSION || '1.0.0' }}
+        run: |
+          if [ ! -f "$CURATOR_DATA_PATH" ]; then
+            echo "Using fallback data/sample.csv"
+            export CURATOR_DATA_PATH="data/sample.csv"
+          fi
+          quarto render
 
       - name: Verify build output
         run: test -f docs/index.html || (echo "::error::docs/index.html missing" && exit 1)
