@@ -1,5 +1,7 @@
 # Quarto
 .quarto/
+_freeze/
+/docs/
 
 # R
 .Rhistory
