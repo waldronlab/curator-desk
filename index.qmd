@@ -88,6 +88,7 @@ if (length(missing_status) > 0) {
 #| echo: false
 #| warning: false
 #| message: false
+#| results: asis
 #| column: screen
 
 library(dplyr)
