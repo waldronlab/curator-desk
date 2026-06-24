@@ -37,6 +37,9 @@ jobs:
       - name: Set up renv and restore R dependencies
         uses: r-lib/actions/setup-renv@v2
 
+      - name: Run R unit tests
+        run: Rscript tests/testthat.R
+
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:

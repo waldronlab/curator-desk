@@ -41,14 +41,20 @@ load_data <- function(path) {
   if (ext == "csv") {
     tryCatch(
       read.csv(path, stringsAsFactors = FALSE, check.names = FALSE),
-      error = function(e) data.frame()
+      error = function(e) {
+        message("Failed to load ", path, ": ", conditionMessage(e))
+        data.frame()
+      }
     )
   } else if (ext %in% c("parquet", "pq")) {
     if (!requireNamespace("arrow", quietly = TRUE))
       stop("Install package 'arrow' to read Parquet files.")
     tryCatch(
       as.data.frame(arrow::read_parquet(path)),
-      error = function(e) data.frame()
+      error = function(e) {
+        message("Failed to load ", path, ": ", conditionMessage(e))
+        data.frame()
+      }
     )
   } else {
     data.frame()
@@ -59,11 +65,12 @@ load_data <- function(path) {
 normalize_dataset <- function(df) {
   if (!nrow(df)) return(df)
   if (!"PMID" %in% names(df)) return(data.frame())
-  df$PMID <- tryCatch(
-    as.integer(as.numeric(df$PMID)),
-    warning = function(e) NA,
-    error = function(e) NA
-  )
+  # suppressWarnings(), not tryCatch(warning = ...): a tryCatch warning
+  # handler replaces the *entire* vectorized result with a single NA the
+  # moment any one element fails to parse (as.numeric() warns once per
+  # call, not per element) - that previously dropped every row whenever a
+  # single PMID was malformed, instead of just that row.
+  df$PMID <- suppressWarnings(as.integer(as.numeric(df$PMID)))
   df <- df[!is.na(df$PMID), , drop = FALSE]
   if (!nrow(df)) return(df)
   if (!"Year" %in% names(df) && "Publication Date" %in% names(df)) {
@@ -99,7 +106,20 @@ normalize_dataset <- function(df) {
     df$Year <- suppressWarnings(as.integer(df$Year))
   }
 
-  df$Priority <- apply(df, 1, priority_score)
+  # Vectorized equivalent of apply(df, 1, priority_score): STATUS_COLUMNS
+  # are already normalized to PRESENT/PARTIALLY_PRESENT/ABSENT above, so
+  # there's no need to re-coerce/re-parse each cell per row via apply()
+  # (which also coerces the whole data.frame to a character matrix first).
+  score_cols <- STATUS_COLUMNS[STATUS_COLUMNS %in% names(df)]
+  if (length(score_cols)) {
+    weights <- vapply(score_cols, function(col) {
+      ifelse(df[[col]] == "PRESENT", 1,
+             ifelse(df[[col]] == "PARTIALLY_PRESENT", 0.5, 0))
+    }, numeric(nrow(df)))
+    df$Priority <- if (is.matrix(weights)) rowSums(weights) else sum(weights)
+  } else {
+    df$Priority <- 0
+  }
   df$`PubMed Link` <- paste0(
     "<a href='https://pubmed.ncbi.nlm.nih.gov/", df$PMID,
     "/' target='_blank'>", df$PMID, "</a>"
