@@ -382,15 +382,15 @@ Would you like to continue reviewing other papers?
   const schema = [
     "PMID","curator_id","overall_verdict","comment","timestamp","bioanalyzer_version",
     "pred__Host_Species_Status","pred__Body_Site_Status","pred__Condition_Status",
-    "pred__Sequencing_Type_Status","pred__Taxa_Level_Status","pred__Sample_Size_Status",
+    "pred__Sequencing_Type_Status","pred__Sample_Size_Status",
     "true__Host_Species_Status","true__Body_Site_Status","true__Condition_Status",
-    "true__Sequencing_Type_Status","true__Taxa_Level_Status","true__Sample_Size_Status",
+    "true__Sequencing_Type_Status","true__Sample_Size_Status",
     "col_feedback__Host_Species_Status","col_feedback__Body_Site_Status","col_feedback__Condition_Status",
-    "col_feedback__Sequencing_Type_Status","col_feedback__Taxa_Level_Status","col_feedback__Sample_Size_Status"
+    "col_feedback__Sequencing_Type_Status","col_feedback__Sample_Size_Status"
   ];
   const statusCols = [
     "Host Species Status","Body Site Status","Condition Status",
-    "Sequencing Type Status","Taxa Level Status","Sample Size Status"
+    "Sequencing Type Status","Sample Size Status"
   ];
   const safeCol = c => c.replace(/ /g, "_");
 
