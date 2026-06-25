@@ -30,11 +30,45 @@ pmid_link <- function(pmid) {
   sprintf("https://pubmed.ncbi.nlm.nih.gov/%s/", p)
 }
 
+#' Guard against SSRF when CURATOR_DATA_URL/CURATOR_DATA_PATH points at a
+#' URL (mirrors the Python side's app/utils/url_safety.py - that one does a
+#' real DNS resolution + IP classification; base R has no portable,
+#' dependency-free equivalent, so this is a hostname-pattern check instead.
+#' Narrower than the Python guard (a DNS-rebinding host wouldn't be caught)
+#' but still blocks the obvious cases, and the threat model here is lower:
+#' this URL comes from an operator-set env var, not a live request param.
+assert_public_host <- function(url) {
+  host <- sub("^https?://([^/:]+).*$", "\\1", url, ignore.case = TRUE)
+  if (!nzchar(host) || identical(host, url))
+    stop("Could not parse hostname from URL: ", url)
+  host_lower <- tolower(host)
+  private_patterns <- c(
+    "^localhost$", "^127\\.", "^10\\.", "^192\\.168\\.",
+    "^172\\.(1[6-9]|2[0-9]|3[0-1])\\.",
+    "^169\\.254\\.", "^0\\.0\\.0\\.0$", "^\\[?::1\\]?$",
+    "\\.local$", "^metadata\\.google\\.internal$"
+  )
+  if (any(vapply(private_patterns, grepl, logical(1), x = host_lower))) {
+    stop("Refusing to fetch from non-public host: ", host)
+  }
+  invisible(TRUE)
+}
+
 #' Load CSV or Parquet from path or URL; returns empty data.frame on failure
 load_data <- function(path) {
   if (!length(path) || !nzchar(trimws(path))) return(data.frame())
   path <- trimws(path)
   is_url <- grepl("^https?://", path)
+  if (is_url) {
+    ok <- tryCatch({
+      assert_public_host(path)
+      TRUE
+    }, error = function(e) {
+      message("Refusing to load ", path, ": ", conditionMessage(e))
+      FALSE
+    })
+    if (!ok) return(data.frame())
+  }
   if (!is_url && !file.exists(path))
     return(data.frame())
   ext <- tolower(tools::file_ext(gsub("\\?.*", "", path)))

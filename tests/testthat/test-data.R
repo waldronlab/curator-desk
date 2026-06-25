@@ -1,6 +1,30 @@
 # Tests for R/data.R - assumes R/config.R and R/data.R are already sourced
 # (see tests/testthat.R).
 
+test_that("assert_public_host blocks private/loopback/link-local hosts", {
+  expect_error(assert_public_host("http://localhost:8080/data.csv"))
+  expect_error(assert_public_host("http://127.0.0.1/admin"))
+  expect_error(assert_public_host("http://169.254.169.254/latest/meta-data/"))
+  expect_error(assert_public_host("http://192.168.1.1/data.csv"))
+  expect_error(assert_public_host("http://10.0.0.5/data.csv"))
+  expect_error(assert_public_host("http://172.16.0.1/data.csv"))
+  expect_error(assert_public_host("http://internal.local/data.csv"))
+  expect_error(assert_public_host("http://metadata.google.internal/"))
+})
+
+test_that("assert_public_host allows ordinary public hosts", {
+  expect_true(assert_public_host("https://raw.githubusercontent.com/org/repo/main/data.csv"))
+  expect_true(assert_public_host("https://example.com/data.csv"))
+})
+
+test_that("load_data refuses to fetch from a private-host URL", {
+  expect_message(
+    df <- load_data("http://127.0.0.1/data.csv"),
+    "Refusing to load"
+  )
+  expect_equal(nrow(df), 0)
+})
+
 test_that("normalize_status passes through valid states unchanged", {
   expect_equal(normalize_status("PRESENT"), "PRESENT")
   expect_equal(normalize_status("ABSENT"), "ABSENT")
