@@ -162,19 +162,43 @@ div.dataTables_paginate .paginate_button { font-size: 0.78rem; border-radius: 3p
 /* ── Feedback form ────────────────────────────────────────── */
 .feedback-field {
   margin-bottom: 1.25rem;
-  padding: 0.75rem;
-  background: var(--bs-light, #f8f9fa);
-  border-radius: 0.35rem;
-  border: 1px solid rgba(0,0,0,.06);
+  padding: 0.9rem 1rem;
+  background: #fff;
+  border-radius: 0.5rem;
+  border: 1px solid #e3eee8;
+  border-left: 4px solid var(--cd-4);
+  box-shadow: 0 1px 2px rgba(27, 67, 50, 0.05);
+  transition: box-shadow 0.15s ease, border-left-color 0.15s ease;
 }
-.feedback-field strong { display: block; margin-bottom: 0.35rem; }
-.feedback-field .bioanalyzer-pred-line { margin: 0.35rem 0 0.5rem 0; min-height: 1.4em; }
-.bioanalyzer-pred { font-size: 0.95em; font-weight: 500; }
-.bioanalyzer-pred.pred-PRESENT           { color: #198754; }
-.bioanalyzer-pred.pred-ABSENT            { color: #dc3545; }
-.bioanalyzer-pred.pred-PARTIALLY_PRESENT { color: #fd7e14; }
-.feedback-field select { margin-right: 0.5rem; margin-top: 0.25rem; max-width: 12em; }
-.feedback-field small  { color: var(--bs-secondary); }
+.feedback-field:hover { border-left-color: var(--cd-2); box-shadow: 0 4px 12px rgba(27, 67, 50, 0.09); }
+.feedback-field strong { display: block; margin-bottom: 0.35rem; color: var(--cd-1); font-size: 0.95rem; }
+.feedback-field .bioanalyzer-pred-line { margin: 0.35rem 0 0.6rem 0; min-height: 1.6em; }
+.bioanalyzer-pred {
+  font-size: 0.85em;
+  font-weight: 700;
+  padding: 0.15rem 0.55rem;
+  border-radius: 0.3rem;
+  display: inline-block;
+}
+.bioanalyzer-pred.text-muted        { font-weight: 400; padding: 0.15rem 0; }
+.bioanalyzer-pred.pred-PRESENT           { background: #e8f5e9; color: #198754; }
+.bioanalyzer-pred.pred-ABSENT            { background: #fdecea; color: #dc3545; }
+.bioanalyzer-pred.pred-PARTIALLY_PRESENT { background: #fff4e5; color: #b9690e; }
+.feedback-field small {
+  display: block;
+  margin: 0.65rem 0 0.3rem;
+  font-weight: 700;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--cd-2);
+}
+.feedback-field select {
+  display: block;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
 @media (min-width: 768px) {
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.5rem; }
 }
@@ -295,7 +319,23 @@ div.dataTables_paginate .paginate_button { font-size: 0.78rem; border-radius: 3p
   background: linear-gradient(135deg, #f8f9fa, #eef4f1);
   border-bottom: 1px solid #e9ecef;
 }
-.cd-card-header h2 { margin: 0; font-size: 1.2rem; }
+.cd-card-header h2 {
+  margin: 0;
+  padding-left: 0.9rem;
+  position: relative;
+  font-size: 1.2rem;
+  color: var(--cd-1);
+}
+.cd-card-header h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.1em;
+  bottom: 0.1em;
+  width: 4px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, var(--cd-3), var(--cd-1));
+}
 .cd-card-body { padding: 1.25rem 1.5rem; }
 
 .cd-badge {
@@ -310,7 +350,7 @@ div.dataTables_paginate .paginate_button { font-size: 0.78rem; border-radius: 3p
   color: var(--cd-2);
   white-space: nowrap;
 }
-.cd-badge-muted { background: #f1f3f5; color: #6c757d; }
+.cd-badge-muted { background: #e9f1fb; color: #2b6cb0; }
 
 .cd-toolbar {
   margin: 1rem 1.4rem;
@@ -362,6 +402,57 @@ div.dataTables_paginate .paginate_button { font-size: 0.78rem; border-radius: 3p
 .cd-footer-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
 .cd-footer-links a { color: var(--cd-2); font-weight: 600; text-decoration: none; }
 .cd-footer-links a:hover { text-decoration: underline; }
+
+/* Branded form controls, buttons, and headings throughout the page */
+#field-validation-section {
+  margin-top: 0.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e9ecef;
+}
+#field-validation-section::before {
+  content: "";
+  display: inline-block;
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  background: var(--cd-3);
+  vertical-align: middle;
+}
+
+.cd-form .form-control,
+.cd-form .form-select,
+.feedback-field select {
+  border: 1px solid #cfe3d8;
+  border-radius: 0.45rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.cd-form .form-control:focus,
+.cd-form .form-select:focus,
+.feedback-field select:focus {
+  border-color: var(--cd-3);
+  box-shadow: 0 0 0 0.2rem rgba(64, 145, 108, 0.18);
+}
+.cd-form-field strong { color: var(--cd-1); }
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--cd-2), var(--cd-3));
+  border-color: var(--cd-2);
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background: linear-gradient(135deg, var(--cd-1), var(--cd-2));
+  border-color: var(--cd-1);
+}
+.btn-outline-secondary {
+  color: var(--cd-2);
+  border-color: var(--cd-4);
+}
+.btn-outline-secondary:hover {
+  background: var(--cd-5);
+  color: var(--cd-1);
+  border-color: var(--cd-2);
+}
 
 /* ── Thank-you modal ─────────────────────────────────────── */
 .thank-you-overlay {
