@@ -1,46 +1,9 @@
- ---
+---
 title: "Curator Desk"
 format:
   html:
     toc: false
 ---
-
-# BioAnalyzer curator desk
-
-Use this page to review BioAnalyzer’s predicted statuses for candidate papers and record curator ground truth for each PMID.
-
-What you can do here:
-
-* **Find papers quickly:** Search, sort, and filter the table (Priority score helps surface high‑value candidates).
-* **Record ground truth:** Enter curator TRUE labels and optional “was the prediction correct?” flags per field.
-* **Share feedback:** Submit feedback via a GitHub issue (CSV is pre-filled in the issue body).
-
-::: {.callout-note collapse="false"}
-## Data Source & Setup
-
-The table is built from data stored in the **`data/`** folder. To analyze your own papers: 
-
-1.  Place your CSV (or Parquet) file in `data/` (e.g., `data/sample.csv`).
-2.  Run `quarto render`. 
-
-The system reads `data/sample.csv` by default. To use a different source, set the `CURATOR_DATA_PATH` environment variable to your specific path (e.g., `data/analyzed_papers.csv`) or use `CURATOR_DATA_URL` for remote files.
-
-**Expected columns**
-
-* **Required:** `PMID`
-* **Recommended:** `Title`, `Journal`, `Year`, `Summary`
-* **Status values:** `ABSENT` | `PARTIALLY_PRESENT` | `PRESENT`
-:::
-
----
-
-## Candidate Curatable Articles {.tabset #candidate-papers}
-
-::: {.panel-tabset}
-
-### Interactive Table
-
-**Tip:** Sort by **Priority** (descending) to review the most promising candidates first. Use the search box and column filters to narrow your focus.
 
 ```{r echo = FALSE}
 #| label: setup
@@ -79,9 +42,101 @@ if (length(missing_status) > 0) {
     )
   )
 }
+
+# ---- Hero stats ----
+
+n_papers   <- nrow(df)
+n_high     <- if ("Priority" %in% names(df)) sum(df$Priority >= 4, na.rm = TRUE) else 0L
+n_bugsigdb <- if ("in_bugsigdb" %in% names(df)) sum(df$in_bugsigdb, na.rm = TRUE) else 0L
+n_new      <- n_papers - n_bugsigdb
+
+repo_base <- sub("/issues/new$", "", CONFIG$feedback_issue_url)
 ```
+
+```{r}
+#| label: hero
+#| echo: false
+#| results: asis
+
+github_btn <- if (nzchar(repo_base)) {
+  sprintf('<a class="cd-btn cd-btn-ghost" href="%s" target="_blank" rel="noopener">View source on GitHub</a>', repo_base)
+} else {
+  ""
+}
+
+cat(sprintf('
+<div class="cd-hero">
+<div class="cd-hero-text">
+<p class="cd-hero-kicker">BioAnalyzer &times; BugSigDB</p>
+<h1 class="cd-hero-title">Curator Desk</h1>
+<p class="cd-hero-sub">Review BioAnalyzer&rsquo;s predicted statuses for candidate microbiome studies, record curator ground truth per PMID, and send validated rows straight into the BugSigDB curation pipeline.</p>
+<div class="cd-hero-actions">
+<a class="cd-btn cd-btn-primary" href="#candidate-papers">Browse candidate papers</a>
+%s
+</div>
+</div>
+<div class="cd-hero-stats">
+<div class="cd-stat"><span class="cd-stat-value">%d</span><span class="cd-stat-label">Candidate papers</span></div>
+<div class="cd-stat"><span class="cd-stat-value">%d</span><span class="cd-stat-label">High priority</span></div>
+<div class="cd-stat"><span class="cd-stat-value">%d</span><span class="cd-stat-label">Already in BugSigDB</span></div>
+<div class="cd-stat"><span class="cd-stat-value">%d</span><span class="cd-stat-label">Awaiting curation</span></div>
+</div>
+</div>
+', github_btn, n_papers, n_high, n_bugsigdb, n_new))
+```
+
+::: {.cd-row}
+
+::: {.cd-col-main}
+
+### How this works
+
+::: {.cd-steps}
+<div class="cd-step">
+  <div class="cd-step-icon">1</div>
+  <div><h4>Find papers quickly</h4><p>Search, sort, and filter the table below &mdash; the <strong>Priority</strong> score surfaces the highest-value candidates first.</p></div>
+</div>
+<div class="cd-step">
+  <div class="cd-step-icon">2</div>
+  <div><h4>Record ground truth</h4><p>Open a PMID in the curator feedback form and enter the curator TRUE label, plus an optional &ldquo;was the prediction correct?&rdquo; flag, for each field.</p></div>
+</div>
+<div class="cd-step">
+  <div class="cd-step-icon">3</div>
+  <div><h4>Share feedback</h4><p>Submit straight to a GitHub issue with the feedback CSV pre-filled &mdash; no install, no login beyond GitHub.</p></div>
+</div>
 :::
 
+:::
+
+::: {.cd-col-side}
+
+::: {.callout-note collapse="false"}
+## Data Source & Setup
+
+The table is built from data stored in the **`data/`** folder. To analyze your own papers:
+
+1.  Place your CSV (or Parquet) file in `data/` (e.g., `data/sample.csv`).
+2.  Run `quarto render`.
+
+The system reads `data/sample.csv` by default. To use a different source, set the `CURATOR_DATA_PATH` environment variable to your specific path (e.g., `data/analyzed_papers.csv`) or use `CURATOR_DATA_URL` for remote files.
+
+**Expected columns**
+
+* **Required:** `PMID`
+* **Recommended:** `Title`, `Journal`, `Year`, `Summary`
+* **Status values:** `ABSENT` | `PARTIALLY_PRESENT` | `PRESENT`
+:::
+
+:::
+
+:::
+
+::: {#candidate-papers .cd-card}
+
+::: {.cd-card-header}
+## Candidate Curatable Articles
+<span class="cd-badge">`r n_papers` rows</span>
+:::
 
 ```{r}
 #| label: table-display
@@ -89,31 +144,33 @@ if (length(missing_status) > 0) {
 #| warning: false
 #| message: false
 #| results: asis
-#| column: screen
 
 library(dplyr)
 
+cat('<div class="cd-table-wrap">')
+
 if (nrow(df) == 0) {
-  
+
   cat(
-    "No data loaded. Set `CURATOR_DATA_URL` or `CURATOR_DATA_PATH`, ",
-    "or add `data/sample.csv` and rebuild."
+    "<div class='cd-card-body'>No data loaded. Set <code>CURATOR_DATA_URL</code> or <code>CURATOR_DATA_PATH</code>, ",
+    "or add <code>data/sample.csv</code> and rebuild.</div>"
   )
-  
+
 } else {
-  
+
   # ---- Inform about missing status columns ----
-  
+
   if (length(missing_status) > 0) {
-    cat(
-      "**Note:** Missing status columns: ",
-      paste(missing_status, collapse = ", "),
-      ". Priority and filtering may be partial.\n\n"
-    )
+    cat(sprintf(
+      "<div class='cd-toolbar cd-toolbar-warn'>&#9888;&nbsp; Missing status columns: %s. Priority and filtering may be partial.</div>",
+      paste(missing_status, collapse = ", ")
+    ))
   }
-  
+
+  cat('<div class="cd-toolbar"><strong>Tip:</strong>&nbsp; Sort by <strong>Priority</strong> (descending) to review the most promising candidates first. Use the search box and column filters to narrow your focus.</div>')
+
   # ---- Select display columns ----
-  
+
   DISPLAY_COLUMNS <- c(
     "PubMed Link",
     "Title",
@@ -138,7 +195,7 @@ if (nrow(df) == 0) {
   df_display <- df[, display_columns, drop = FALSE]
 
   # ---- Configure DataTable options ----
-  
+
  dt_options <- list(
   pageLength = 50,
   lengthMenu = c(50, 100, 300, 500, 1000),
@@ -146,13 +203,13 @@ if (nrow(df) == 0) {
   stateSave = TRUE,
   fixedHeader = TRUE
 )
-  
+
   priority_index <- which(names(df_display) == "Priority")
-  
+
   if (length(priority_index) == 1) {
     dt_options$order <- list(list(priority_index - 1, "desc"))
   }
-  
+
   in_bugsigdb_index <- which(names(df_display) == "in_bugsigdb")
   dt_column_defs <- list()
   if (length(in_bugsigdb_index) == 1) {
@@ -181,7 +238,7 @@ if (nrow(df) == 0) {
   dt_table <- DT::datatable(
     df_display,
     filter = "top",
-    extensions = c("FixedHeader"),,
+    extensions = c("FixedHeader"),
     options = dt_options,
     escape = FALSE,
     rownames = FALSE
@@ -210,18 +267,26 @@ if (nrow(df) == 0) {
 
   dt_table
 }
+
+cat('</div>')
 ```
-::: {.panel-tabset}
 
-**Rows in table:** `r nrow(df)`
+:::
 
+::: {#feedback-form-section .cd-card}
+
+::: {.cd-card-header}
 ## Curator feedback
+<span class="cd-badge cd-badge-muted">5 fields per paper</span>
+:::
 
-Use the table above to find papers (the **Open** button in the **Published** column opens the paper on PubMed). Then select or enter a PMID below; the page will scroll to the field-by-field validation form where you can enter your review. Feedback uses the same schema as the Streamlit app; because this site is static, **saving is done by downloading a CSV** per row—submit via your usual process (e.g. email or GitHub issue).
+::: {.cd-card-body}
+
+Use the table above to find papers (the **Open** button in the **Published** column opens the paper on PubMed). Then select or enter a PMID below; the page will scroll to the field-by-field validation form where you can enter your review. Feedback uses the same schema as the Streamlit app; because this site is static, **saving is done by downloading a CSV** per row&mdash;submit via your usual process (e.g. email or GitHub issue).
 
 1. **Quick select** a PMID from the dropdown, or type a PMID and click **Load row** (the form will scroll into view).
 2. For each field, review **BioAnalyzer predicted** and set **Curator TRUE label** and **Was BioAnalyzer correct?**
-3. Click **Download feedback CSV** to save one row; submit as needed.
+3. Click **Submit review** (or **Download CSV only**) to save one row.
 
 ```{r}
 #| label: table-json
@@ -252,18 +317,22 @@ cat(sprintf('<script type="application/json" id="curator-config">%s</script>',
                             auto_unbox = TRUE)))
 ```
 
-::: {#feedback-form .card .shadow-sm}
-::: {.card-header .bg-light .py-3}
-**Curator feedback form**
+::: {#feedback-form .cd-form}
+
+::: {.cd-form-row}
+::: {.cd-form-field}
+**Curator ID / initials**
+<input type="text" id="curator_id" class="form-control" placeholder="e.g. Ronald Ouma">
 :::
-::: {.card-body}
-::: {.mb-3}
-**Curator ID / initials**  
-<input type="text" id="curator_id" class="form-control" placeholder="e.g. Ronald Ouma" style="max-width: 320px;">
+::: {.cd-form-field}
+**BioAnalyzer version** (fixed for all submissions)
+<input type="text" id="bioanalyzer_version" class="form-control" readonly title="Version is set at build time.">
 :::
-::: {.mb-3}
+:::
+
+::: {.cd-form-row}
+::: {.cd-form-field .cd-form-field-wide}
 **Quick select for feedback** — Select a PMID from the table, or type below.
-:::
 
 ```{r}
 #| label: quick-select-pmid
@@ -271,7 +340,7 @@ cat(sprintf('<script type="application/json" id="curator-config">%s</script>',
 #| results: asis
 if (nrow(df) > 0 && "PMID" %in% names(df)) {
   opts <- df[, c("PMID", if ("Title" %in% names(df)) "Title" else NULL), drop = FALSE]
-  cat('<select id="quick-select-pmid" class="form-select" style="max-width: 480px;"><option value="">— Select a PMID —</option>')
+  cat('<select id="quick-select-pmid" class="form-select"><option value="">— Select a PMID —</option>')
   for (i in seq_len(nrow(opts))) {
     pm <- opts$PMID[i]
     lbl <- if ("Title" %in% names(opts)) paste0(pm, " — ", substr(opts$Title[i], 1, 50), if (nchar(as.character(opts$Title[i])) > 50) "…" else "") else as.character(pm)
@@ -281,35 +350,37 @@ if (nrow(df) > 0 && "PMID" %in% names(df)) {
   cat('</select>')
 }
 ```
-
-::: {.mb-3}
-**PMID**  
-<div class="input-group" style="max-width: 360px;">
+:::
+::: {.cd-form-field}
+**PMID**
+<div class="input-group">
   <input type="text" id="fb_pmid" class="form-control" placeholder="e.g. 31215600">
   <button type="button" id="btn-load-row" class="btn btn-outline-secondary">Load row</button>
 </div>
 :::
-::: {.mb-3}
-**Title (from table)**  
-<span id="title-prefill" class="text-muted fst-italic"></span>
 :::
 
-::: {.mb-3}
-**Overall paper verdict**  
-<select id="overall_verdict" class="form-select" style="max-width: 280px;">
+::: {.cd-form-row}
+::: {.cd-form-field .cd-form-field-wide}
+**Title (from table)**
+<div class="cd-title-prefill"><span id="title-prefill" class="text-muted fst-italic">Select a PMID above and click Load row.</span></div>
+:::
+::: {.cd-form-field}
+**Overall paper verdict**
+<select id="overall_verdict" class="form-select">
   <option value="Curatable">Curatable</option>
   <option value="Not curatable">Not curatable</option>
   <option value="Uncertain">Uncertain</option>
   <option value="Not reviewed">Not reviewed</option>
 </select>
 :::
-::: {.mb-3}
-**Comment (optional)**  
-<textarea id="comment" class="form-control" rows="3" placeholder="Evidence, edge case, missing field, false positive reason..." style="max-width: 520px;"></textarea>
 :::
-::: {.mb-3}
-**BioAnalyzer version** (fixed for all submissions)  
-<input type="text" id="bioanalyzer_version" class="form-control" readonly style="max-width: 200px; background-color: var(--bs-light, #f8f9fa);" title="Version is set at build time.">
+
+::: {.cd-form-row}
+::: {.cd-form-field .cd-form-field-wide}
+**Comment (optional)**
+<textarea id="comment" class="form-control" rows="2" placeholder="Evidence, edge case, missing field, false positive reason..."></textarea>
+:::
 :::
 
 ### Field-by-field validation (ground truth) {#field-validation-section}
@@ -327,22 +398,22 @@ for (col in STATUS_COLUMNS) {
   label <- gsub(" Status", "", col)
   cat(sprintf('
 <div class="feedback-field">
-  <strong>%s</strong>
-  <p class="bioanalyzer-pred-line"><span id="pred_%s" class="bioanalyzer-pred text-muted">Select a PMID above and click Load row to see BioAnalyzer&rsquo;s prediction.</span></p>
-  <small>Curator TRUE label for %s:</small>
-  <select id="true_%s">
-    <option value="Not reviewed">Not reviewed</option>
-    <option value="ABSENT">ABSENT</option>
-    <option value="PARTIALLY_PRESENT">PARTIALLY_PRESENT</option>
-    <option value="PRESENT">PRESENT</option>
-  </select>
-  <small>Was BioAnalyzer correct for %s?</small>
-  <select id="col_fb_%s">
-    <option value="Not reviewed">Not reviewed</option>
-    <option value="Correct">Correct</option>
-    <option value="Incorrect">Incorrect</option>
-    <option value="Unclear">Unclear</option>
-  </select>
+<strong>%s</strong>
+<p class="bioanalyzer-pred-line"><span id="pred_%s" class="bioanalyzer-pred text-muted">Select a PMID above and click Load row to see BioAnalyzer&rsquo;s prediction.</span></p>
+<small>Curator TRUE label for %s:</small>
+<select id="true_%s">
+<option value="Not reviewed">Not reviewed</option>
+<option value="ABSENT">ABSENT</option>
+<option value="PARTIALLY_PRESENT">PARTIALLY_PRESENT</option>
+<option value="PRESENT">PRESENT</option>
+</select>
+<small>Was BioAnalyzer correct for %s?</small>
+<select id="col_fb_%s">
+<option value="Not reviewed">Not reviewed</option>
+<option value="Correct">Correct</option>
+<option value="Incorrect">Incorrect</option>
+<option value="Unclear">Unclear</option>
+</select>
 </div>
 ', label, s, label, s, label, s))
 }
@@ -350,23 +421,53 @@ for (col in STATUS_COLUMNS) {
 
 :::
 
-**Submit review** — Opens GitHub to create an issue with your feedback (no file download). A bot will then open a Pull Request with the feedback CSV so the maintainer can view and download it (including your initials and comments).
-
-::: {.mt-2}
-<button type="button" id="btn-submit-review" class="btn btn-primary me-2">Submit review</button>
-<button type="button" id="btn-download-csv" class="btn btn-outline-secondary">Download CSV only</button>
+::: {.cd-submit-row}
+<div class="cd-submit-note"><strong>Submit review</strong> opens GitHub to create an issue with your feedback. A bot then opens a Pull Request with the feedback CSV so the maintainer can view and download it.</div>
+<div class="cd-submit-actions">
+  <button type="button" id="btn-submit-review" class="btn btn-primary">Submit review</button>
+  <button type="button" id="btn-download-csv" class="btn btn-outline-secondary">Download CSV only</button>
+</div>
 :::
 
-::: {.mt-3 .pt-3 .border-top .small .text-muted}
-**Notes:** Submissions are processed as issues and a tab will be opened for you to just click the create button. 
-Reviewers will be looking into you submittd issue to evaluate the results
+::: {.cd-form-footnote}
+**Notes:** Submissions are processed as issues and a tab will be opened for you to just click the create button. Reviewers will look into your submitted issue to evaluate the results.
 :::
+
 :::
+
 :::
+
+:::
+
+```{r}
+#| label: footer
+#| echo: false
+#| results: asis
+
+repo_link  <- if (nzchar(repo_base)) sprintf('<a href="%s" target="_blank" rel="noopener">GitHub repository</a>', repo_base) else ""
+issue_link <- if (nzchar(CONFIG$feedback_issue_url)) sprintf('<a href="%s" target="_blank" rel="noopener">Open an issue</a>', CONFIG$feedback_issue_url) else ""
+
+links <- paste(
+  Filter(nzchar, c(
+    repo_link,
+    issue_link,
+    '<a href="https://bugsigdb.org" target="_blank" rel="noopener">BugSigDB</a>',
+    '<a href="https://pubmed.ncbi.nlm.nih.gov" target="_blank" rel="noopener">PubMed</a>'
+  )),
+  collapse = ""
+)
+
+cat(sprintf('
+<div class="cd-footer">
+<div>Curator Desk &middot; BioAnalyzer v%s &middot; PubMed &rarr; BioAnalyzer &rarr; Curator Desk &rarr; BugSigDB</div>
+<div class="cd-footer-links">%s</div>
+</div>
+', CONFIG$bioanalyzer_version_default, links))
+```
 
 ::: {#thank-you-modal .thank-you-overlay}
 ::: {.thank-you-card}
-**Thank you** for your time and input in helping to complete this review.  
+**Thank you** for your time and input in helping to complete this review.
 Your feedback has been submitted; an issue and pull request are being created in the background.
 
 Would you like to continue reviewing other papers?
@@ -379,51 +480,3 @@ Would you like to continue reviewing other papers?
 :::
 
 <script src="js/feedback-form.js"></script>
-
-<style>
-.thank-you-overlay {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.25s ease, visibility 0.25s ease;
-}
-.thank-you-overlay.show {
-  opacity: 1;
-  visibility: visible;
-}
-.thank-you-card {
-  background: var(--bs-body-bg, #fff);
-  padding: 2rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 0.5rem 2rem rgba(0,0,0,0.2);
-  max-width: 420px;
-  text-align: center;
-}
-.thank-you-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem; }
-
-#feedback-form .card-body { padding: 1.25rem 1.5rem; }
-.feedback-field {
-  margin-bottom: 1.25rem;
-  padding: 0.75rem;
-  background: var(--bs-light, #f8f9fa);
-  border-radius: 0.35rem;
-  border: 1px solid rgba(0,0,0,.06);
-}
-.feedback-field strong { display: block; margin-bottom: 0.35rem; }
-.feedback-field .bioanalyzer-pred-line { margin: 0.35rem 0 0.5rem 0; min-height: 1.4em; }
-.bioanalyzer-pred { font-size: 0.95em; font-weight: 500; }
-.bioanalyzer-pred.pred-PRESENT { color: #198754; }
-.bioanalyzer-pred.pred-ABSENT { color: #dc3545; }
-.bioanalyzer-pred.pred-PARTIALLY_PRESENT { color: #fd7e14; }
-.feedback-field select { margin-right: 0.5rem; margin-top: 0.25rem; max-width: 12em; }
-.feedback-field small { color: var(--bs-secondary); }
-@media (min-width: 768px) {
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.5rem; }
-}
-</style>
