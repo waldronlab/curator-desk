@@ -30,6 +30,17 @@ quarto render
 
 Output is written to `docs/`. Open `docs/index.html` in a browser to test.
 
+## Tests
+
+Unit tests for `R/config.R` and `R/data.R` (data loading, status
+normalization, priority scoring, PMID handling) use `testthat`:
+
+```bash
+Rscript tests/testthat.R
+```
+
+CI runs this before rendering, in both `ci.yml` and `quarto-publish.yml`.
+
 ## Data source
 
 The table is built from a single dataset at **render time**:
@@ -83,6 +94,9 @@ curator-desk/
     config.R      # STATUS_COLUMNS, options, feedback schema
     data.R        # load_data(), normalize_dataset(), priority_score, PMID link
     feedback.R    # feedback row builder (for reference; CSV is built in JS)
+  tests/
+    testthat.R    # test runner: Rscript tests/testthat.R
+    testthat/     # unit tests for R/config.R and R/data.R
   data/           # Put your analyzed-papers CSV here
   curator-feedback/   # Feedback CSVs from submitted reviews (via GitHub Action)
   docs/           # Rendered output (git-tracked for Pages)

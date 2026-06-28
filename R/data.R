@@ -30,25 +30,65 @@ pmid_link <- function(pmid) {
   sprintf("https://pubmed.ncbi.nlm.nih.gov/%s/", p)
 }
 
+#' Guard against SSRF when CURATOR_DATA_URL/CURATOR_DATA_PATH points at a
+#' URL (mirrors the Python side's app/utils/url_safety.py - that one does a
+#' real DNS resolution + IP classification; base R has no portable,
+#' dependency-free equivalent, so this is a hostname-pattern check instead.
+#' Narrower than the Python guard (a DNS-rebinding host wouldn't be caught)
+#' but still blocks the obvious cases, and the threat model here is lower:
+#' this URL comes from an operator-set env var, not a live request param.
+assert_public_host <- function(url) {
+  host <- sub("^https?://([^/:]+).*$", "\\1", url, ignore.case = TRUE)
+  if (!nzchar(host) || identical(host, url))
+    stop("Could not parse hostname from URL: ", url)
+  host_lower <- tolower(host)
+  private_patterns <- c(
+    "^localhost$", "^127\\.", "^10\\.", "^192\\.168\\.",
+    "^172\\.(1[6-9]|2[0-9]|3[0-1])\\.",
+    "^169\\.254\\.", "^0\\.0\\.0\\.0$", "^\\[?::1\\]?$",
+    "\\.local$", "^metadata\\.google\\.internal$"
+  )
+  if (any(vapply(private_patterns, grepl, logical(1), x = host_lower))) {
+    stop("Refusing to fetch from non-public host: ", host)
+  }
+  invisible(TRUE)
+}
+
 #' Load CSV or Parquet from path or URL; returns empty data.frame on failure
 load_data <- function(path) {
   if (!length(path) || !nzchar(trimws(path))) return(data.frame())
   path <- trimws(path)
   is_url <- grepl("^https?://", path)
+  if (is_url) {
+    ok <- tryCatch({
+      assert_public_host(path)
+      TRUE
+    }, error = function(e) {
+      message("Refusing to load ", path, ": ", conditionMessage(e))
+      FALSE
+    })
+    if (!ok) return(data.frame())
+  }
   if (!is_url && !file.exists(path))
     return(data.frame())
   ext <- tolower(tools::file_ext(gsub("\\?.*", "", path)))
   if (ext == "csv") {
     tryCatch(
       read.csv(path, stringsAsFactors = FALSE, check.names = FALSE),
-      error = function(e) data.frame()
+      error = function(e) {
+        message("Failed to load ", path, ": ", conditionMessage(e))
+        data.frame()
+      }
     )
   } else if (ext %in% c("parquet", "pq")) {
     if (!requireNamespace("arrow", quietly = TRUE))
       stop("Install package 'arrow' to read Parquet files.")
     tryCatch(
       as.data.frame(arrow::read_parquet(path)),
-      error = function(e) data.frame()
+      error = function(e) {
+        message("Failed to load ", path, ": ", conditionMessage(e))
+        data.frame()
+      }
     )
   } else {
     data.frame()
@@ -59,11 +99,12 @@ load_data <- function(path) {
 normalize_dataset <- function(df) {
   if (!nrow(df)) return(df)
   if (!"PMID" %in% names(df)) return(data.frame())
-  df$PMID <- tryCatch(
-    as.integer(as.numeric(df$PMID)),
-    warning = function(e) NA,
-    error = function(e) NA
-  )
+  # suppressWarnings(), not tryCatch(warning = ...): a tryCatch warning
+  # handler replaces the *entire* vectorized result with a single NA the
+  # moment any one element fails to parse (as.numeric() warns once per
+  # call, not per element) - that previously dropped every row whenever a
+  # single PMID was malformed, instead of just that row.
+  df$PMID <- suppressWarnings(as.integer(as.numeric(df$PMID)))
   df <- df[!is.na(df$PMID), , drop = FALSE]
   if (!nrow(df)) return(df)
   if (!"Year" %in% names(df) && "Publication Date" %in% names(df)) {
@@ -99,7 +140,20 @@ normalize_dataset <- function(df) {
     df$Year <- suppressWarnings(as.integer(df$Year))
   }
 
-  df$Priority <- apply(df, 1, priority_score)
+  # Vectorized equivalent of apply(df, 1, priority_score): STATUS_COLUMNS
+  # are already normalized to PRESENT/PARTIALLY_PRESENT/ABSENT above, so
+  # there's no need to re-coerce/re-parse each cell per row via apply()
+  # (which also coerces the whole data.frame to a character matrix first).
+  score_cols <- STATUS_COLUMNS[STATUS_COLUMNS %in% names(df)]
+  if (length(score_cols)) {
+    weights <- vapply(score_cols, function(col) {
+      ifelse(df[[col]] == "PRESENT", 1,
+             ifelse(df[[col]] == "PARTIALLY_PRESENT", 0.5, 0))
+    }, numeric(nrow(df)))
+    df$Priority <- if (is.matrix(weights)) rowSums(weights) else sum(weights)
+  } else {
+    df$Priority <- 0
+  }
   df$`PubMed Link` <- paste0(
     "<a href='https://pubmed.ncbi.nlm.nih.gov/", df$PMID,
     "/' target='_blank'>", df$PMID, "</a>"
