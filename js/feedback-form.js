@@ -1,18 +1,15 @@
 (function() {
-  const schema = [
-    "PMID","curator_id","overall_verdict","comment","timestamp","bioanalyzer_version",
-    "pred__Host_Species_Status","pred__Body_Site_Status","pred__Condition_Status",
-    "pred__Sequencing_Type_Status","pred__Sample_Size_Status",
-    "true__Host_Species_Status","true__Body_Site_Status","true__Condition_Status",
-    "true__Sequencing_Type_Status","true__Sample_Size_Status",
-    "col_feedback__Host_Species_Status","col_feedback__Body_Site_Status","col_feedback__Condition_Status",
-    "col_feedback__Sequencing_Type_Status","col_feedback__Sample_Size_Status"
-  ];
-  const statusCols = [
+  const safeCol = c => c.replace(/ /g, "_");
+
+  // Fallback only: the real list comes from R/config.R's STATUS_COLUMNS via
+  // the "curator-config" JSON script tag below, so adding/removing a status
+  // field there is enough - this file no longer needs its own copy. This
+  // array only matters if that script tag is ever missing (e.g. a stale
+  // cached page).
+  const DEFAULT_STATUS_COLS = [
     "Host Species Status","Body Site Status","Condition Status",
     "Sequencing Type Status","Sample Size Status"
   ];
-  const safeCol = c => c.replace(/ /g, "_");
 
   let tableData = [];
   const el = document.getElementById("curator-table-data");
@@ -20,6 +17,7 @@
 
   const configEl = document.getElementById("curator-config");
   let feedbackIssueUrl = "";
+  let statusCols = DEFAULT_STATUS_COLS;
   if (configEl) {
     try {
       const cfg = JSON.parse(configEl.textContent);
@@ -27,8 +25,14 @@
       const verEl = document.getElementById("bioanalyzer_version");
       if (verEl) verEl.value = cfg.bioanalyzer_version_default || "1.0.0";
       if (cfg.feedback_issue_url) feedbackIssueUrl = cfg.feedback_issue_url;
+      if (Array.isArray(cfg.status_columns) && cfg.status_columns.length) statusCols = cfg.status_columns;
     } catch (_) {}
   }
+
+  const schema = ["PMID","curator_id","overall_verdict","comment","timestamp","bioanalyzer_version"]
+    .concat(statusCols.map(c => "pred__" + safeCol(c)))
+    .concat(statusCols.map(c => "true__" + safeCol(c)))
+    .concat(statusCols.map(c => "col_feedback__" + safeCol(c)));
   if (!feedbackIssueUrl && typeof window !== "undefined") {
     if (window.location.hostname.endsWith(".github.io")) {
       var path = window.location.pathname.replace(/\/index\.html$/i, "").replace(/^\//, "").split("/").filter(Boolean);

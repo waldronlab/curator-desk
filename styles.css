@@ -364,6 +364,23 @@ div.dataTables_paginate .paginate_button { font-size: 0.78rem; border-radius: 3p
 .cd-toolbar-warn { background: #fff9e6; border-color: #ffe69c; color: #7a5b00; }
 .cd-table-wrap { padding: 0 1rem 1rem; }
 
+.cd-filter-toolbar { background: #fff; border-color: #e9ecef; }
+.cd-filter-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--cd-1);
+}
+.cd-filter-toggle input[type="checkbox"] {
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: var(--cd-2);
+  cursor: pointer;
+}
+
 /* Curator feedback form */
 .cd-form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
 .cd-form-field strong { display: block; margin-bottom: 0.35rem; font-size: 0.85rem; }

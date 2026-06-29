@@ -138,6 +138,21 @@ test_that("normalize_dataset drops rows with non-numeric PMID", {
   expect_equal(sort(result$PMID), c(123, 456))
 })
 
+test_that("normalize_dataset keeps one row per PMID, preferring the first occurrence", {
+  df <- data.frame(
+    PMID = c("123", "456", "123"),
+    Title = c("First version", "Other paper", "Duplicate version"),
+    stringsAsFactors = FALSE
+  )
+  expect_warning(
+    result <- normalize_dataset(df),
+    "duplicate-PMID"
+  )
+  expect_equal(nrow(result), 2)
+  expect_equal(sort(result$PMID), c(123, 456))
+  expect_equal(result$Title[result$PMID == 123], "First version")
+})
+
 test_that("normalize_dataset returns empty data.frame when PMID column is missing", {
   df <- data.frame(Title = c("A", "B"), stringsAsFactors = FALSE)
   result <- normalize_dataset(df)

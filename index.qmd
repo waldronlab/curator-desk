@@ -158,17 +158,6 @@ if (nrow(df) == 0) {
 
 } else {
 
-  # ---- Inform about missing status columns ----
-
-  if (length(missing_status) > 0) {
-    cat(sprintf(
-      "<div class='cd-toolbar cd-toolbar-warn'>&#9888;&nbsp; Missing status columns: %s. Priority and filtering may be partial.</div>",
-      paste(missing_status, collapse = ", ")
-    ))
-  }
-
-  cat('<div class="cd-toolbar"><strong>Tip:</strong>&nbsp; Sort by <strong>Priority</strong> (descending) to review the most promising candidates first. Use the search box and column filters to narrow your focus.</div>')
-
   # ---- Select display columns ----
 
   DISPLAY_COLUMNS <- c(
@@ -176,6 +165,7 @@ if (nrow(df) == 0) {
     "Title",
     "Journal",
     "Year",
+    "Summary",
     "Host Species",
     "Host Species Status",
     "Body Site",
@@ -193,6 +183,36 @@ if (nrow(df) == 0) {
   )
   display_columns <- intersect(DISPLAY_COLUMNS, names(df))
   df_display <- df[, display_columns, drop = FALSE]
+
+  # ---- Inform about missing status columns ----
+
+  if (length(missing_status) > 0) {
+    cat(sprintf(
+      "<div class='cd-toolbar cd-toolbar-warn'>&#9888;&nbsp; Missing status columns: %s. Priority and filtering may be partial.</div>",
+      paste(missing_status, collapse = ", ")
+    ))
+  }
+
+  cat('<div class="cd-toolbar"><strong>Tip:</strong>&nbsp; Sort by <strong>Priority</strong> (descending) to review the most promising candidates first. Use the search box and column filters to narrow your focus.</div>')
+
+  # ---- Differential-abundance filter toggle ----
+  # Per spec: curator-desk should default to showing only papers that report
+  # differential abundance, with a "show all" escape hatch. Default to
+  # unchecked when no row would match (e.g. the field is absent from this
+  # dataset) so the table isn't silently emptied.
+  diffab_index <- which(names(df_display) == "has_differential_abundance")
+  if (length(diffab_index) == 1) {
+    n_diffab <- sum(df_display$has_differential_abundance, na.rm = TRUE)
+    checked_attr <- if (n_diffab > 0) "checked" else ""
+    cat(sprintf('
+<div class="cd-toolbar cd-filter-toolbar">
+<label class="cd-filter-toggle">
+<input type="checkbox" id="filter-diffab" %s>
+Show only papers reporting differential abundance (%d of %d)
+</label>
+</div>
+', checked_attr, n_diffab, nrow(df_display)))
+  }
 
   # ---- Configure DataTable options ----
 
@@ -233,6 +253,23 @@ if (nrow(df) == 0) {
   }
 
   dt_options$columnDefs <- dt_column_defs
+
+  if (length(diffab_index) == 1) {
+    dt_options$initComplete <- DT::JS(sprintf(
+      "function(settings, json) {
+        var api = this.api();
+        var idx = %d;
+        var checkbox = document.getElementById('filter-diffab');
+        if (!checkbox) return;
+        function apply() {
+          api.column(idx).search(checkbox.checked ? '^true$' : '', true, false).draw();
+        }
+        checkbox.addEventListener('change', apply);
+        apply();
+      }",
+      diffab_index - 1
+    ))
+  }
 
   # ---- Render table ----
   dt_table <- DT::datatable(
@@ -313,7 +350,11 @@ if (nrow(df) > 0) {
 cat(sprintf('<script type="application/json" id="curator-config">%s</script>',
             jsonlite::toJSON(list(curator_id_default = CONFIG$curator_id_default,
                                  bioanalyzer_version_default = CONFIG$bioanalyzer_version_default,
-                                 feedback_issue_url = CONFIG$feedback_issue_url),
+                                 feedback_issue_url = CONFIG$feedback_issue_url,
+                                 # Single source of truth for the feedback form's fields: adding a
+                                 # status field to R/config.R is now enough, js/feedback-form.js
+                                 # reads it from here instead of hardcoding its own copy.
+                                 status_columns = STATUS_COLUMNS),
                             auto_unbox = TRUE)))
 ```
 
@@ -422,7 +463,7 @@ for (col in STATUS_COLUMNS) {
 :::
 
 ::: {.cd-submit-row}
-<div class="cd-submit-note"><strong>Submit review</strong> opens GitHub to create an issue with your feedback. A bot then opens a Pull Request with the feedback CSV so the maintainer can view and download it.</div>
+<div class="cd-submit-note"><strong>Submit review</strong> opens GitHub to create an issue with your feedback CSV in the body. A bot acknowledges the issue automatically; maintainers review the CSV directly in the issue.</div>
 <div class="cd-submit-actions">
   <button type="button" id="btn-submit-review" class="btn btn-primary">Submit review</button>
   <button type="button" id="btn-download-csv" class="btn btn-outline-secondary">Download CSV only</button>

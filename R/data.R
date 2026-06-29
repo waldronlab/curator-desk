@@ -107,6 +107,18 @@ normalize_dataset <- function(df) {
   df$PMID <- suppressWarnings(as.integer(as.numeric(df$PMID)))
   df <- df[!is.na(df$PMID), , drop = FALSE]
   if (!nrow(df)) return(df)
+  # PMID is the table's primary key (one row per PMID) - keep the first
+  # occurrence and drop the rest if the input CSV has duplicates.
+  dupe_mask <- duplicated(df$PMID)
+  if (any(dupe_mask)) {
+    warning(
+      sprintf(
+        "Dropped %d duplicate-PMID row(s); keeping the first occurrence of each PMID.",
+        sum(dupe_mask)
+      )
+    )
+    df <- df[!dupe_mask, , drop = FALSE]
+  }
   if (!"Year" %in% names(df) && "Publication Date" %in% names(df)) {
     df$Year <- tryCatch(
       as.integer(format(as.Date(df[["Publication Date"]], optional = TRUE), "%Y")),

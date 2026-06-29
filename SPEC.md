@@ -332,9 +332,8 @@ NOT
 - Maintain a list of PMIDs already analyzed by BioAnalyzer to avoid re-analysis
 
 **curator-desk Role**: Provides filtering based on `has_differential_abundance` boolean:
-- **Default view**: Show only papers with `has_differential_abundance = TRUE`
-- **"Show all" toggle**: Include papers without differential abundance reporting
-- **Confidence filter**: Filter by `differential_abundance_confidence` threshold (e.g., ≥ 0.7)
+- **Default view / "Show all" toggle**: A checkbox above the table ("Show only papers reporting differential abundance") filters to `has_differential_abundance = TRUE` when checked. It defaults to checked only if at least one row in the current dataset would actually match — otherwise it defaults unchecked (showing all papers) so a dataset without this field doesn't render an empty table. Implemented via a DataTables custom column search bound to the checkbox (see the `table-display` chunk in [index.qmd](../index.qmd)).
+- **Confidence filter**: The `differential_abundance_confidence` column already has a per-column numeric range filter (from DT's `filter = "top"`); no dedicated control is needed to filter by a threshold like ≥ 0.7.
 
 Curators perform final validation by reviewing abstracts and marking `overall_verdict` (Curatable / Not Curatable) in feedback form. 
 
@@ -551,7 +550,7 @@ Built with **DT** (R package wrapping DataTables.js) in [index.qmd](../index.qmd
 - **Multi-column Sort**: Shift+click for secondary sort
 - **Pagination**: 50 / 100 / 300 / 500 / 1000 rows per page
 - **State Persistence**: Browser localStorage saves current filters, sort, and page
-- **Responsive**: Mobile-friendly with collapsible columns
+- **Responsive**: Mobile-friendly via horizontal scroll within the table card (`scrollX`), with a compact font and fixed column widths so the rest of the page never overflows
 - **Clickable PMIDs**: Direct links to PubMed abstracts
 
 #### 8.2 Key User Flows
@@ -593,9 +592,9 @@ This isn't a priority, but there is a preliminary implementation that would allo
 
 #### 9.2 Feedback Schema
 
-Defined in [R/config.R](../R/config.R) and implemented in [index.qmd](../index.qmd).
+Defined in [R/config.R](../R/config.R) (`STATUS_COLUMNS`, `feedback_schema()`) and consumed by both [index.qmd](../index.qmd) (renders the form, emits `STATUS_COLUMNS` into the `curator-config` JSON blob) and [js/feedback-form.js](../js/feedback-form.js) (reads `status_columns` from that blob to build the schema at runtime — there is no separate hardcoded copy to keep in sync).
 
-**CSV Columns** (24 total):
+**CSV Columns** (21 total):
 
 **Base Metadata** (6 columns):
 ```
@@ -607,38 +606,37 @@ timestamp               # ISO 8601 timestamp
 bioanalyzer_version     # Version of BioAnalyzer that made predictions
 ```
 
-**Prediction Fields** (6 columns, `pred__` prefix):
+**Prediction Fields** (5 columns, `pred__` prefix):
 ```
 pred__Host_Species_Status
 pred__Body_Site_Status
 pred__Condition_Status
 pred__Sequencing_Type_Status
-pred__Taxa_Level_Status
 pred__Sample_Size_Status
 ```
 Values copied from BioAnalyzer CSV (ABSENT / PARTIALLY_PRESENT / PRESENT).
 
-**Ground Truth Labels** (6 columns, `true__` prefix):
+**Ground Truth Labels** (5 columns, `true__` prefix):
 ```
 true__Host_Species_Status
 true__Body_Site_Status
 true__Condition_Status
 true__Sequencing_Type_Status
-true__Taxa_Level_Status
 true__Sample_Size_Status
 ```
 Curator sets these to: `Not reviewed` | `ABSENT` | `PARTIALLY_PRESENT` | `PRESENT`.
 
-**Validation Feedback** (6 columns, `col_feedback__` prefix):
+**Validation Feedback** (5 columns, `col_feedback__` prefix):
 ```
 col_feedback__Host_Species_Status
 col_feedback__Body_Site_Status
 col_feedback__Condition_Status
 col_feedback__Sequencing_Type_Status
-col_feedback__Taxa_Level_Status
 col_feedback__Sample_Size_Status
 ```
 Curator marks: `Not reviewed` | `Correct` | `Incorrect` | `Unclear`.
+
+**Note**: An earlier draft of this schema included a sixth field, `Taxa Level Status`. It was intentionally removed (see the `STATUS_COLUMNS` regression test in [tests/testthat/test-config.R](../tests/testthat/test-config.R)) because BugSigDB's taxonomic rank is assigned by curators during manual curation, not extracted from abstracts — see the note at the end of Section 5.1. Do not re-add it without updating that test.
 
 #### 9.3 Curator Workflow
 
@@ -896,21 +894,14 @@ To add a new prediction field (e.g., "Study Design Status"):
    - `Study Design` (text)
    - `Study Design Status` (ABSENT / PARTIALLY_PRESENT / PRESENT)
 
-3. **Update Feedback Form** ([index.qmd](../index.qmd) line ~355):
-   ```javascript
-   const statusCols = [
-     "Host Species Status",
-     // ...
-     "Study Design Status"  // <-- Add here
-   ];
-   ```
+3. **Update the table's display columns** ([index.qmd](../index.qmd), `DISPLAY_COLUMNS` in the `table-display` chunk): add `"Study Design"` and `"Study Design Status"` to the list so the new pair shows up as table columns. (This is the one place that still needs a manual edit — `DISPLAY_COLUMNS` mixes status pairs with metadata and computed columns in display order, so it can't be derived from `STATUS_COLUMNS` alone.)
 
 4. **Rebuild**:
    ```bash
    quarto render
    ```
 
-The table, priority score, and feedback form will automatically include the new field.
+The priority score and feedback form (field cards, prediction display, generated CSV schema) pick up the new field automatically from `STATUS_COLUMNS` — no JS changes needed. `index.qmd` passes `STATUS_COLUMNS` to the browser via the `curator-config` JSON script tag, and [js/feedback-form.js](../js/feedback-form.js) reads `status_columns` from it instead of hardcoding its own copy.
 
 #### 12.6 Troubleshooting
 
