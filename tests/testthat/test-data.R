@@ -25,59 +25,6 @@ test_that("load_data refuses to fetch from a private-host URL", {
   expect_equal(nrow(df), 0)
 })
 
-test_that("normalize_status passes through valid states unchanged", {
-  expect_equal(normalize_status("PRESENT"), "PRESENT")
-  expect_equal(normalize_status("ABSENT"), "ABSENT")
-  expect_equal(normalize_status("PARTIALLY_PRESENT"), "PARTIALLY_PRESENT")
-})
-
-test_that("normalize_status is case- and whitespace-insensitive", {
-  expect_equal(normalize_status(" present "), "PRESENT")
-  expect_equal(normalize_status("absent"), "ABSENT")
-})
-
-test_that("normalize_status maps known synonyms to canonical states", {
-  expect_equal(normalize_status("partial"), "PARTIALLY_PRESENT")
-  expect_equal(normalize_status("partly"), "PARTIALLY_PRESENT")
-  expect_equal(normalize_status("yes"), "PRESENT")
-  expect_equal(normalize_status("true"), "PRESENT")
-  expect_equal(normalize_status("no"), "ABSENT")
-  expect_equal(normalize_status("false"), "ABSENT")
-})
-
-test_that("normalize_status returns unrecognized input unchanged", {
-  expect_equal(normalize_status("weird_value"), "WEIRD_VALUE")
-})
-
-test_that("normalize_status handles NA and empty input", {
-  expect_equal(normalize_status(NA), "")
-  expect_equal(normalize_status(character(0)), "")
-})
-
-test_that("priority_score sums 1.0 for PRESENT and 0.5 for PARTIALLY_PRESENT", {
-  row <- list(
-    "Host Species Status" = "PRESENT",
-    "Body Site Status" = "PARTIALLY_PRESENT",
-    "Condition Status" = "ABSENT",
-    "Sequencing Type Status" = "PRESENT",
-    "Sample Size Status" = "PARTIALLY_PRESENT"
-  )
-  expect_equal(priority_score(row), 1 + 0.5 + 0 + 1 + 0.5)
-})
-
-test_that("priority_score ignores columns missing from the row", {
-  row <- list("Host Species Status" = "PRESENT")
-  expect_equal(priority_score(row), 1)
-})
-
-test_that("priority_score returns 0 for an empty/all-ABSENT row", {
-  row <- list(
-    "Host Species Status" = "ABSENT",
-    "Body Site Status" = "ABSENT"
-  )
-  expect_equal(priority_score(row), 0)
-})
-
 test_that("pmid_link builds a PubMed URL for a valid PMID", {
   expect_equal(
     pmid_link("12345678"),
@@ -164,41 +111,72 @@ test_that("normalize_dataset returns input unchanged when already empty", {
   expect_equal(nrow(normalize_dataset(df)), 0)
 })
 
-test_that("normalize_dataset normalizes status columns and computes Priority", {
-  df <- data.frame(
-    PMID = c("1"),
-    `Host Species Status` = "present",
-    `Body Site Status` = "partial",
-    `Condition Status` = "absent",
-    `Sequencing Type Status` = "PRESENT",
-    `Sample Size Status` = "PRESENT",
-    check.names = FALSE,
-    stringsAsFactors = FALSE
-  )
-  result <- normalize_dataset(df)
-  expect_equal(result$`Host Species Status`, "PRESENT")
-  expect_equal(result$`Body Site Status`, "PARTIALLY_PRESENT")
-  expect_equal(result$`Condition Status`, "ABSENT")
-  expect_equal(result$Priority, 1 + 0.5 + 0 + 1 + 1)
-})
-
 test_that("normalize_dataset defaults missing boolean columns to FALSE", {
   df <- data.frame(PMID = c("1"), stringsAsFactors = FALSE)
   result <- normalize_dataset(df)
-  expect_false(result$has_differential_abundance)
-  expect_false(result$in_bugsigdb)
+  expect_false(result$`Differential Abundance`)
+  expect_false(result$`In bsgdb`)
 })
 
 test_that("normalize_dataset coerces boolean-like strings correctly", {
   df <- data.frame(
     PMID = c("1", "2"),
-    has_differential_abundance = c("TRUE", "no"),
-    in_bugsigdb = c("yes", "0"),
+    `Differential Abundance` = c("TRUE", "no"),
+    `In bsgdb` = c("yes", "0"),
+    check.names = FALSE,
     stringsAsFactors = FALSE
   )
   result <- normalize_dataset(df)
-  expect_equal(result$has_differential_abundance, c(TRUE, FALSE))
-  expect_equal(result$in_bugsigdb, c(TRUE, FALSE))
+  expect_equal(result$`Differential Abundance`, c(TRUE, FALSE))
+  expect_equal(result$`In bsgdb`, c(TRUE, FALSE))
+})
+
+test_that("normalize_dataset defaults missing ontology ID/candidates columns to empty string", {
+  df <- data.frame(PMID = c("1"), stringsAsFactors = FALSE)
+  result <- normalize_dataset(df)
+  for (col in c(ONTOLOGY_ID_COLUMNS, ONTOLOGY_CANDIDATES_COLUMNS)) {
+    expect_equal(result[[col]], "")
+  }
+})
+
+test_that("normalize_dataset preserves populated ontology ID columns", {
+  df <- data.frame(
+    PMID = c("1"),
+    `Host Species Ontology ID` = "NCBITaxon:9606",
+    check.names = FALSE,
+    stringsAsFactors = FALSE
+  )
+  result <- normalize_dataset(df)
+  expect_equal(result$`Host Species Ontology ID`, "NCBITaxon:9606")
+})
+
+test_that("count_fully_mapped handles a single-row data.frame without erroring", {
+  # Regression test: an earlier sapply()-based version of this collapsed to
+  # a plain vector (not a matrix) when nrow == 1, crashing rowSums().
+  df <- data.frame(
+    `Host Species Ontology ID` = "NCBITaxon:9606",
+    `Body Site Ontology ID` = "UBERON:0001988",
+    `Condition Ontology ID` = "",
+    check.names = FALSE,
+    stringsAsFactors = FALSE
+  )
+  expect_equal(count_fully_mapped(df, ONTOLOGY_ID_COLUMNS), 0L)
+})
+
+test_that("count_fully_mapped counts only rows where every ontology column is populated", {
+  df <- data.frame(
+    `Host Species Ontology ID` = c("NCBITaxon:9606", "NCBITaxon:10090", ""),
+    `Body Site Ontology ID` = c("UBERON:0001988", "", "UBERON:0001836"),
+    `Condition Ontology ID` = c("EFO:0002508", "EFO:0001073", "EFO:0000246"),
+    check.names = FALSE,
+    stringsAsFactors = FALSE
+  )
+  expect_equal(count_fully_mapped(df, ONTOLOGY_ID_COLUMNS), 1L)
+})
+
+test_that("count_fully_mapped returns 0 for an empty data.frame or missing columns", {
+  expect_equal(count_fully_mapped(data.frame(), ONTOLOGY_ID_COLUMNS), 0L)
+  expect_equal(count_fully_mapped(data.frame(PMID = 1), ONTOLOGY_ID_COLUMNS), 0L)
 })
 
 test_that("normalize_dataset builds a PubMed Link column from PMID", {

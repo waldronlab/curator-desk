@@ -1,26 +1,17 @@
 # Data loading and normalization (aligned with curator_table/app.py)
-# Assumes config.R is loaded (STATUS_COLUMNS, VALID_STATES, etc.)
+# Assumes config.R is loaded (VALUE_COLUMNS, ONTOLOGY_ID_COLUMNS, etc.)
 
-#' Normalize status string to ABSENT | PARTIALLY_PRESENT | PRESENT
-normalize_status <- function(x) {
-  if (is.na(x) || length(x) == 0) return("")
-  x <- toupper(trimws(as.character(x)))
-  if (x %in% VALID_STATES) return(x)
-  if (x %in% c("PARTIAL", "PARTIALLY", "PARTLY")) return("PARTIALLY_PRESENT")
-  if (x %in% c("YES", "TRUE")) return("PRESENT")
-  if (x %in% c("NO", "FALSE")) return("ABSENT")
-  x
-}
-
-#' Priority score: PRESENT = 1.0, PARTIALLY_PRESENT = 0.5; sum over STATUS_COLUMNS.
-priority_score <- function(row) {
-  score <- 0
-  for (col in STATUS_COLUMNS) {
-    if (!col %in% names(row)) next
-    val <- toupper(trimws(as.character(row[col])))
-    if (val == "PRESENT") score <- score + 1 else if (val == "PARTIALLY_PRESENT") score <- score + 0.5
-  }
-  score
+#' Count rows where every column in `onto_cols` is non-empty.
+#'
+#' Uses lapply()+as.data.frame(), not sapply(): sapply() silently collapses
+#' to a plain (unmatrixed) vector when nrow(df) == 1, which broke a prior
+#' rowSums()-based version of this for single-row datasets.
+count_fully_mapped <- function(df, onto_cols) {
+  if (!nrow(df) || !all(onto_cols %in% names(df))) return(0L)
+  mapped_flags <- as.data.frame(lapply(df[onto_cols], function(col) {
+    nzchar(trimws(as.character(col)))
+  }))
+  sum(rowSums(mapped_flags) == length(onto_cols))
 }
 
 #' PubMed URL for a PMID
@@ -95,7 +86,7 @@ load_data <- function(path) {
   }
 }
 
-#' Normalize dataset: PMID, status columns, year, priority score, PubMed link
+#' Normalize dataset: PMID, boolean columns, year, ontology-column defaults, PubMed link
 normalize_dataset <- function(df) {
   if (!nrow(df)) return(df)
   if (!"PMID" %in% names(df)) return(data.frame())
@@ -125,10 +116,6 @@ normalize_dataset <- function(df) {
       error = function(e) NA_integer_
     )
   }
-  for (col in STATUS_COLUMNS) {
-    if (col %in% names(df))
-      df[[col]] <- vapply(df[[col]], normalize_status, character(1))
-  }
 
   for (col in BOOLEAN_COLUMNS) {
     if (col %in% names(df)) {
@@ -139,33 +126,16 @@ normalize_dataset <- function(df) {
     }
   }
 
-  if ("differential_abundance_confidence" %in% names(df)) {
-    df$differential_abundance_confidence <- suppressWarnings(
-      as.numeric(df$differential_abundance_confidence)
-    )
-    df$differential_abundance_confidence[is.na(df$differential_abundance_confidence)] <- 0.0
-  } else {
-    df$differential_abundance_confidence <- 0.0
+  # Ontology ID / candidates columns default to "" when absent (e.g. an
+  # older CSV generated before the ontology-mapping feature existed).
+  for (col in c(ONTOLOGY_ID_COLUMNS, ONTOLOGY_CANDIDATES_COLUMNS)) {
+    if (!col %in% names(df)) df[[col]] <- ""
   }
 
   if ("Year" %in% names(df)) {
     df$Year <- suppressWarnings(as.integer(df$Year))
   }
 
-  # Vectorized equivalent of apply(df, 1, priority_score): STATUS_COLUMNS
-  # are already normalized to PRESENT/PARTIALLY_PRESENT/ABSENT above, so
-  # there's no need to re-coerce/re-parse each cell per row via apply()
-  # (which also coerces the whole data.frame to a character matrix first).
-  score_cols <- STATUS_COLUMNS[STATUS_COLUMNS %in% names(df)]
-  if (length(score_cols)) {
-    weights <- vapply(score_cols, function(col) {
-      ifelse(df[[col]] == "PRESENT", 1,
-             ifelse(df[[col]] == "PARTIALLY_PRESENT", 0.5, 0))
-    }, numeric(nrow(df)))
-    df$Priority <- if (is.matrix(weights)) rowSums(weights) else sum(weights)
-  } else {
-    df$Priority <- 0
-  }
   df$`PubMed Link` <- paste0(
     "<a href='https://pubmed.ncbi.nlm.nih.gov/", df$PMID,
     "/' target='_blank'>", df$PMID, "</a>"

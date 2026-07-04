@@ -64,6 +64,11 @@ upsert_feedback <- function(existing, row) {
 }
 
 #' Build one feedback row as a named character vector (all columns in schema)
+#'
+#' pred_values/true_values are named by plain column (VALUE_COLUMNS and/or
+#' ONTOLOGY_ID_COLUMNS); col_feedback_values is named by the already-prefixed
+#' `col_feedback__<safe col>` key (matches how the value fields' correctness
+#' dropdown is keyed elsewhere).
 feedback_row <- function(pmid, curator_id, overall_verdict, comment,
                         bioanalyzer_version, pred_values, true_values, col_feedback_values) {
   schema <- feedback_schema()
@@ -74,11 +79,16 @@ feedback_row <- function(pmid, curator_id, overall_verdict, comment,
   row["comment"] <- as.character(comment)
   row["timestamp"] <- format(Sys.time(), "%Y-%m-%dT%H:%M:%S%z")
   row["bioanalyzer_version"] <- as.character(bioanalyzer_version)
-  for (col in STATUS_COLUMNS) {
+  for (col in VALUE_COLUMNS) {
     s <- safe_col(col)
     row[paste0(PRED_PREFIX, s)] <- if (col %in% names(pred_values)) as.character(pred_values[[col]]) else ""
-    row[paste0(TRUE_PREFIX, s)] <- if (paste0(TRUE_PREFIX, s) %in% names(true_values)) as.character(true_values[[paste0(TRUE_PREFIX, s)]]) else "Not reviewed"
+    row[paste0(TRUE_PREFIX, s)] <- if (col %in% names(true_values)) as.character(true_values[[col]]) else ""
     row[paste0(COL_FB_PREFIX, s)] <- if (paste0(COL_FB_PREFIX, s) %in% names(col_feedback_values)) as.character(col_feedback_values[[paste0(COL_FB_PREFIX, s)]]) else "Not reviewed"
+  }
+  for (col in ONTOLOGY_ID_COLUMNS) {
+    s <- safe_col(col)
+    row[paste0(PRED_PREFIX, s)] <- if (col %in% names(pred_values)) as.character(pred_values[[col]]) else ""
+    row[paste0(TRUE_PREFIX, s)] <- if (col %in% names(true_values)) as.character(true_values[[col]]) else ""
   }
   row
 }

@@ -30,15 +30,15 @@ data_path <- resolve_data_path()
 raw_df <- load_data(data_path)
 df <- normalize_dataset(raw_df)
 
-# ---- Validate expected status columns ----
+# ---- Validate expected value columns ----
 
-missing_status <- setdiff(STATUS_COLUMNS, names(df))
+missing_values <- setdiff(VALUE_COLUMNS, names(df))
 
-if (length(missing_status) > 0) {
+if (length(missing_values) > 0) {
   warning(
     sprintf(
-      "Missing expected status columns: %s. Priority and filtering may be partial.",
-      paste(missing_status, collapse = ", ")
+      "Missing expected value columns: %s. The table and filtering may be partial.",
+      paste(missing_values, collapse = ", ")
     )
   )
 }
@@ -46,8 +46,8 @@ if (length(missing_status) > 0) {
 # ---- Hero stats ----
 
 n_papers   <- nrow(df)
-n_high     <- if ("Priority" %in% names(df)) sum(df$Priority >= 4, na.rm = TRUE) else 0L
-n_bugsigdb <- if ("in_bugsigdb" %in% names(df)) sum(df$in_bugsigdb, na.rm = TRUE) else 0L
+n_mapped   <- count_fully_mapped(df, ONTOLOGY_ID_COLUMNS)
+n_bugsigdb <- if ("In bsgdb" %in% names(df)) sum(df[["In bsgdb"]], na.rm = TRUE) else 0L
 n_new      <- n_papers - n_bugsigdb
 
 repo_base <- sub("/issues/new$", "", CONFIG$feedback_issue_url)
@@ -69,7 +69,7 @@ cat(sprintf('
 <div class="cd-hero-text">
 <p class="cd-hero-kicker">BioAnalyzer &times; BugSigDB</p>
 <h1 class="cd-hero-title">Curator Desk</h1>
-<p class="cd-hero-sub">Review BioAnalyzer&rsquo;s predicted statuses for candidate microbiome studies, record curator ground truth per PMID, and send validated rows straight into the BugSigDB curation pipeline.</p>
+<p class="cd-hero-sub">Review BioAnalyzer&rsquo;s extracted fields for candidate microbiome studies, confirm ontology mappings, record curator ground truth per PMID, and send validated rows straight into the BugSigDB curation pipeline.</p>
 <div class="cd-hero-actions">
 <a class="cd-btn cd-btn-primary" href="#candidate-papers">Browse candidate papers</a>
 %s
@@ -77,12 +77,12 @@ cat(sprintf('
 </div>
 <div class="cd-hero-stats">
 <div class="cd-stat"><span class="cd-stat-value">%d</span><span class="cd-stat-label">Candidate papers</span></div>
-<div class="cd-stat"><span class="cd-stat-value">%d</span><span class="cd-stat-label">High priority</span></div>
+<div class="cd-stat"><span class="cd-stat-value">%d</span><span class="cd-stat-label">Fully ontology-mapped</span></div>
 <div class="cd-stat"><span class="cd-stat-value">%d</span><span class="cd-stat-label">Already in BugSigDB</span></div>
 <div class="cd-stat"><span class="cd-stat-value">%d</span><span class="cd-stat-label">Awaiting curation</span></div>
 </div>
 </div>
-', github_btn, n_papers, n_high, n_bugsigdb, n_new))
+', github_btn, n_papers, n_mapped, n_bugsigdb, n_new))
 ```
 
 ::: {.cd-row}
@@ -94,7 +94,7 @@ cat(sprintf('
 ::: {.cd-steps}
 <div class="cd-step">
   <div class="cd-step-icon">1</div>
-  <div><h4>Find papers quickly</h4><p>Search, sort, and filter the table below &mdash; the <strong>Priority</strong> score surfaces the highest-value candidates first.</p></div>
+  <div><h4>Find papers quickly</h4><p>Search, sort, and filter the table below by any field, year, or BugSigDB status.</p></div>
 </div>
 <div class="cd-step">
   <div class="cd-step-icon">2</div>
@@ -123,8 +123,9 @@ The system reads `data/sample.csv` by default. To use a different source, set th
 **Expected columns**
 
 * **Required:** `PMID`
-* **Recommended:** `Title`, `Journal`, `Year`, `Summary`
-* **Status values:** `ABSENT` | `PARTIALLY_PRESENT` | `PRESENT`
+* **Recommended:** `Title`, `Journal`, `Year`
+* **Value fields:** `Host Species`, `Body Site`, `Condition`, `Sample Size`, `Sequencing Type`
+* **Ontology IDs (optional):** `Host Species Ontology ID`, `Body Site Ontology ID`, `Condition Ontology ID`
 :::
 
 :::
@@ -159,50 +160,48 @@ if (nrow(df) == 0) {
 } else {
 
   # ---- Select display columns ----
+  # Ontology Candidates columns are deliberately excluded here - they're
+  # picker-only metadata exported into the table-json blob below, not meant
+  # to be read as a visible column.
 
   DISPLAY_COLUMNS <- c(
     "PubMed Link",
     "Title",
     "Journal",
     "Year",
-    "Summary",
     "Host Species",
-    "Host Species Status",
+    "Host Species Ontology ID",
     "Body Site",
-    "Body Site Status",
+    "Body Site Ontology ID",
     "Condition",
-    "Condition Status",
-    "Sequencing Type",
-    "Sequencing Type Status",
+    "Condition Ontology ID",
     "Sample Size",
-    "Sample Size Status",
-    "has_differential_abundance",
-    "differential_abundance_confidence",
-    "in_bugsigdb",
-    "Priority"
+    "Sequencing Type",
+    "Differential Abundance",
+    "In bsgdb"
   )
   display_columns <- intersect(DISPLAY_COLUMNS, names(df))
   df_display <- df[, display_columns, drop = FALSE]
 
-  # ---- Inform about missing status columns ----
+  # ---- Inform about missing value columns ----
 
-  if (length(missing_status) > 0) {
+  if (length(missing_values) > 0) {
     cat(sprintf(
-      "<div class='cd-toolbar cd-toolbar-warn'>&#9888;&nbsp; Missing status columns: %s. Priority and filtering may be partial.</div>",
-      paste(missing_status, collapse = ", ")
+      "<div class='cd-toolbar cd-toolbar-warn'>&#9888;&nbsp; Missing value columns: %s. The table may be partial.</div>",
+      paste(missing_values, collapse = ", ")
     ))
   }
 
-  cat('<div class="cd-toolbar"><strong>Tip:</strong>&nbsp; Sort by <strong>Priority</strong> (descending) to review the most promising candidates first. Use the search box and column filters to narrow your focus.</div>')
+  cat('<div class="cd-toolbar"><strong>Tip:</strong>&nbsp; Use the search box and column filters to narrow your focus. An empty <strong>Ontology ID</strong> cell means that field needs a curator-confirmed mapping - see the feedback form below.</div>')
 
   # ---- Differential-abundance filter toggle ----
   # Per spec: curator-desk should default to showing only papers that report
   # differential abundance, with a "show all" escape hatch. Default to
   # unchecked when no row would match (e.g. the field is absent from this
   # dataset) so the table isn't silently emptied.
-  diffab_index <- which(names(df_display) == "has_differential_abundance")
+  diffab_index <- which(names(df_display) == "Differential Abundance")
   if (length(diffab_index) == 1) {
-    n_diffab <- sum(df_display$has_differential_abundance, na.rm = TRUE)
+    n_diffab <- sum(df_display$`Differential Abundance`, na.rm = TRUE)
     checked_attr <- if (n_diffab > 0) "checked" else ""
     cat(sprintf('
 <div class="cd-toolbar cd-filter-toolbar">
@@ -224,21 +223,20 @@ Show only papers reporting differential abundance (%d of %d)
   fixedHeader = TRUE
 )
 
-  priority_index <- which(names(df_display) == "Priority")
-
-  if (length(priority_index) == 1) {
-    dt_options$order <- list(list(priority_index - 1, "desc"))
+  year_index <- which(names(df_display) == "Year")
+  if (length(year_index) == 1) {
+    dt_options$order <- list(list(year_index - 1, "desc"))
   }
 
-  in_bugsigdb_index <- which(names(df_display) == "in_bugsigdb")
+  in_bsgdb_index <- which(names(df_display) == "In bsgdb")
   dt_column_defs <- list()
-  if (length(in_bugsigdb_index) == 1) {
+  if (length(in_bsgdb_index) == 1) {
     dt_column_defs <- append(
       dt_column_defs,
       list(
         list(
-          targets = in_bugsigdb_index - 1,
-          title = "In BugSigDB",
+          targets = in_bsgdb_index - 1,
+          title = "In bsgdb",
           render = DT::JS(
             "function(data, type, row) {",
             "  if (type === 'display') {",
@@ -281,23 +279,22 @@ Show only papers reporting differential abundance (%d of %d)
     rownames = FALSE
   )
 
-  if ("in_bugsigdb" %in% names(df_display)) {
+  if ("In bsgdb" %in% names(df_display)) {
     dt_table <- dt_table %>%
       DT::formatStyle(
-        "in_bugsigdb",
+        "In bsgdb",
         backgroundColor = DT::styleEqual(c(TRUE, FALSE), c("#e8f5e9", "#ffffff"))
       )
   }
 
-  for (status_col in STATUS_COLUMNS) {
-    if (status_col %in% names(df_display)) {
+  # Flag ontology-ID cells that are empty - a curator-confirmed mapping is
+  # needed there (see the mapping picker in the feedback form below).
+  for (onto_col in ONTOLOGY_ID_COLUMNS) {
+    if (onto_col %in% names(df_display)) {
       dt_table <- dt_table %>%
         DT::formatStyle(
-          status_col,
-          backgroundColor = DT::styleEqual(
-            c("PRESENT", "PARTIALLY_PRESENT", "ABSENT"),
-            c("#c8e6c9", "#fff9c4", "#ffcdd2")
-          )
+          onto_col,
+          backgroundColor = DT::styleEqual("", "#fff9c4")
         )
     }
   }
@@ -319,10 +316,10 @@ cat('</div>')
 
 ::: {.cd-card-body}
 
-Use the table above to find papers (the **Open** button in the **Published** column opens the paper on PubMed). Then select or enter a PMID below; the page will scroll to the field-by-field validation form where you can enter your review. Feedback uses the same schema as the Streamlit app; because this site is static, **saving is done by downloading a CSV** per row&mdash;submit via your usual process (e.g. email or GitHub issue).
+Use the table above to find papers (click a PMID's **PubMed Link** to open it). Then select or enter a PMID below; the page will scroll to the field-by-field validation form where you can enter your review. Feedback uses the same schema as the Streamlit app; because this site is static, **saving is done by downloading a CSV** per row&mdash;submit via your usual process (e.g. email or GitHub issue).
 
 1. **Quick select** a PMID from the dropdown, or type a PMID and click **Load row** (the form will scroll into view).
-2. For each field, review **BioAnalyzer predicted** and set **Curator TRUE label** and **Was BioAnalyzer correct?**
+2. For each field, review **BioAnalyzer predicted** and correct the **Curator value** if needed; for Host Species/Body Site/Condition, confirm or pick the **ontology mapping** from the suggested candidates (or enter one manually).
 3. Click **Submit review** (or **Download CSV only**) to save one row.
 
 ```{r}
@@ -331,7 +328,7 @@ Use the table above to find papers (the **Open** button in the **Published** col
 #| results: asis
 # Export table rows as JSON for the form's "Load row" button (PMID -> pred values)
 if (nrow(df) > 0) {
-  want <- c("PMID", "Title", STATUS_COLUMNS)
+  want <- c("PMID", "Title", VALUE_COLUMNS, ONTOLOGY_ID_COLUMNS, ONTOLOGY_CANDIDATES_COLUMNS)
   export_cols <- intersect(want, names(df))
   rows_json <- jsonlite::toJSON(
     df[, export_cols, drop = FALSE],
@@ -352,9 +349,12 @@ cat(sprintf('<script type="application/json" id="curator-config">%s</script>',
                                  bioanalyzer_version_default = CONFIG$bioanalyzer_version_default,
                                  feedback_issue_url = CONFIG$feedback_issue_url,
                                  # Single source of truth for the feedback form's fields: adding a
-                                 # status field to R/config.R is now enough, js/feedback-form.js
-                                 # reads it from here instead of hardcoding its own copy.
-                                 status_columns = STATUS_COLUMNS),
+                                 # value/ontology-ID column to R/config.R is now enough,
+                                 # js/feedback-form.js reads it from here instead of hardcoding
+                                 # its own copy.
+                                 value_columns = VALUE_COLUMNS,
+                                 ontology_id_columns = ONTOLOGY_ID_COLUMNS,
+                                 ontology_candidates_columns = ONTOLOGY_CANDIDATES_COLUMNS),
                             auto_unbox = TRUE)))
 ```
 
@@ -426,7 +426,7 @@ if (nrow(df) > 0 && "PMID" %in% names(df)) {
 
 ### Field-by-field validation (ground truth) {#field-validation-section}
 
-For each field, provide the **curator TRUE label** (ground truth). Optionally mark whether BioAnalyzer's predicted status was correct.
+For each field, review **BioAnalyzer's predicted value** and correct it if needed. For Host Species, Body Site, and Condition, also confirm or pick the **ontology mapping** &mdash; a dropdown of BioAnalyzer's suggested candidates appears when a field's mapping wasn't auto-applied (see the **Ontology ID** column in the table above); otherwise enter one manually.
 
 ::: {.grid}
 
@@ -434,20 +434,32 @@ For each field, provide the **curator TRUE label** (ground truth). Optionally ma
 #| label: feedback-fields
 #| echo: false
 #| results: asis
-for (col in STATUS_COLUMNS) {
+onto_col_for <- function(value_col) {
+  candidate <- paste(value_col, "Ontology ID")
+  if (candidate %in% ONTOLOGY_ID_COLUMNS) candidate else NA_character_
+}
+
+for (col in VALUE_COLUMNS) {
   s <- safe_col(col)
-  label <- gsub(" Status", "", col)
+  onto_col <- onto_col_for(col)
+  onto_block <- ""
+  if (!is.na(onto_col)) {
+    onto_s <- safe_col(onto_col)
+    onto_block <- sprintf('
+<p class="bioanalyzer-pred-line"><span id="pred_%s" class="bioanalyzer-pred text-muted">Ontology ID: (load a row to see it)</span></p>
+<small>Ontology mapping for %s:</small>
+<select id="true_%s" class="cd-onto-select">
+<option value="">Not reviewed</option>
+</select>
+<input type="text" id="true_%s_manual" class="form-control cd-onto-manual" placeholder="Enter ontology ID manually (e.g. NCBITaxon:9606)" style="display:none;">
+', onto_s, col, onto_s, onto_s)
+  }
   cat(sprintf('
 <div class="feedback-field">
 <strong>%s</strong>
 <p class="bioanalyzer-pred-line"><span id="pred_%s" class="bioanalyzer-pred text-muted">Select a PMID above and click Load row to see BioAnalyzer&rsquo;s prediction.</span></p>
-<small>Curator TRUE label for %s:</small>
-<select id="true_%s">
-<option value="Not reviewed">Not reviewed</option>
-<option value="ABSENT">ABSENT</option>
-<option value="PARTIALLY_PRESENT">PARTIALLY_PRESENT</option>
-<option value="PRESENT">PRESENT</option>
-</select>
+<small>Curator value for %s:</small>
+<input type="text" id="true_%s" class="form-control">
 <small>Was BioAnalyzer correct for %s?</small>
 <select id="col_fb_%s">
 <option value="Not reviewed">Not reviewed</option>
@@ -455,8 +467,8 @@ for (col in STATUS_COLUMNS) {
 <option value="Incorrect">Incorrect</option>
 <option value="Unclear">Unclear</option>
 </select>
-</div>
-', label, s, label, s, label, s))
+%s</div>
+', col, s, col, s, col, s, onto_block))
 }
 ```
 
