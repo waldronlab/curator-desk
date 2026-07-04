@@ -150,6 +150,35 @@ test_that("normalize_dataset preserves populated ontology ID columns", {
   expect_equal(result$`Host Species Ontology ID`, "NCBITaxon:9606")
 })
 
+test_that("count_fully_mapped handles a single-row data.frame without erroring", {
+  # Regression test: an earlier sapply()-based version of this collapsed to
+  # a plain vector (not a matrix) when nrow == 1, crashing rowSums().
+  df <- data.frame(
+    `Host Species Ontology ID` = "NCBITaxon:9606",
+    `Body Site Ontology ID` = "UBERON:0001988",
+    `Condition Ontology ID` = "",
+    check.names = FALSE,
+    stringsAsFactors = FALSE
+  )
+  expect_equal(count_fully_mapped(df, ONTOLOGY_ID_COLUMNS), 0L)
+})
+
+test_that("count_fully_mapped counts only rows where every ontology column is populated", {
+  df <- data.frame(
+    `Host Species Ontology ID` = c("NCBITaxon:9606", "NCBITaxon:10090", ""),
+    `Body Site Ontology ID` = c("UBERON:0001988", "", "UBERON:0001836"),
+    `Condition Ontology ID` = c("EFO:0002508", "EFO:0001073", "EFO:0000246"),
+    check.names = FALSE,
+    stringsAsFactors = FALSE
+  )
+  expect_equal(count_fully_mapped(df, ONTOLOGY_ID_COLUMNS), 1L)
+})
+
+test_that("count_fully_mapped returns 0 for an empty data.frame or missing columns", {
+  expect_equal(count_fully_mapped(data.frame(), ONTOLOGY_ID_COLUMNS), 0L)
+  expect_equal(count_fully_mapped(data.frame(PMID = 1), ONTOLOGY_ID_COLUMNS), 0L)
+})
+
 test_that("normalize_dataset builds a PubMed Link column from PMID", {
   df <- data.frame(PMID = c("12345678"), stringsAsFactors = FALSE)
   result <- normalize_dataset(df)

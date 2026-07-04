@@ -46,9 +46,7 @@ if (length(missing_values) > 0) {
 # ---- Hero stats ----
 
 n_papers   <- nrow(df)
-n_mapped   <- if (all(ONTOLOGY_ID_COLUMNS %in% names(df)) && n_papers > 0) {
-  sum(rowSums(sapply(ONTOLOGY_ID_COLUMNS, function(col) nzchar(trimws(as.character(df[[col]]))))) == length(ONTOLOGY_ID_COLUMNS))
-} else 0L
+n_mapped   <- count_fully_mapped(df, ONTOLOGY_ID_COLUMNS)
 n_bugsigdb <- if ("In bsgdb" %in% names(df)) sum(df[["In bsgdb"]], na.rm = TRUE) else 0L
 n_new      <- n_papers - n_bugsigdb
 

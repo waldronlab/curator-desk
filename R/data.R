@@ -1,6 +1,19 @@
 # Data loading and normalization (aligned with curator_table/app.py)
 # Assumes config.R is loaded (VALUE_COLUMNS, ONTOLOGY_ID_COLUMNS, etc.)
 
+#' Count rows where every column in `onto_cols` is non-empty.
+#'
+#' Uses lapply()+as.data.frame(), not sapply(): sapply() silently collapses
+#' to a plain (unmatrixed) vector when nrow(df) == 1, which broke a prior
+#' rowSums()-based version of this for single-row datasets.
+count_fully_mapped <- function(df, onto_cols) {
+  if (!nrow(df) || !all(onto_cols %in% names(df))) return(0L)
+  mapped_flags <- as.data.frame(lapply(df[onto_cols], function(col) {
+    nzchar(trimws(as.character(col)))
+  }))
+  sum(rowSums(mapped_flags) == length(onto_cols))
+}
+
 #' PubMed URL for a PMID
 pmid_link <- function(pmid) {
   p <- tryCatch(as.integer(as.numeric(pmid)), error = function(e) NA)
