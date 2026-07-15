@@ -1,370 +1,313 @@
 PMID,Year,Title,Journal,Host Species,Host Species Ontology ID,Host Species Ontology Candidates,Body Site,Body Site Ontology ID,Body Site Ontology Candidates,Condition,Condition Ontology ID,Condition Ontology Candidates,Sample Size,Sequencing Type,Differential Abundance,In bsgdb
-32075882,,Perinatal Antibiotic Exposure Affects the Transmission between Maternal and Neonatal Microbiota and Is Associated with Early-Onset Sepsis.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,No,No
-31215600,,Relationship between acetaldehyde concentration in mouth air and characteristics of microbiota of tongue dorsum in Japanese healthy adults: a cross-sectional study.,,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,,,,,16S,Yes,No
-31160598,,Sex-specific association between gut microbiome and fat distribution.,,Homo sapiens,NCBITaxon:9606,,,,,obesity,EFO:0001073,,,,No,No
-31126003,,Air pollution during the winter period and respiratory tract microbial imbalance in a healthy young population in Northeastern China.,,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,,,,,16S,Yes,No
-31123265,,Altered respiratory virome and serum cytokine profile associated with recurrent respiratory tract infections in children.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
-31053143,,The combination of sport and sport-specific diet is associated with characteristics of gut microbiota: an observational study.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,EFO:0000246,,,other,Yes,No
-30919073,,The oral microbiome of patients undergoing treatment for severe aplastic anemia: a pilot study.,,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,,,,229,16S,Yes,No
-30888539,,"Glutamate interactions with obesity, insulin resistance, cognition and gut microbiota composition.",,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,35,metagenomics,Yes,No
-30875283,,Oral microbial dysbiosis in patients with Kostmann syndrome.,,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,Kostmann syndrome,MONDO:0012548,,,16S,Yes,No
-30867067,,Prebiotic supplementation in frail older people affects specific gut microbiota taxa but not global diversity.,,Mus musculus,NCBITaxon:10090,,,,,,,,,,Yes,No
-30866773,,Differential effects of depot medroxyprogesterone acetate administration on vaginal microbiome in Hispanic White and Black women.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,Yes,No
-30854760,,Prospective observational study of vaginal microbiota pre- and post-rescue cervical cerclage.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,other,Yes,No
-30813950,,Environmental toxicants in breast milk of Norwegian mothers and gut bacteria composition and metabolites in their infants at 1 month.,,,,,feces,UBERON:0001988,,,,,,16S,No,No
-30803537,,Microbiome of Deep Dentinal Caries from Reversible Pulpitis to Irreversible Pulpitis.,,,,,,,,,,,13,16S,Yes,No
-30791484,,Daidzein Intake Is Associated with Equol Producing Status through an Increase in the Intestinal Bacteria Responsible for Equol Production.,,Homo sapiens,NCBITaxon:9606,,,,,,,,458,16S,No,No
-30791436,,Effect of Selected Stilbenoids on Human Fecal Microbiota.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,No,No
-30770768,,Genome-resolved metagenomics of eukaryotic populations during early colonization of premature infants and in hospital rooms.,,,,,feces,UBERON:0001988,,,,,,16S,Yes,No
-30764497,,Autism Spectrum Disorder (ASD) with and without Mental Regression is Associated with Changes in the Fecal Microbiota.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,metagenomics,No,No
-30719912,,Modulation of Gut Microbiota by Soybean 7S Globulin Peptide That Involved Lipopolysaccharide-Peptide Interaction.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
-30707176,,Gut microbiota analysis and its significance in vasovagal syncope in children.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,Yes,No
-30696735,,Dynamics of Human Gut Microbiota and Short-Chain Fatty Acids in Response to Dietary Interventions with Three Fermentable Fibers.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
-30682843,,The Effects of Dietary Pattern during Intensified Training on Stool Microbiota of Elite Race Walkers.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,No,No
-30678168,,Impact of Grain Sorghum Polyphenols on Microbiota of Normal Weight and Overweight/Obese Subjects during In Vitro Fecal Fermentation.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
-30665461,,Population structure of human gut bacteria in a diverse cohort from rural Tanzania and Botswana.,,,,,,,,,,,,16S,Yes,No
-30664020,,The effect of surgical fecal stream diversion of the healthy colon on the colonic microbiota.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,28,,Yes,No
-30661321,,Comparison of the Gut Microbiota of Centenarians in Longevity Villages of South Korea with Those of Other Age Groups.,,,,,feces,UBERON:0001988,,,,,,,No,No
-30642268,,Viral species richness and composition in young children with loose or watery stool in Ethiopia.,,,,,feces,UBERON:0001988,,,,,,metagenomics,Yes,No
-30633889,,Establishment of vaginal microbiota composition in early pregnancy and its association with subsequent preterm prelabor rupture of the fetal membranes.,,Homo sapiens,NCBITaxon:9606,,,,,,,,38,,No,No
-30604790,,Modification of wheat bran particle size and tissue composition affects colonisation and metabolism by human faecal microbiota.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,,Yes,No
-30599284,,Pathogen reservoir hypothesis investigated by analyses of the adenotonsillar and middle ear microbiota.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,Yes,No
-30574802,,Eczema-protective probiotic alters infant gut microbiome functional capacity but not composition: sub-sample analysis from a RCT.,,,,,feces,UBERON:0001988,,,,,,metagenomics,No,No
-30542916,,Subgingival Microbial Changes During the First 3 Months of Fixed Appliance Treatment in Female Adult Patients.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,Yes,No
-30520232,,Changes in the distal esophageal microbiota in Chinese patients with reflux esophagitis.,,Homo sapiens,NCBITaxon:9606,,,,,healthy,EFO:0000246,,,16S,Yes,No
-30508628,,Microbial biomarkers of common tongue coatings in patients with gastric cancer.,,Homo sapiens,NCBITaxon:9606,,,,,gastric cancer,MONDO:0001056,,,16S,Yes,No
-30503971,,The role of gut microbiome and its interaction with arsenic exposure in carotid intima-media thickness in a Bangladesh population.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,250,16S,Yes,No
-30440093,,Evaluation of gastric microbiome and metagenomic function in patients with intestinal metaplasia using 16S rRNA gene sequencing.,,Homo sapiens,NCBITaxon:9606,,,,,cancer,MONDO:0004992,,,16S,Yes,No
-30417607,,Composition of gut microbiota and its association with body mass index and lifestyle factors in a cohort of 7-18 years old children from the American Gut Project.,,,,,,,,obesity,EFO:0001073,,,16S,Yes,No
-30366118,,The gut microbiome of Mexican children affected by obesity.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,obesity,EFO:0001073,,,metagenomics,Yes,No
-30292647,,Structural and functional profiles of the gut microbial community in polycystic ovary syndrome with insulin resistance (IR-PCOS): a pilot study.,,Homo sapiens,NCBITaxon:9606,,,,,healthy,EFO:0000246,,9,16S,Yes,No
-30239655,,The Human Mesenteric Lymph Node Microbiome Differentiates Between Crohn's Disease and Ulcerative Colitis.,,Homo sapiens,NCBITaxon:9606,,,,,Crohn disease,EFO:0000384,,,16S,No,No
-30171206,,Low nadir CD4+ T-cell counts predict gut dysbiosis in HIV-1 infection.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,156,metagenomics,Yes,No
-30117171,,A prospective study to examine the association of the urinary and fecal microbiota with prostate cancer diagnosis after transrectal biopsy of the prostate using 16sRNA gene analysis.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,prostate cancer,MONDO:0008315,,16,16S,Yes,No
-29791775,,Vaginal microbiome in early pregnancy and subsequent risk of spontaneous preterm birth: a case-control study.,,Homo sapiens,NCBITaxon:9606,,,,,,,,356,16S,No,No
-29708822,,"Rifaximin is associated with modest, transient decreases in multiple taxa in the gut microbiota of patients with diarrhoea-predominant irritable bowel syndrome.",,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,103,16S,Yes,No
-29509315,,The Effect of Lean-Seafood and Non-Seafood Diets on Fecal Metabolites and Gut Microbiome: Results from a Randomized Crossover Intervention Study.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,,Yes,No
-30171064,,Population-level analysis of ,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,inflammatory bowel disease,EFO:0003764,,107,16S,No,No
-30553628,,A case of pulmonary mucormycosis presented as Pancoast syndrome and bone destruction in an immunocompetent adult mimicking lung carcinoma.,,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,,,,,,No,No
-30583154,,"Spatial and temporal variation of antibiotic resistance in marine fish cage-culture area of Guangdong, China.",,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
-30293222,,Melioidosis mimicking miliary tuberculosis.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
-30531975,,GABA-modulating bacteria of the human gut microbiota.,,,,,,,,,,,,,No,No
-30423465,,Effect of bifidobacterium breve A-1 on anxiety and depressive symptoms in schizophrenia: A proof-of-concept study.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
-30051546,,A step ahead: Exploring the gut microbiota in inpatients with bipolar disorder during a depressive episode.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,EFO:0000246,,,16S,Yes,No
-30447610,,Assessment of the adverse impacts of aflatoxin B,,,,,,,,,,,,,No,No
-30500755,,Impacts of dietary silver nanoparticles and probiotic administration on the microbiota of an in-vitro gut model.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
-30287886,,'NetShift': a methodology for understanding 'driver microbes' from healthy and disease microbiome datasets.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,metagenomics,Yes,No
-30471188,,Deciphering the Human Gut Microbiome of Urolithin Metabotypes: Association with Enterotypes and Potential Cardiometabolic Health Implications.,,,,,,,,,,,,16S,No,No
-30118620,,Assessment of urinary 3-indoxyl sulfate as a marker for gut microbiota diversity and abundance of Clostridiales.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,No,No
-30445307,,Purinergic P2X7 receptor blockade mitigates alcohol-induced steatohepatitis and intestinal injury by regulating MEK1/2-ERK1/2 signaling and egr-1 activity.,,Mus musculus,NCBITaxon:10090,,,,,,,,,,Yes,No
-30297287,,Airway Microbiome and Development of Bronchopulmonary Dysplasia in Preterm Infants: A Systematic Review.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
-30279512,,A dendritic cell-based systemic vaccine induces long-lived lung-resident memory Th17 cells and ameliorates pulmonary mycosis.,,,,,,,,,,,,,No,No
-30573310,,[Hypersensitivity pneumonitis and abscess reaction to nontuberculous mycobacteria acquired form jacuzzi aerosol].,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
-30429094,,[A case report of an adult with bronchial mould infection complicated by purulent pleurisy].,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
-30598081,,Gut microbiome changes in overweight male adults following bowel preparation.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,Yes,No
-30579350,,Stability and resilience of the intestinal microbiota in children in daycare - a 12 month cohort study.,,,,,feces,UBERON:0001988,,,,,,16S,No,No
-30583518,,Navy Beans Impact the Stool Metabolome and Metabolic Pathways for Colon Health in Cancer Survivors.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,cancer,MONDO:0004992,,,,No,No
-30516980,,Characterization of Polysaccharides from Feijoa Fruits ( Acca sellowiana Berg.) and Their Utilization as Growth Substrates by Gut Commensal Bacteroides Species.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
-30562947,,A Metabologenomic Approach Reveals Changes in the Intestinal Environment of Mice Fed on American Diet.,,Mus musculus,NCBITaxon:10090,,feces,UBERON:0001988,,,,,,other,No,No
-30581271,,Modulation of faecal metagenome in Crohn's disease: Role of microRNAs as biomarkers.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,EFO:0000246,,29,16S,No,No
-30545401,,A comparative study of the gut microbiota in immune-mediated inflammatory diseases-does a common dysbiosis exist?,,Homo sapiens,NCBITaxon:9606,,,,,healthy,EFO:0000246,,20,16S,Yes,No
-30541450,,"Diet, physical activity and screen time but not body mass index are associated with the gut microbiome of a diverse cohort of college students living in university housing: a cross-sectional study.",,,,,feces,UBERON:0001988,,,,,82,16S,Yes,No
-30538180,,"Impact of Individual Traits, Saturated Fat, and Protein Source on the Gut Microbiome.",,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,Yes,No
-30622429,,Gut Microbiome Dysbiosis and Immunometabolism: New Frontiers for Treatment of Metabolic Diseases.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
-30522511,,Cordycepin reduces weight through regulating gut microbiota in high-fat diet-induced obese rats.,,Mus musculus,NCBITaxon:10090,,,,,obesity,EFO:0001073,,,other,No,No
-30510177,,Collective motion conceals fitness differences in crowded cellular populations.,,,,,,,,cancer,MONDO:0004992,,,,Yes,No
-30418043,,Iron deficiency anemia-related gut microbiota dysbiosis in infants and young children: A pilot study.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,EFO:0000246,,10,16S,No,No
-30212253,,Associations between the gut microbiota and host responses to high altitude.,,,,,,,,,,,,,No,No
-30292635,,Differential expression of tumor-associated genes and altered gut microbiome with decreased Akkermansia muciniphila confer a tumor-preventive microenvironment in intestinal epithelial Pten-deficient mice.,,Mus musculus,NCBITaxon:10090,,,,,cancer,MONDO:0004992,,,,No,No
-30446879,,Calorie restriction and its impact on gut microbial composition and global metabolism.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
-30311721,,Gut microbiome can be restored without adverse events after Helicobacter pylori eradication therapy in teenagers.,,,,,feces,UBERON:0001988,,,,,,16S,Yes,No
-29855054,,Detection of the unknown components of the oral microflora of teeth with periapical radiolucencies in a Turkish population using next-generation sequencing techniques.,,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,,,,20,other,Yes,No
-30267143,,Urinary microbes and postoperative urinary tract infection risk in urogynecologic surgical patients.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,Yes,No
-30467977,,Differential clustering of fecal and mucosa-associated microbiota in 'healthy' individuals.,,,,,feces,UBERON:0001988,,Crohn disease,EFO:0000384,,,16S,Yes,No
-30498207,,Altered gut microbiota after traumatic splenectomy is associated with endotoxemia.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,EFO:0000246,,,16S,Yes,No
-30301767,,Three structurally and functionally distinct β-glucuronidases from the human gut microbe ,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
-30488879,,Gut Microbiota Disruption in Septic Shock Patients: A Pilot Study.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,15,16S,Yes,No
-30463925,,Impact of Amoxicillin-Clavulanate followed by Autologous Fecal Microbiota Transplantation on Fecal Microbiome Structure and Metabolic Potential.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,metagenomics,Yes,No
-30453528,,Intestinal Microbiome in Irritable Bowel Syndrome before and after Gut-Directed Hypnotherapy.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,No,No
-30584534,,Multiomic Strategies Reveal Diversity and Important Functional Aspects of Human Gut Microbiome.,,,,,feces,UBERON:0001988,,,,,,metagenomics,Yes,No
-30409177,,Visualization-assisted binning of metagenome assemblies reveals potential new pathogenic profiles in idiopathic travelers' diarrhea.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,metagenomics,Yes,No
-30395655,,HPV infection and bacterial microbiota in breast milk and infant oral mucosa.,,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,,,,,16S,Yes,No
-30165663,,High-resolution analysis of the pneumococcal transcriptome under a wide range of infection-relevant conditions.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
-29355905,,"Hidradenitis suppurativa, a review of pathogenesis, associations and management. Part 1.",,Homo sapiens,NCBITaxon:9606,,,,,,,,106,,No,No
-30157044,,Checkpoint inhibitor colitis: a new model of inflammatory bowel disease?,,Homo sapiens,NCBITaxon:9606,,,,,inflammatory bowel disease,EFO:0003764,,,,No,No
-30224347,,Gut Microbiota Differs in Composition and Functionality Between Children With Type 1 Diabetes and MODY2 and Healthy Control Subjects: A Case-Control Study.,,Homo sapiens,NCBITaxon:9606,,,,,type 1 diabetes mellitus,EFO:0001361,,,16S,Yes,No
-29303032,,The evaluation of the quality of Feng Huang Oolong teas and their modulatory effect on intestinal microbiota of high-fat diet-induced obesity mice model.,,Mus musculus,NCBITaxon:10090,,,,,obesity,EFO:0001073,,,other,No,No
-30273610,,A multi-amplicon 16S rRNA sequencing and analysis method for improved taxonomic profiling of bacterial communities.,,Mus musculus,NCBITaxon:10090,,feces,UBERON:0001988,,,,,,16S,Yes,No
-29564487,,Gut Microbial Dysbiosis in Indian Children with Autism Spectrum Disorders.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,EFO:0000246,,,16S,Yes,No
-30115996,,Pulmonary immunization with a recombinant influenza A virus vaccine induces lung-resident CD4,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
-30153231,,Pneumococcal Colonization and the Nasopharyngeal Microbiota of Children in Botswana.,,,,,,,,,,,,16S,Yes,No
-29353409,,16S rRNA gene sequencing reveals altered composition of gut microbiota in individuals with kidney stones.,,Homo sapiens,NCBITaxon:9606,,,,,healthy,EFO:0000246,,13,16S,Yes,No
-30365522,,Distinct mucosal microbial communities in infants with surgical necrotizing enterocolitis correlate with age and antibiotic exposure.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,Yes,No
-30356965,,Fungal dysbiosis predicts the diagnosis of pediatric Crohn's disease.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,Crohn disease,EFO:0000384,,20,,Yes,No
-30332459,,Diversified gut microbiota in newborns of mothers with gestational diabetes mellitus.,,Homo sapiens,NCBITaxon:9606,,,,,diabetes mellitus,EFO:0000400,,,16S,Yes,No
-30300382,,Carious status and supragingival plaque microbiota in hemodialysis patients.,,Homo sapiens,NCBITaxon:9606,,,,,chronic kidney disease,MONDO:0005300,,30,16S,No,No
-30290831,,Evaluation of patient- versus provider-collected vaginal swabs for microbiome analysis during pregnancy.,,Homo sapiens,NCBITaxon:9606,,,,,,,,47,16S,Yes,No
-30279249,,Miliary tuberculosis and herpes pharyngitis after a trip to a developing country: dangers of biologics.,,,,,,,,,,,,,No,No
-29997110,,Characterisation of the nasal microbiota in granulomatosis with polyangiitis.,,Homo sapiens,NCBITaxon:9606,,,,,healthy,EFO:0000246,,60,16S,Yes,No
-29808442,,High frequency of Polio-like Enterovirus C strains with differential clustering of CVA-13 and EV-C99 subgenotypes in a cohort of Malawian children.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,,No,No
-30100563,,Intestinal Metaproteomics Reveals Host-Microbiota Interactions in Subjects at Risk for Type 1 Diabetes.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,type 1 diabetes mellitus,EFO:0001361,,,,Yes,No
-29876777,,"Probiotics Ameliorate Stool Consistency in Patients with Chronic Constipation: A Randomized, Double-Blind, Placebo-Controlled Study.",,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,irritable bowel syndrome,MONDO:0005052,,88,,Yes,No
-30006660,,Intestinal microbiome as a risk factor for urinary tract infections in children.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,Yes,No
-30118374,,Cystic fibrosis respiratory microbiota: unraveling complexity to inform clinical practice.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
-29665102,,Antibiotic-Associated Disruption of Microbiota Composition and Function in Cirrhosis Is Restored by Fecal Transplant.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,,Yes,No
-30174010,,Paired analysis of the microbiota between surface tissue swabs and biopsies from pediatric patients undergoing adenotonsillectomy.,,Homo sapiens,NCBITaxon:9606,,,,,,,,28,other,Yes,No
-30174001,,The bacterial community and local lymphocyte response are markedly different in patients with recurrent tonsillitis compared to obstructive sleep apnoea.,,Homo sapiens,NCBITaxon:9606,,,,,,,,24,,Yes,No
-30143589,,Differential Induction of IFN-α and Modulation of CD112 and CD54 Expression Govern the Magnitude of NK Cell IFN-γ Response to Influenza A Viruses.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
-29753031,,"Antiseptic Agents Elicit Short-Term, Personalized, and Body Site-Specific Shifts in Resident Skin Bacterial Communities.",,Homo sapiens,NCBITaxon:9606,,skin,UBERON:0002097,,,,,,,No,No
-29908759,,Cutibacterium acnes and the shoulder microbiome.,,Homo sapiens,NCBITaxon:9606,,skin,UBERON:0002097,,,,,23,16S,No,No
-30244778,,Influence of gender and menopausal status on gut microbiota.,,Homo sapiens,NCBITaxon:9606,,,,,,,,20,,No,No
-30313111,,The characteristics analysis of intestinal microecology on cerebral infarction patients and its correlation with apolipoprotein E.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,10,other,Yes,No
-30261008,,Association of metformin administration with gut microbiome dysbiosis in healthy volunteers.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,diabetes mellitus,EFO:0000400,,,16S,Yes,No
-30248149,,NLRP6 negatively regulates pulmonary host defense in Gram-positive bacterial infection through modulating neutrophil recruitment and function.,,Mus musculus,NCBITaxon:10090,,,,,,,,,,Yes,No
-30237489,,Meconium microbiome associates with the development of neonatal jaundice.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,Yes,No
-30235351,,Expansion of commensal fungus Wallemia mellicola in the gastrointestinal mycobiota enhances the severity of allergic airway disease in mice.,,Mus musculus,NCBITaxon:10090,,,,,,,,,other,Yes,No
-30187897,,Effects of different levels of methionine on sow health and plasma metabolomics during late gestation.,,,,,feces,UBERON:0001988,,,,,,,Yes,No
-30099890,,Gut bacterial composition in a mouse model of Parkinson's disease.,,Mus musculus,NCBITaxon:10090,,saliva,UBERON:0001836,,Parkinson disease,EFO:0002508,,,,Yes,No
-29888657,,Oral administration of Bifidobacterium bifidum TMC3115 to neonatal mice may alleviate IgE-mediated allergic risk in adulthood.,,Mus musculus,NCBITaxon:10090,,feces,UBERON:0001988,,,,,54,16S,Yes,No
-30227892,,Predicting recurrence of Clostridium difficile infection following encapsulated fecal microbiota transplantation.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,89,,Yes,No
-30208875,,A metagenome-wide association study of gut microbiota in asthma in UK adults.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,EFO:0000246,,,,Yes,No
-30208950,,Dichotomous development of the gut microbiome in preterm infants.,,,,,feces,UBERON:0001988,,,,,,16S,Yes,No
-30204780,,Chronic fatigue syndrome patients have alterations in their oral microbiome composition and function.,,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,healthy,EFO:0000246,,,16S,Yes,No
-30201048,,Quantification of variation and the impact of biomass in targeted 16S rRNA gene sequencing studies.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,244,16S,Yes,No
-30202057,,Gut fungal dysbiosis correlates with reduced efficacy of fecal microbiota transplantation in Clostridium difficile infection.,,Mus musculus,NCBITaxon:10090,,feces,UBERON:0001988,,,,,,,No,No
-30189859,,Reliability of a participant-friendly fecal collection method for microbiome analyses: a step towards large sample size investigation.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,,Yes,No
-30068076,,"Chemical Compositions of Cold-Pressed Broccoli, Carrot, and Cucumber Seed Flours and Their in Vitro Gut Microbiota Modulatory, Anti-inflammatory, and Free Radical Scavenging Properties.",,,,,,,,,,,,,No,No
-29862523,,Family-based study reveals decreased abundance of sputum Granulicatella in asthmatics.,,Homo sapiens,NCBITaxon:9606,,,,,,,,14,,No,No
-30373876,,PCR Based Fecal Pathogen Panel Testing Should Be Interpreted with Caution at Diagnosis of Pediatric Inflammatory Bowel Diseases.,,,,,feces,UBERON:0001988,,inflammatory bowel disease,EFO:0003764,,,,Yes,No
-29976769,,Gut Microbiota-Dependent Trimethylamine N-Oxide Predicts Risk of Cardiovascular Events in Patients With Stroke and Is Related to Proinflammatory Monocytes.,,Homo sapiens,NCBITaxon:9606,,,,,diabetes mellitus,EFO:0000400,,78,,Yes,No
-29945689,,Different latent class models were used and evaluated for assessing the accuracy of campylobacter diagnostic tests: overcoming imperfect reference standards?,,Homo sapiens,NCBITaxon:9606,,,,,,,,623,,No,No
-30010747,,Gut microbial and metabolomic profiles after fecal microbiota transplantation in pediatric ulcerative colitis patients.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,ulcerative colitis,EFO:0000729,,,16S,Yes,No
-29532420,,"Detection of Streptococcus pyogenes virulence genes in Streptococcus dysgalactiae subsp. equisimilis from Vellore, India.",,Homo sapiens,NCBITaxon:9606,,,,,,,,,other,Yes,No
-29791788,,Shift in skin microbiota of Western European women across aging.,,Homo sapiens,NCBITaxon:9606,,skin,UBERON:0002097,,,,,,16S,Yes,No
-29548797,,Isolation and Identification of the Follicular Microbiome: Implications for Acne Research.,,Homo sapiens,NCBITaxon:9606,,skin,UBERON:0002097,,,,,,16S,No,No
-29985123,,Accuracy of a commercial multiplex PCR for the diagnosis of bacterial vaginosis.,,Homo sapiens,NCBITaxon:9606,,,,,,,,185,16S,Yes,No
-29873593,,Variation in the Plasma Levels of Polyunsaturated Fatty Acids in Control vis-à-vis Nonalcoholic Fatty Liver Disease Subjects and Its Possible Association with Gut Microbiome.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,EFO:0000246,,,16S,Yes,No
-30172257,,Enterobacteriaceae are essential for the modulation of colitis severity by fungi.,,Mus musculus,NCBITaxon:10090,,,,,inflammatory bowel disease,EFO:0003764,,,,No,No
-30127432,,Hyperactivated PI3Kδ promotes self and commensal reactivity at the expense of optimal humoral immunity.,,Mus musculus,NCBITaxon:10090,,,,,,,,,,No,No
-29984544,,Aerodigestive dysbiosis in children with chronic cough.,,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,,,,,16S,Yes,No
-30165830,,Temporal instability of the post-surgical maxillary sinus microbiota.,,Homo sapiens,NCBITaxon:9606,,,,,,,,35,16S,No,No
-29756631,,Patients with Acne Vulgaris Have a Distinct Gut Microbiota in Comparison with Healthy Controls.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,43,16S,Yes,No
-30157953,,Influence of cigarette smoking on the human duodenal mucosa-associated microbiota.,,Homo sapiens,NCBITaxon:9606,,,,,Crohn disease,EFO:0000384,,21,16S,Yes,No
-30143034,,Interaction between the microbiome and TP53 in human lung cancer.,,Homo sapiens,NCBITaxon:9606,,,,,cancer,MONDO:0004992,,33,16S,Yes,No
-30138339,,Differential effects of selective and non-selective cyclooxygenase inhibitors on fecal microbiota in adult horses.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,5,16S,No,No
-30134854,,"Epidemiological analysis and rapid detection by one-step multiplex PCR assay of Haemophilus influenzae in children with respiratory tract infections in Zhejiang Province, China.",,,,,,,,,,,,,Yes,No
-29617871,,Clinical and Laboratory Predictors of Shiga Toxin-Producing Escherichia coli Infection in Children With Bloody Diarrhea.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,8,,Yes,No
-30039147,,Lactobacillus plantarum ZDY04 exhibits a strain-specific property of lowering TMAO via the modulation of gut microbiota in mice.,,Mus musculus,NCBITaxon:10090,,,,,,,,,,Yes,No
-30122883,,Altered oral microbiota in chronic hepatitis B patients with different tongue coatings.,,Homo sapiens,NCBITaxon:9606,,,,,healthy,EFO:0000246,,,16S,Yes,No
-30091979,,Dynamic changes in human-gut microbiome in relation to a placebo-controlled anthelminthic trial in Indonesia.,,Homo sapiens,NCBITaxon:9606,,,,,,,,150,other,Yes,No
-30089174,,Human pharyngeal microbiota in age-related macular degeneration.,,Homo sapiens,NCBITaxon:9606,,,,,,,,386,16S,Yes,No
-30086729,,"Observational multi-centre, prospective study to characterize novel pathogen-and host-related factors in hospitalized patients with lower respiratory tract infections and/or sepsis - the ""TAILORED-Treatment"" study.",,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
-30081953,,Breast cancer in postmenopausal women is associated with an altered gut metagenome.,,Homo sapiens,NCBITaxon:9606,,,,,healthy,EFO:0000246,,,metagenomics,Yes,No
-30081517,,"Retinoic Acid, Leaky Gut, and Autoimmune Diseases.",,Mus musculus,NCBITaxon:10090,,,,,diabetes mellitus,EFO:0000400,,,,No,No
-30074988,,Combined bacterial and fungal intestinal microbiota analyses: Impact of storage conditions and DNA extraction protocols.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,12,16S,Yes,No
-30071894,,A prebiotic intervention study in children with autism spectrum disorders (ASDs).,,,,,feces,UBERON:0001988,,,,,,,Yes,No
-30071046,,"Enhanced preservation of the human intestinal microbiota by ridinilazole, a novel Clostridium difficile-targeting antibacterial, compared to vancomycin.",,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,other,Yes,No
-30071000,,Comparison of the upper and lower airway microbiota in children with chronic lung diseases.,,Homo sapiens,NCBITaxon:9606,,,,,,,,168,16S,Yes,No
-29787419,,A locus at 7p14.3 predisposes to refractory celiac disease progression from celiac disease.,,Homo sapiens,NCBITaxon:9606,,,,,celiac disease,EFO:0001060,,,,Yes,No
-29897654,,Helicobacter pylori eradication with bismuth quadruple therapy leads to dysbiosis of gut microbiota with an increased relative abundance of Proteobacteria and decreased relative abundances of Bacteroidetes and Actinobacteria.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,6,16S,Yes,No
-29479697,,Cervicovaginal microbiota composition correlates with the acquisition of high-risk human papillomavirus types.,,Homo sapiens,NCBITaxon:9606,,,,,cancer,MONDO:0004992,,280,16S,Yes,No
-30140925,,Identification and Visualization of a Distinct Microbiome in Ocular Surface Conjunctival Tissue.,,Homo sapiens,NCBITaxon:9606,,,,,,,,45,16S,Yes,No
-29987933,,Pectin Alleviates High Fat (Lard) Diet-Induced Nonalcoholic Fatty Liver Disease in Mice: Possible Role of Short-Chain Fatty Acids and Gut Microbiota Regulated by Pectin.,,Mus musculus,NCBITaxon:10090,,,,,,,,,,Yes,No
-29804008,,Chronic sequelae and severe complications of norovirus infection: A systematic review of literature.,,Homo sapiens,NCBITaxon:9606,,,,,inflammatory bowel disease,EFO:0003764,,122,,Yes,No
-29859693,,Short communication: A countrywide survey of antimicrobial-resistant indicator bacteria in Kosovo's dairy farms.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,165,,Yes,No
-29923815,,Streptococcus and Prevotella are associated with the prognosis of oesophageal squamous cell carcinoma.,,Homo sapiens,NCBITaxon:9606,,,,,cancer,MONDO:0004992,,45,16S,Yes,No
-29982534,,Inulin-Type Fructan Supplementation of 3- to 6-Year-Old Children Is Associated with Higher Fecal Bifidobacterium Concentrations and Fewer Febrile Episodes Requiring Medical Attention.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,,Yes,No
-30552302,,Microbial patterns in patients with histamine intolerance.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,EFO:0000246,,64,16S,Yes,No
-29412464,,Effects of bentonite Bgp35b-p on the gut microbiota of mice fed a high-fat diet.,,Mus musculus,NCBITaxon:10090,,feces,UBERON:0001988,,obesity,EFO:0001073,,,16S,Yes,No
-29408012,,Biomarkers in idiopathic pulmonary fibrosis.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
-29760502,,Infant colic: mechanisms and management.,,,,,,,,,,,,,No,No
-30010849,,Mycobacterium tuberculosis H37Rv expresses differential proteome during intracellular survival within alveolar epithelial cells compared with macrophages.,,,,,,,,,,,,,Yes,No
-29624747,,Fecal microbiome signatures are different in food-allergic children compared to siblings and healthy children.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,22,16S,Yes,No
-30064419,,Predicting oral malodour based on the microbiota in saliva samples using a deep learning approach.,,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,,,,90,16S,No,No
-30053882,,Decreased microbiome diversity in the HIV small airway epithelium.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,Yes,No
-30029674,,Functional intraepithelial lymphocyte changes in inflammatory bowel disease and spondyloarthritis have disease specific correlations with intestinal microbiota.,,Homo sapiens,NCBITaxon:9606,,,,,healthy,EFO:0000246,,,16S,Yes,No
-29984576,,Consumption of Black Legumes Glycine soja and Glycine max Lowers Serum Lipids and Alters the Gut Microbiome Profile in Mice Fed a High-Fat Diet.,,Mus musculus,NCBITaxon:10090,,feces,UBERON:0001988,,obesity,EFO:0001073,,,16S,No,No
-29895146,,Camellia Oil ( Camellia oleifera Abel.) Modifies the Composition of Gut Microbiota and Alleviates Acetic Acid-Induced Colitis in Rats.,,Rattus norvegicus,NCBITaxon:10116,,feces,UBERON:0001988,,inflammatory bowel disease,EFO:0003764,,,16S,Yes,No
-30020932,,Diurnal oscillations in human salivary microRNA and microbial transcription: Implications for human health and disease.,,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,,,,77,other,No,No
-29974116,,Mannan-oligosaccharide modulates the obesity and gut microbiota in high-fat diet-fed mice.,,Mus musculus,NCBITaxon:10090,,,,,obesity,EFO:0001073,,,other,No,No
-29909134,,The influence of the intestinal microbiome on vaccine responses.,,,,,feces,UBERON:0001988,,,,,,other,No,No
-30050871,,,,,,,,,,,,,,16S,No,No
-30002355,,"SunGold Kiwifruit Supplementation of Individuals with Prediabetes Alters Gut Microbiota and Improves Vitamin C Status, Anthropometric and Clinical Markers.",,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,diabetes mellitus,EFO:0000400,,,16S,Yes,No
-30002323,,A Vegetarian Diet Is a Major Determinant of Gut Microbiota Composition in Early Pregnancy.,,Homo sapiens,NCBITaxon:9606,,,,,diabetes mellitus,EFO:0000400,,,16S,No,No
-29973274,,Maternal diet during pregnancy is related with the infant stool microbiome in a delivery mode-dependent manner.,,,,,feces,UBERON:0001988,,,,,,16S,Yes,No
-29517944,,Concurrent gut transcriptome and microbiota profiling following chronic ethanol consumption in nonhuman primates.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,cancer,MONDO:0004992,,4,16S,No,No
-29969462,,Dysbiosis of oral microbiota and its association with salivary immunological biomarkers in autoimmune liver disease.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,EFO:0000246,,56,16S,Yes,No
-29965986,,The presence of genetic risk variants within PTPN2 and PTPN22 is associated with intestinal microbiota alterations in Swiss IBD cohort patients.,,Homo sapiens,NCBITaxon:9606,,,,,lung disease severity measurement,EFO:0007744,,,16S,Yes,No
-29318631,,Early-life gut microbiome and egg allergy.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,No,No
-29785502,,Comparative persistence of human sewage-specific enterococcal bacteriophages in freshwater and seawater.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,7,,No,No
-29217277,,Absence of hybridization with the wild-type and mutant rpoB probes in the Genotype MTBDRplus assay detects 'disputed' rifampicin mutations.,,,,,,,,,,,,other,No,No
-29637226,,Altered Profiles of Gut Microbiota in Klebsiella pneumoniae-Induced Pyogenic Liver Abscess.,,Mus musculus,NCBITaxon:10090,,,,,,,,,16S,Yes,No
-29767712,,Limited influence of hospital wastewater on the microbiome and resistome of wastewater in a community sewerage system.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,No,No
-29718191,,MetaCompare: a computational pipeline for prioritizing environmental resistome risk.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,metagenomics,No,No
-29468742,,Dog introduction alters the home dust microbiota.,,,,,,,,,,,,16S,Yes,No
-29452199,,Establishment of the nasal microbiota in the first 18 months of life: Correlation with early-onset rhinitis and wheezing.,,Homo sapiens,NCBITaxon:9606,,,,,healthy,EFO:0000246,,28,16S,Yes,No
-29565634,,Prebiotic Potential of Herbal Medicines Used in Digestive Health and Disease.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,Yes,No
-29515164,,Activation of Notch-1 in oral epithelial cells by P. gingivalis triggers the expression of the antimicrobial protein PLA,,,,,saliva,UBERON:0001836,,,,,,,No,No
-29948900,,Characteristics of fecal microbiota in non-alcoholic fatty liver disease patients.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,non-alcoholic fatty liver disease severity measurement,EFO:0008421,,,16S,Yes,No
-29988504,,Detection of Pulmonary Infectious Pathogens From Lung Biopsy Tissues by Metagenomic Next-Generation Sequencing.,,Homo sapiens,NCBITaxon:9606,,,,,pulmonary disorders indicating possible infection,,,20,metagenomics,No,No
-29877551,,Ethanol extract of Ganoderma lucidum ameliorates lipid metabolic disorders and modulates the gut microbiota composition in high-fat diet fed rats.,,Rattus norvegicus,NCBITaxon:10116,,saliva,UBERON:0001836,,,,,,,Yes,No
-29971220,,Association Between Gut Microbiota and ,,,,,,,,,,,,,No,No
-29907093,,"Effect of administration of a probiotic preparation on gut microbiota and immune response in healthy women in India: an open-label, single-arm pilot study.",,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,No,No
-29885665,,Bacterial biogeography of adult airways in atopic asthma.,,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,healthy,EFO:0000246,,45,16S,Yes,No
-29884786,,Individuality and convergence of the infant gut microbiota during the first year of life.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,,No,No
-29679417,,A probiotic modulates the microbiome and immunity in multiple sclerosis.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,EFO:0000246,,9,16S,Yes,No
-29863827,,Exposures Related to House Dust Microbiota in a U.S. Farming Population.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,Yes,No
-29869736,,Composition and richness of the serum microbiome differ by age and link to systemic inflammation.,,,,,,,,,,,24,,Yes,No
-28578302,,Fungal dysbiosis in cirrhosis.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,26,,Yes,No
-29425873,,Digestibility of sulfated polysaccharide from the brown seaweed Ascophyllum nodosum and its effect on the human gut microbiota in vitro.,,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,obesity,EFO:0001073,,,other,Yes,No
-29434314,,Elevated circulating levels of succinate in human obesity are linked to specific gut microbiota.,,Homo sapiens,NCBITaxon:9606,,,,,obesity,EFO:0001073,,,metagenomics,No,No
-29726951,,"Walnut Consumption Alters the Gastrointestinal Microbiota, Microbially Derived Secondary Bile Acids, and Health Markers in Healthy Adults: A Randomized Controlled Trial.",,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,cancer,MONDO:0004992,,18,,Yes,No
-29858350,,The Microbiome in Psoriasis and Psoriatic Arthritis: The Skin Perspective.,,Homo sapiens,NCBITaxon:9606,,skin,UBERON:0002097,,,,,,,No,No
-29704918,,Microbiota-drug interactions: Impact on metabolism and efficacy of therapeutics.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
-28483533,,Berry anthocyanin intake and cardiovascular health.,,,,,,,,,,,,,Yes,No
-29710405,,In Vitro Fermentation Behavior of Isomalto/Malto-Polysaccharides Using Human Fecal Inoculum Indicates Prebiotic Potential.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,,Yes,No
-29857583,,Changes of Colonic Bacterial Composition in Parkinson's Disease and Other Neurodegenerative Diseases.,,Homo sapiens,NCBITaxon:9606,,,,,Parkinson disease,EFO:0002508,,,,No,No
-29762733,,The effect of vaginal microbial communities on colonization by Staphylococcus aureus with the gene for toxic shock syndrome toxin 1 (TSST-1): a case-control study.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,Yes,No
-29388394,,Composition of gut microbiota in obese and normal-weight Mexican school-age children and its association with metabolic traits.,,,,,,,,obesity,EFO:0001073,,,16S,Yes,No
-29256975,,Gene Expression Profiling of Bronchoalveolar Lavage Cells During Aspergillus Colonization of the Lung Allograft.,,Homo sapiens,NCBITaxon:9606,,,,,,,,12,,Yes,No
-29574656,,Differences in Type I interferon response in human lung epithelial cells infected by highly pathogenic H5N1 and low pathogenic H11N1 avian influenza viruses.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
-28705725,,Assessing the impact of protein extraction methods for human gut metaproteomics.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,metagenomics,Yes,No
-29799027,,Differential metabolic effects of oral butyrate treatment in lean versus metabolic syndrome subjects.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,diabetes mellitus,EFO:0000400,,9,,Yes,No
-29788934,,The lung microbiome in children with HIV-bronchiectasis: a cross-sectional pilot study.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,No,No
-29764499,,Gestational diabetes is associated with change in the gut microbiota composition in third trimester of pregnancy and postpartum.,,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,diabetes mellitus,EFO:0000400,,50,16S,Yes,No
-29763437,,"Postnatal colonization with human ""infant-type"" Bifidobacterium species alters behavior of adult gnotobiotic mice.",,Mus musculus,NCBITaxon:10090,,,,,,,,,16S,Yes,No
-29593031,,Central Role of the NF-κB Pathway in the ,,,,,,,,,,,,,No,No
-29965539,,[Influence of Different Patterns of Discharge on Microbial Diffusion in Municipal Treated Wastewater].,,,,,,,,,,,,other,No,No
-29767701,,Microbiome-Mediated Effects of the Mediterranean Diet on Inflammation.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
-29713027,,Evaluation of chronic diarrhea and irritable bowel syndrome with diarrhea in adults in the era of precision medicine.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
-29571898,,Differential immune responses and microbiota profiles in children with autism spectrum disorders and co-morbid gastrointestinal symptoms.,,,,,,,,,,,,metagenomics,No,No
-29401402,,"Potential of Lactobacillus plantarum ZDY2013 and Bifidobacterium bifidum WBIN03 in relieving colitis by gut microbiota, immune, and anti-oxidative stress.",,,,,feces,UBERON:0001988,,ulcerative colitis,EFO:0000729,,,,No,No
-29097439,,Mucosa-associated invariant T cells link intestinal immunity with antibacterial immune defects in alcoholic liver disease.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,EFO:0000246,,,,Yes,No
-28341746,,Leveraging sequence-based faecal microbial community survey data to identify a composite biomarker for colorectal cancer.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,cancer,MONDO:0004992,,509,16S,Yes,No
-29525681,,Gut microbiota dysbiosis is associated with Henoch-Schönlein Purpura in children.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,155,16S,Yes,No
-29721826,,"Importance of differential identification of Mycobacterium tuberculosis strains for understanding differences in their prevalence, treatment efficacy, and vaccine development.",,,,,,,,,,,,,No,No
-29610517,,Differential bacterial capture and transport preferences facilitate co-growth on dietary xylan in the human gut.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
-28263087,,Protein-losing enteropathy in an infant with rotavirus infection.,,,,,feces,UBERON:0001988,,,,,,,Yes,No
-29618180,,Comparative Analysis of Gut Microbial Communities in Children under 5 Years Old with Diarrhea.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,EFO:0000246,,,16S,No,No
-29633639,,"Stool and urine trefoil factor 3 levels: associations with symptoms, intestinal permeability, and microbial diversity in irritable bowel syndrome.",,,,,feces,UBERON:0001988,,,,,,16S,Yes,No
-29482339,,Gut microbiota characterisation in obese patients before and after bariatric surgery.,,Homo sapiens,NCBITaxon:9606,,,,,obesity,EFO:0001073,,,,No,No
-29482338,,Effect of Bacillus subtilis C-3102 on loose stools in healthy volunteers.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,,Yes,No
-29740427,,Intestinal Microbiota at Engraftment Influence Acute Graft-Versus-Host Disease ,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
-29669883,,Impact of Long-Term Erythromycin Therapy on the Oropharyngeal Microbiome and Resistance Gene Reservoir in Non-Cystic Fibrosis Bronchiectasis.,,,,,,,,,,,,16S,Yes,No
-29668720,,Do we treat our patients or rather periodontal microbes with adjunctive antibiotics in periodontal therapy? A 16S rDNA microbial community analysis.,,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,,,,89,16S,Yes,No
-29666288,,Microbiota and Metatranscriptome Changes Accompanying the Onset of Gingivitis.,,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,,,,,16S,Yes,No
-29642940,,Multi-cohort analysis of colorectal cancer metagenome identified altered bacteria across populations and universal bacterial markers.,,Homo sapiens,NCBITaxon:9606,,,,,cancer,MONDO:0004992,,,metagenomics,Yes,No
-29355542,,No appendix necessary: Fecal transplants and antibiotics can resolve Clostridium difficile infection.,,,,,feces,UBERON:0001988,,,,,,,Yes,No
-29632427,,Fecal microbial dysbiosis in Chinese patients with inflammatory bowel disease.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,inflammatory bowel disease,EFO:0003764,,15,16S,Yes,No
-29681906,,Infection of ,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
-29623445,,Role of the Microbiome in Food Allergy.,,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,,,,,,Yes,No
-29615108,,Phages infecting Faecalibacterium prausnitzii belong to novel viral genera that help to decipher intestinal viromes.,,Mus musculus,NCBITaxon:10090,,,,,healthy,EFO:0000246,,,metagenomics,Yes,No
-29127623,,Differences in bacterial composition between men's and women's restrooms and other common areas within a public building.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,Yes,No
-29524863,,The gut microbiome and elevated cardiovascular risk in obesity and autoimmunity.,,Homo sapiens,NCBITaxon:9606,,,,,obesity,EFO:0001073,,,,Yes,No
-29393577,,Adhesion and invasion attributes of Burkholderia pseudomallei are dependent on airway surface liquid and glucose concentrations in lung epithelial cells.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
-29233857,,"Timing of food intake impacts daily rhythms of human salivary microbiota: a randomized, crossover study.",,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,,Yes,No
-29083504,,The circulating microbiome signature and inferred functional metagenomics in alcoholic hepatitis.,,Homo sapiens,NCBITaxon:9606,,,,,,,,18,16S,Yes,No
-29524219,,Whole Tibetan Hull-Less Barley Exhibit Stronger Effect on Promoting Growth of Genus Bifidobacterium than Refined Barley In Vitro.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,Yes,No
-29531366,,Towards predicting the environmental metabolome from metagenomics with a mechanistic model.,,,,,,,,,,,,,No,No
-29502926,,Phenylketonuric diet negatively impacts on butyrate production.,,,,,feces,UBERON:0001988,,,,,,,Yes,No
-29405661,,"In children, the microbiota of the nasopharynx and bronchoalveolar lavage fluid are both similar and different.",,Homo sapiens,NCBITaxon:9606,,,,,,,,72,16S,Yes,No
-29444477,,The microbiome in chronic kidney disease patients undergoing hemodialysis and peritoneal dialysis.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
-29269441,,Sputum microbiome temporal variability and dysbiosis in chronic obstructive pulmonary disease exacerbations: an analysis of the COPDMAP study.,,Homo sapiens,NCBITaxon:9606,,,,,,,,281,16S,Yes,No
-29596446,,"Gut microbiota varies by opioid use, circulating leptin and oxytocin in African American men with diabetes and high burden of chronic disease.",,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,obesity,EFO:0001073,,99,16S,Yes,No
-29424773,,Vaginal microbiota and susceptibility to HIV.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
-29636752,,Autoantibodies in Autoimmune Liver Disease-Clinical and Diagnostic Relevance.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
-29426044,,Dysbiosis of Inferior Turbinate Microbiota Is Associated with High Total IgE Levels in Patients with Allergic Rhinitis.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
-29522532,,Fluctuations in airway bacterial communities associated with clinical states and disease stages in cystic fibrosis.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,No,No
-28891751,,Rotavirus vaccine response correlates with the infant gut microbiota composition in Pakistan.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,,Yes,No
-29447975,,Profiling of novel microRNAs elicited by EV71 and CA16 infection in human bronchial epithelial cells using high-throughput sequencing.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,other,Yes,No
-29308654,,Short Communication: Anatomic Site of Sampling and the Rectal Mucosal Microbiota in HIV Negative Men Who Have Sex with Men Engaging in Condomless Receptive Anal Intercourse.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,No,No
-29052232,,Different functional genes of upper airway microbiome associated with natural course of childhood asthma.,,Homo sapiens,NCBITaxon:9606,,,,,healthy,EFO:0000246,,,other,No,No
-29122754,,Limited role of kininogen in the host response during gram-negative pneumonia-derived sepsis.,,Mus musculus,NCBITaxon:10090,,,,,,,,,,Yes,No
-29278751,,Correlation between gut microbiota and personality in adults: A cross-sectional study.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,Yes,No
-29172724,,Distribution and Diversity of Ocular Microbial Communities in Diabetic Patients Compared with Healthy Subjects.,,Homo sapiens,NCBITaxon:9606,,,,,diabetes mellitus,EFO:0000400,,,16S,Yes,No
-29353421,,"1-Day or 5-Day Fecal Samples, Which One is More Beneficial to be Used for DNA-Based Gut Microbiota Study.",,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,No,No
-29368074,,Association between duration of intravenous antibiotic administration and early-life microbiota development in late-preterm infants.,,,,,feces,UBERON:0001988,,,,,,16S,Yes,No
-29283459,,Characterization of the facial microbiome in twins discordant for rosacea.,,,,,,,,,,,,,Yes,No
-29293960,,Assessment of the cPAS-based BGISEQ-500 platform for metagenomic sequencing.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,metagenomics,Yes,No
-28986935,,Diagnosis and management of diaper dermatitis in infants with emphasis on skin microbiota in the diaper area.,,,,,feces,UBERON:0001988,,,,,,,Yes,No
-28883543,,"Pre-treatment microbial Prevotella-to-Bacteroides ratio, determines body fat loss success during a 6-month randomized controlled diet intervention.",,Homo sapiens,NCBITaxon:9606,,,,,,,,62,,Yes,No
-29183642,,Tick-borne diseases and autoimmunity: A comprehensive review.,,Homo sapiens,NCBITaxon:9606,,skin,UBERON:0002097,,,,,,,Yes,No
-29028181,,Unbiased Taxonomic Annotation of Metagenomic Samples.,,,,,,,,,,,,metagenomics,No,No
-29458668,,Shift of microbial composition of peri-implantitis-associated oral biofilm as revealed by 16S rRNA gene cloning.,,,,,,,,,,,,16S,Yes,No
-29521257,,Future Technologies.,,,,,,,,,,,,other,Yes,No
-29663582,,The skin microbiome of wound scars and unaffected skin in patients with moderate to severe burns in the subacute phase.,,Homo sapiens,NCBITaxon:9606,,skin,UBERON:0002097,,,,,,16S,Yes,No
-29486796,,Differential human gut microbiome assemblages during soil-transmitted helminth infections in Indonesia and Liberia.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
-29489859,,Emollient use alters skin barrier and microbes in infants at risk for developing atopic dermatitis.,,Homo sapiens,NCBITaxon:9606,,skin,UBERON:0002097,,,,,11,16S,No,No
-29264969,,Effects of fermented soymilk with Lactobacillus casei Shirota on skin condition and the gut microbiota: a randomised clinical pilot trial.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,Yes,No
-29124969,,The gut mycobiome composition is linked to carotid atherosclerosis.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
-29486761,,Impaired diversity of the lung microbiome predicts progression of idiopathic pulmonary fibrosis.,,Mus musculus,NCBITaxon:10090,,,,,,,,,16S,Yes,No
-29470389,,"A Walnut-Enriched Diet Affects Gut Microbiome in Healthy Caucasian Subjects: A Randomized, Controlled Trial.",,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,135,16S,Yes,No
-29458413,,Gut microbiota trajectory in early life may predict development of celiac disease.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,10,16S,Yes,No
-29483715,,[Salivary microbiome in people with obesity: a pilot study].,,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,obesity,EFO:0001073,,,,Yes,No
-29453431,,Delayed gut microbiota development in high-risk for asthma infants is temporarily modifiable by Lactobacillus supplementation.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,,Yes,No
-29040451,,An omnibus test for differential distribution analysis of microbiome sequencing data.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,other,Yes,No
-29378945,,Adaptation of commensal proliferating ,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
-29363966,,"Arabinoxylo-Oligosaccharides and Inulin Impact Inter-Individual Variation on Microbial Metabolism and Composition, Which Immunomodulates Human Cells.",,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,Yes,No
-29468143,,Metagenomic Characterization of the Human Intestinal Microbiota in Fecal Samples from STEC-Infected Patients.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,metagenomics,No,No
-29343501,,Sequential BMP7/TGF-β1 signaling and microbiota instruct mucosal Langerhans cell differentiation.,,,,,,,,,,,,,Yes,No
-29273643,,Plasmacytoid dendritic cells protect from viral bronchiolitis and asthma through semaphorin 4a-mediated T reg expansion.,,,,,,,,,,,,,No,No
-29394894,,Differential effects of innate immune variants of surfactant protein-A1 (SFTPA1) and SP-A2 (SFTPA2) in airway function after Klebsiella pneumoniae infection and sex differences.,,Mus musculus,NCBITaxon:10090,,,,,,,,,,Yes,No
-29394957,,Individual and household attributes influence the dynamics of the personal skin microbiota and its association network.,,,,,skin,UBERON:0002097,,,,,,,Yes,No
-29394954,,Crawling-induced floor dust resuspension affects the microbiota of the infant breathing zone.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,Yes,No
-29128130,,Spanish Guidelines on the Evaluation and Diagnosis of Bronchiectasis in Adults.,,,,,,,,,,,,,No,No
-29092015,,MetaCherchant: analyzing genomic context of antibiotic resistance genes in gut microbiota.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,metagenomics,Yes,No
-29028448,,Characterization of the Stool Microbiome in Hispanic Preschool Children by Weight Status and Time.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,Yes,No
-29031501,,DNA Methylation and Transcription Patterns in Intestinal Epithelial Cells From Pediatric Patients With Inflammatory Bowel Diseases Differentiate Disease Subtypes and Associate With Outcome.,,Homo sapiens,NCBITaxon:9606,,,,,inflammatory bowel disease,EFO:0003764,,236,16S,No,No
-27872184,,Functional variants in the sucrase-isomaltase gene associate with increased risk of irritable bowel syndrome.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,,Yes,No
-29438602,,International Consensus Statement on Allergy and Rhinology: Allergic Rhinitis.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
-29161417,,"Bolus Weekly Vitamin D3 Supplementation Impacts Gut and Airway Microbiota in Adults With Cystic Fibrosis: A Double-Blind, Randomized, Placebo-Controlled Clinical Trial.",,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,23,16S,Yes,No
-29248229,,"Breastfeeding-associated microbiota in human milk following supplementation with Lactobacillus rhamnosus GG, Lactobacillus acidophilus La-5, and Bifidobacterium animalis ssp. lactis Bb-12.",,Homo sapiens,NCBITaxon:9606,,,,,,,,142,16S,Yes,No
-29353387,,Inter-individual variation in health and disease associated with pulmonary infectious agents.,,Mus musculus,NCBITaxon:10090,,,,,,,,,,Yes,No
-29384870,,Diversity analysis of subgingival microbial bacteria in peri-implantitis in Uygur population.,,Homo sapiens,NCBITaxon:9606,,,,,,,,40,16S,Yes,No
-29105287,,"Gut Microbiota Interacts with Markers of Adipose Tissue Browning, Insulin Action and Plasma Acetate in Morbid Obesity.",,Homo sapiens,NCBITaxon:9606,,,,,,,,34,,No,No
-29432061,,Atorvastatin Treatment Modulates the Gut Microbiota of the Hypercholesterolemic Patients.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,No,No
-28618237,,Effect of Sweetened Dried Cranberry Consumption on Urinary Proteome and Fecal Microbiome in Healthy Human Subjects.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,No,No
-29471566,,Mucosal-Associated Invariant T Cells in Chronic Inflammatory Liver Disease.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
-29168036,,"The gut microbiome, symptoms, and targeted interventions in children with cancer: a systematic review.",,Homo sapiens,NCBITaxon:9606,,,,,healthy,EFO:0000246,,,,Yes,No
-29434076,,Differences in Gut Microbiota Profiles between Autoimmune Pancreatitis and Chronic Pancreatitis.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,12,other,Yes,No
-29196292,,Gut Microbiota in Human Systemic Lupus Erythematosus and a Mouse Model of Lupus.,,Mus musculus,NCBITaxon:10090,,,,,arthritis disease activity score measurement,EFO:0009435,,,,No,No
-29385143,,Longitudinal microbiome analysis of single donor fecal microbiota transplantation in patients with recurrent Clostridium difficile infection and/or ulcerative colitis.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,ulcerative colitis,EFO:0000729,,,16S,Yes,No
-29382366,,Age and fecal microbial strain-specific differences in patients with spondyloarthritis.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,EFO:0000246,,11,16S,Yes,No
-28969444,,Different physiological properties of human-residential and non-human-residential bifidobacteria in human health.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
-29081087,,Biotransformation of ,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,,No,No
-29361936,,"Vaginal dysbiosis increases risk of preterm fetal membrane rupture, neonatal sepsis and is exacerbated by erythromycin.",,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,Yes,No
-29362454,,Nonalcoholic fatty liver disease is associated with dysbiosis independent of body mass index and insulin resistance.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,EFO:0000246,,,,No,No
-29351278,,Analysis of the tonsillar microbiome in young adults with sore throat reveals a high relative abundance of Fusobacterium necrophorum with low diversity.,,Homo sapiens,NCBITaxon:9606,,,,,,,,9,,Yes,No
-29361092,,"Safety, Clinical Response, and Microbiome Findings Following Fecal Microbiota Transplant in Children With Inflammatory Bowel Disease.",,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,inflammatory bowel disease,EFO:0003764,,,,Yes,No
-29348587,,"Comparative analyses of fecal microbiota in Chinese isolated Yao population, minority Zhuang and rural Han by 16sRNA sequencing.",,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,Yes,No
-29682571,,The Association of Gut Microbiota with Nonalcoholic Steatohepatitis in Thais.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,diabetes mellitus,EFO:0000400,,,16S,Yes,No
-29269393,,Structural basis for the regulation of β-glucuronidase expression by human gut Enterobacteriaceae.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
-29302014,,The commensal microbiome is associated with anti-PD-1 efficacy in metastatic melanoma patients.,,Mus musculus,NCBITaxon:10090,,feces,UBERON:0001988,,cancer,MONDO:0004992,,,,Yes,No
-29097494,,Gut microbiome influences efficacy of PD-1-based immunotherapy against epithelial tumors.,,Mus musculus,NCBITaxon:10090,,feces,UBERON:0001988,,colorectal cancer,MONDO:0005575,,,metagenomics,No,No
-29097493,,Gut microbiome modulates response to anti-PD-1 immunotherapy in melanoma patients.,,Mus musculus,NCBITaxon:10090,,saliva,UBERON:0001836,,cancer,MONDO:0004992,,,,No,No
-28767339,,Assessing gut microbiota perturbations during the early phase of infectious diarrhea in Vietnamese children.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,54,16S,Yes,No
-29052237,,The taxonomic composition of the donor intestinal microbiota is a major factor influencing the efficacy of faecal microbiota transplantation in therapy refractory ulcerative colitis.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,ulcerative colitis,EFO:0000729,,17,16S,No,No
-28829923,,High intake of dairy during energy restriction does not affect energy balance or the intestinal microflora compared with low dairy intake in overweight individuals in a randomized controlled trial.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,69,,No,No
-30793576,,"[Simplified Protocols for Cholera Diagnosis in the National Public Health Laboratory, Port-au-Prince, Haiti].",,,,,feces,UBERON:0001988,,,,,,,Yes,No
-27149343,,Nodular tracheobronchitis in a patient with lymphoma: an unusual presentation of viridans streptococcal respiratory tract infection.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
-29049037,,Fractures and the gut microbiome.,,Mus musculus,NCBITaxon:10090,,,,,,,,,,Yes,No
-29084074,,Clinical and symptom scores are significantly correlated with fecal microbiota features in patients with symptomatic uncomplicated diverticular disease: a pilot study.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,Yes,No
-28636759,,Rosacea and its association with enteral microbiota in Korean females.,,Homo sapiens,NCBITaxon:9606,,,,,,,,251,16S,No,No
-30535609,,Microbiome and Gut Dysbiosis.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,obesity,EFO:0001073,,,,No,No
-29161377,,Transmission and persistence of IncF conjugative plasmids in the gut microbiota of full-term infants.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
-27742762,,Human oral microbiome and prospective risk for pancreatic cancer: a population-based nested case-control study.,,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,cancer,MONDO:0004992,,,16S,No,No
-29543544,,Abundant production of exopolysaccharide by EAEC strains enhances the formation of bacterial biofilms in contaminated sprouts.,,,,,,,,,,,,,Yes,No
-29469650,,Prenatal androgen exposure causes hypertension and gut microbiota dysbiosis.,,Rattus norvegicus,NCBITaxon:10116,,feces,UBERON:0001988,,,,,,,No,No
-29494275,,The gut microbiota and immune checkpoint inhibitors.,,Homo sapiens,NCBITaxon:9606,,,,,cancer,MONDO:0004992,,,metagenomics,Yes,No
-29478734,,Lupus: The microbiome angle.,,,,,,,,,,,,,No,No
-28479329,,Inflammatory phenotypes in patients with severe asthma are associated with distinct airway microbiology.,,Homo sapiens,NCBITaxon:9606,,,,,,,,84,16S,Yes,No
-29045349,,Male-specific Association Between Fat-Free Mass Index and Fecal Microbiota in 2- to 3-Year-Old Australian Children.,,,,,feces,UBERON:0001988,,obesity,EFO:0001073,,18,16S,Yes,No
-28561276,,Intestinal microbiota in patients with chronic hepatitis C with and without cirrhosis compared with healthy controls.,,Homo sapiens,NCBITaxon:9606,,,,,healthy,EFO:0000246,,57,,Yes,No
-30298261,,Analyzing Metabolic Pathways in Microbiomes.,,,,,,,,,,,,other,Yes,No
-30298256,,From RNA-seq to Biological Inference: Using Compositional Data Analysis in Meta-Transcriptomics.,,Homo sapiens,NCBITaxon:9606,,,,,,,,,other,Yes,No
-29195140,,"Are the decrease in circulating anti-α1,3-Gal IgG and the lower content of galactosyl transferase A1 in the microbiota of patients with multiple sclerosis a novel environmental risk factor for the disease?",,Homo sapiens,NCBITaxon:9606,,,,,multiple sclerosis,EFO:0003885,,,,Yes,No
-28843021,,The nasal and gut microbiome in Parkinson's disease and idiopathic rapid eye movement sleep behavior disorder.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,EFO:0000246,,,16S,Yes,No
-28612844,,NLRP3 inflammasome pathway has a critical role in the host immunity against clinically relevant Acinetobacter baumannii pulmonary infection.,,Mus musculus,NCBITaxon:10090,,,,,,,,,,No,No
-29689651,,High relative abundance of firmicutes and increased TNF-α levels correlate with obesity in children.,,,,,feces,UBERON:0001988,,obesity,EFO:0001073,,,,No,No
-28888753,,"The Role of Gut Microbiome in the Pathogenesis of Prostate Cancer: A Prospective, Pilot Study.",,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,cancer,MONDO:0004992,,8,,Yes,No
-24316595,,Human gut microbiome and risk for colorectal cancer.,,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,cancer,MONDO:0004992,,94,16S,Yes,No
+32075882,2020,Perinatal Antibiotic Exposure Affects the Transmission between Maternal and Neonatal Microbiota and Is Associated with Early-Onset Sepsis.,mSphere,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,No,No
+31215600,2019,Relationship between acetaldehyde concentration in mouth air and characteristics of microbiota of tongue dorsum in Japanese healthy adults: a cross-sectional study.,Journal of applied oral science : revista FOB,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,,,,,16S,Yes,No
+31160598,2019,Sex-specific association between gut microbiome and fat distribution.,Nature communications,Homo sapiens,NCBITaxon:9606,,,,,obesity disorder,MONDO:0011122,,,,No,No
+31126003,2019,Air pollution during the winter period and respiratory tract microbial imbalance in a healthy young population in Northeastern China.,"Environmental pollution (Barking, Essex : 1987)",Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,,,,,16S,Yes,No
+31123265,2019,Altered respiratory virome and serum cytokine profile associated with recurrent respiratory tract infections in children.,Nature communications,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
+31053143,2019,The combination of sport and sport-specific diet is associated with characteristics of gut microbiota: an observational study.,Journal of the International Society of Sports Nutrition,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,,,,other,Yes,No
+30919073,2019,The oral microbiome of patients undergoing treatment for severe aplastic anemia: a pilot study.,Annals of hematology,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,,,,229,16S,Yes,No
+30888539,2019,"Glutamate interactions with obesity, insulin resistance, cognition and gut microbiota composition.",Acta diabetologica,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,35,metagenomics,Yes,No
+30875283,2019,Oral microbial dysbiosis in patients with Kostmann syndrome.,Journal of medical microbiology,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,Kostmann syndrome,MONDO:0012548,,,16S,Yes,No
+30867067,2019,Prebiotic supplementation in frail older people affects specific gut microbiota taxa but not global diversity.,Microbiome,Mus musculus,NCBITaxon:10090,,,,,,,,,,Yes,No
+30866773,2019,Differential effects of depot medroxyprogesterone acetate administration on vaginal microbiome in Hispanic White and Black women.,Emerging microbes & infections,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,Yes,No
+30854760,2019,Prospective observational study of vaginal microbiota pre- and post-rescue cervical cerclage.,BJOG : an international journal of obstetrics and gynaecology,Homo sapiens,NCBITaxon:9606,,,,,,,,,other,Yes,No
+30813950,2019,Environmental toxicants in breast milk of Norwegian mothers and gut bacteria composition and metabolites in their infants at 1 month.,Microbiome,,,,feces,UBERON:0001988,,,,,,16S,No,No
+30803537,2019,Microbiome of Deep Dentinal Caries from Reversible Pulpitis to Irreversible Pulpitis.,Journal of endodontics,,,,,,,,,,13,16S,Yes,No
+30791484,2019,Daidzein Intake Is Associated with Equol Producing Status through an Increase in the Intestinal Bacteria Responsible for Equol Production.,Nutrients,Homo sapiens,NCBITaxon:9606,,,,,,,,458,16S,No,No
+30791436,2019,Effect of Selected Stilbenoids on Human Fecal Microbiota.,"Molecules (Basel, Switzerland)",Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,No,No
+30770768,2019,Genome-resolved metagenomics of eukaryotic populations during early colonization of premature infants and in hospital rooms.,Microbiome,,,,feces,UBERON:0001988,,,,,,16S,Yes,No
+30764497,2019,Autism Spectrum Disorder (ASD) with and without Mental Regression is Associated with Changes in the Fecal Microbiota.,Nutrients,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,metagenomics,No,No
+30719912,2019,Modulation of Gut Microbiota by Soybean 7S Globulin Peptide That Involved Lipopolysaccharide-Peptide Interaction.,Journal of agricultural and food chemistry,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
+30707176,2019,Gut microbiota analysis and its significance in vasovagal syncope in children.,Chinese medical journal,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,Yes,No
+30696735,2019,Dynamics of Human Gut Microbiota and Short-Chain Fatty Acids in Response to Dietary Interventions with Three Fermentable Fibers.,mBio,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
+30682843,2019,The Effects of Dietary Pattern during Intensified Training on Stool Microbiota of Elite Race Walkers.,Nutrients,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,No,No
+30678168,2019,Impact of Grain Sorghum Polyphenols on Microbiota of Normal Weight and Overweight/Obese Subjects during In Vitro Fecal Fermentation.,Nutrients,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
+30665461,2019,Population structure of human gut bacteria in a diverse cohort from rural Tanzania and Botswana.,Genome biology,,,,,,,,,,,16S,Yes,No
+30664020,2019,The effect of surgical fecal stream diversion of the healthy colon on the colonic microbiota.,European journal of gastroenterology & hepatology,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,28,,Yes,No
+30661321,2019,Comparison of the Gut Microbiota of Centenarians in Longevity Villages of South Korea with Those of Other Age Groups.,Journal of microbiology and biotechnology,,,,feces,UBERON:0001988,,,,,,,No,No
+30642268,2019,Viral species richness and composition in young children with loose or watery stool in Ethiopia.,BMC infectious diseases,,,,feces,UBERON:0001988,,,,,,metagenomics,Yes,No
+30633889,2019,Establishment of vaginal microbiota composition in early pregnancy and its association with subsequent preterm prelabor rupture of the fetal membranes.,Translational research : the journal of laboratory and clinical medicine,Homo sapiens,NCBITaxon:9606,,,,,,,,38,,No,No
+30604790,2019,Modification of wheat bran particle size and tissue composition affects colonisation and metabolism by human faecal microbiota.,Food & function,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,,Yes,No
+30599284,2019,Pathogen reservoir hypothesis investigated by analyses of the adenotonsillar and middle ear microbiota.,International journal of pediatric otorhinolaryngology,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,Yes,No
+30574802,2019,Eczema-protective probiotic alters infant gut microbiome functional capacity but not composition: sub-sample analysis from a RCT.,Beneficial microbes,,,,feces,UBERON:0001988,,,,,,metagenomics,No,No
+30542916,2019,Subgingival Microbial Changes During the First 3 Months of Fixed Appliance Treatment in Female Adult Patients.,Current microbiology,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,Yes,No
+30520232,2019,Changes in the distal esophageal microbiota in Chinese patients with reflux esophagitis.,Journal of digestive diseases,Homo sapiens,NCBITaxon:9606,,,,,healthy,,,,16S,Yes,No
+30508628,2019,Microbial biomarkers of common tongue coatings in patients with gastric cancer.,Microbial pathogenesis,Homo sapiens,NCBITaxon:9606,,,,,gastric cancer,MONDO:0001056,,,16S,Yes,No
+30503971,2019,The role of gut microbiome and its interaction with arsenic exposure in carotid intima-media thickness in a Bangladesh population.,Environment international,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,250,16S,Yes,No
+30440093,2019,Evaluation of gastric microbiome and metagenomic function in patients with intestinal metaplasia using 16S rRNA gene sequencing.,Helicobacter,Homo sapiens,NCBITaxon:9606,,,,,cancer,MONDO:0004992,,,16S,Yes,No
+30417607,2019,Composition of gut microbiota and its association with body mass index and lifestyle factors in a cohort of 7-18 years old children from the American Gut Project.,Pediatric obesity,,,,,,,obesity disorder,MONDO:0011122,,,16S,Yes,No
+30366118,2019,The gut microbiome of Mexican children affected by obesity.,Anaerobe,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,obesity disorder,MONDO:0011122,,,metagenomics,Yes,No
+30292647,2019,Structural and functional profiles of the gut microbial community in polycystic ovary syndrome with insulin resistance (IR-PCOS): a pilot study.,Research in microbiology,Homo sapiens,NCBITaxon:9606,,,,,healthy,,,9,16S,Yes,No
+30239655,2019,The Human Mesenteric Lymph Node Microbiome Differentiates Between Crohn's Disease and Ulcerative Colitis.,Journal of Crohn's & colitis,Homo sapiens,NCBITaxon:9606,,,,,Crohn disease,MONDO:0005011,,,16S,No,No
+30171206,2019,Low nadir CD4+ T-cell counts predict gut dysbiosis in HIV-1 infection.,Mucosal immunology,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,156,metagenomics,Yes,No
+30117171,2019,A prospective study to examine the association of the urinary and fecal microbiota with prostate cancer diagnosis after transrectal biopsy of the prostate using 16sRNA gene analysis.,The Prostate,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,prostate cancer,MONDO:0008315,,16,16S,Yes,No
+29791775,2019,Vaginal microbiome in early pregnancy and subsequent risk of spontaneous preterm birth: a case-control study.,BJOG : an international journal of obstetrics and gynaecology,Homo sapiens,NCBITaxon:9606,,,,,,,,356,16S,No,No
+29708822,2019,"Rifaximin is associated with modest, transient decreases in multiple taxa in the gut microbiota of patients with diarrhoea-predominant irritable bowel syndrome.",Gut microbes,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,103,16S,Yes,No
+29509315,2019,The Effect of Lean-Seafood and Non-Seafood Diets on Fecal Metabolites and Gut Microbiome: Results from a Randomized Crossover Intervention Study.,Molecular nutrition & food research,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,,Yes,No
+30171064,2019,Population-level analysis of ,Gut,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,inflammatory bowel disease,MONDO:0005265,,107,16S,No,No
+30553628,2019,A case of pulmonary mucormycosis presented as Pancoast syndrome and bone destruction in an immunocompetent adult mimicking lung carcinoma.,Journal de mycologie medicale,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,,,,,,No,No
+30583154,2019,"Spatial and temporal variation of antibiotic resistance in marine fish cage-culture area of Guangdong, China.","Environmental pollution (Barking, Essex : 1987)",Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
+30293222,2019,Melioidosis mimicking miliary tuberculosis.,"Forensic science, medicine, and pathology",Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
+30531975,2019,GABA-modulating bacteria of the human gut microbiota.,Nature microbiology,,,,,,,,,,,,No,No
+30423465,2019,Effect of bifidobacterium breve A-1 on anxiety and depressive symptoms in schizophrenia: A proof-of-concept study.,Journal of affective disorders,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
+30051546,2019,A step ahead: Exploring the gut microbiota in inpatients with bipolar disorder during a depressive episode.,Bipolar disorders,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,,,,16S,Yes,No
+30447610,2019,Assessment of the adverse impacts of aflatoxin B,Chemosphere,,,,,,,,,,,,No,No
+30500755,2019,Impacts of dietary silver nanoparticles and probiotic administration on the microbiota of an in-vitro gut model.,"Environmental pollution (Barking, Essex : 1987)",Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
+30287886,2019,'NetShift': a methodology for understanding 'driver microbes' from healthy and disease microbiome datasets.,The ISME journal,Homo sapiens,NCBITaxon:9606,,,,,,,,,metagenomics,Yes,No
+30471188,2019,Deciphering the Human Gut Microbiome of Urolithin Metabotypes: Association with Enterotypes and Potential Cardiometabolic Health Implications.,Molecular nutrition & food research,,,,,,,,,,,16S,No,No
+30118620,2019,Assessment of urinary 3-indoxyl sulfate as a marker for gut microbiota diversity and abundance of Clostridiales.,Gut microbes,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,No,No
+30445307,2019,Purinergic P2X7 receptor blockade mitigates alcohol-induced steatohepatitis and intestinal injury by regulating MEK1/2-ERK1/2 signaling and egr-1 activity.,International immunopharmacology,Mus musculus,NCBITaxon:10090,,,,,,,,,,Yes,No
+30297287,2019,Airway Microbiome and Development of Bronchopulmonary Dysplasia in Preterm Infants: A Systematic Review.,The Journal of pediatrics,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
+30279512,2019,A dendritic cell-based systemic vaccine induces long-lived lung-resident memory Th17 cells and ameliorates pulmonary mycosis.,Mucosal immunology,,,,,,,,,,,,No,No
+30573310,2019,[Hypersensitivity pneumonitis and abscess reaction to nontuberculous mycobacteria acquired form jacuzzi aerosol].,Revue des maladies respiratoires,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
+30429094,2019,[A case report of an adult with bronchial mould infection complicated by purulent pleurisy].,Revue des maladies respiratoires,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
+30598081,2018,Gut microbiome changes in overweight male adults following bowel preparation.,BMC genomics,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,Yes,No
+30579350,2018,Stability and resilience of the intestinal microbiota in children in daycare - a 12 month cohort study.,BMC microbiology,,,,feces,UBERON:0001988,,,,,,16S,No,No
+30583518,2018,Navy Beans Impact the Stool Metabolome and Metabolic Pathways for Colon Health in Cancer Survivors.,Nutrients,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,cancer,MONDO:0004992,,,,No,No
+30516980,2018,Characterization of Polysaccharides from Feijoa Fruits ( Acca sellowiana Berg.) and Their Utilization as Growth Substrates by Gut Commensal Bacteroides Species.,Journal of agricultural and food chemistry,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
+30562947,2018,A Metabologenomic Approach Reveals Changes in the Intestinal Environment of Mice Fed on American Diet.,International journal of molecular sciences,Mus musculus,NCBITaxon:10090,,feces,UBERON:0001988,,,,,,other,No,No
+30581271,2018,Modulation of faecal metagenome in Crohn's disease: Role of microRNAs as biomarkers.,World journal of gastroenterology,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,,,29,16S,No,No
+30545401,2018,A comparative study of the gut microbiota in immune-mediated inflammatory diseases-does a common dysbiosis exist?,Microbiome,Homo sapiens,NCBITaxon:9606,,,,,healthy,,,20,16S,Yes,No
+30541450,2018,"Diet, physical activity and screen time but not body mass index are associated with the gut microbiome of a diverse cohort of college students living in university housing: a cross-sectional study.",BMC microbiology,,,,feces,UBERON:0001988,,,,,82,16S,Yes,No
+30538180,2018,"Impact of Individual Traits, Saturated Fat, and Protein Source on the Gut Microbiome.",mBio,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,Yes,No
+30622429,2018,Gut Microbiome Dysbiosis and Immunometabolism: New Frontiers for Treatment of Metabolic Diseases.,Mediators of inflammation,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
+30522511,2018,Cordycepin reduces weight through regulating gut microbiota in high-fat diet-induced obese rats.,Lipids in health and disease,Mus musculus,NCBITaxon:10090,,,,,obesity disorder,MONDO:0011122,,,other,No,No
+30510177,2018,Collective motion conceals fitness differences in crowded cellular populations.,Nature ecology & evolution,,,,,,,cancer,MONDO:0004992,,,,Yes,No
+30418043,2018,Iron deficiency anemia-related gut microbiota dysbiosis in infants and young children: A pilot study.,Acta microbiologica et immunologica Hungarica,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,,,10,16S,No,No
+30212253,2018,Associations between the gut microbiota and host responses to high altitude.,American journal of physiology. Gastrointestinal and liver physiology,,,,,,,,,,,,No,No
+30292635,2018,Differential expression of tumor-associated genes and altered gut microbiome with decreased Akkermansia muciniphila confer a tumor-preventive microenvironment in intestinal epithelial Pten-deficient mice.,Biochimica et biophysica acta. Molecular basis of disease,Mus musculus,NCBITaxon:10090,,,,,cancer,MONDO:0004992,,,,No,No
+30446879,2018,Calorie restriction and its impact on gut microbial composition and global metabolism.,Frontiers of medicine,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
+30311721,2018,Gut microbiome can be restored without adverse events after Helicobacter pylori eradication therapy in teenagers.,Helicobacter,,,,feces,UBERON:0001988,,,,,,16S,Yes,No
+29855054,2018,Detection of the unknown components of the oral microflora of teeth with periapical radiolucencies in a Turkish population using next-generation sequencing techniques.,International endodontic journal,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,,,,20,other,Yes,No
+30267143,2018,Urinary microbes and postoperative urinary tract infection risk in urogynecologic surgical patients.,International urogynecology journal,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,Yes,No
+30467977,2018,Differential clustering of fecal and mucosa-associated microbiota in 'healthy' individuals.,Journal of digestive diseases,,,,feces,UBERON:0001988,,Crohn disease,MONDO:0005011,,,16S,Yes,No
+30498207,2018,Altered gut microbiota after traumatic splenectomy is associated with endotoxemia.,Emerging microbes & infections,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,,,,16S,Yes,No
+30301767,2018,Three structurally and functionally distinct β-glucuronidases from the human gut microbe ,The Journal of biological chemistry,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
+30488879,2018,Gut Microbiota Disruption in Septic Shock Patients: A Pilot Study.,Medical science monitor : international medical journal of experimental and clinical research,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,15,16S,Yes,No
+30463925,2018,Impact of Amoxicillin-Clavulanate followed by Autologous Fecal Microbiota Transplantation on Fecal Microbiome Structure and Metabolic Potential.,mSphere,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,metagenomics,Yes,No
+30453528,2018,Intestinal Microbiome in Irritable Bowel Syndrome before and after Gut-Directed Hypnotherapy.,International journal of molecular sciences,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,No,No
+30584534,2018,Multiomic Strategies Reveal Diversity and Important Functional Aspects of Human Gut Microbiome.,BioMed research international,,,,feces,UBERON:0001988,,,,,,metagenomics,Yes,No
+30409177,2018,Visualization-assisted binning of metagenome assemblies reveals potential new pathogenic profiles in idiopathic travelers' diarrhea.,Microbiome,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,metagenomics,Yes,No
+30395655,2018,HPV infection and bacterial microbiota in breast milk and infant oral mucosa.,PloS one,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,,,,,16S,Yes,No
+30165663,2018,High-resolution analysis of the pneumococcal transcriptome under a wide range of infection-relevant conditions.,Nucleic acids research,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
+29355905,2018,"Hidradenitis suppurativa, a review of pathogenesis, associations and management. Part 1.",The Australasian journal of dermatology,Homo sapiens,NCBITaxon:9606,,,,,,,,106,,No,No
+30157044,2018,Checkpoint inhibitor colitis: a new model of inflammatory bowel disease?,Current opinion in gastroenterology,Homo sapiens,NCBITaxon:9606,,,,,inflammatory bowel disease,MONDO:0005265,,,,No,No
+29303032,2018,The evaluation of the quality of Feng Huang Oolong teas and their modulatory effect on intestinal microbiota of high-fat diet-induced obesity mice model.,International journal of food sciences and nutrition,Mus musculus,NCBITaxon:10090,,,,,obesity disorder,MONDO:0011122,,,other,No,No
+30273610,2018,A multi-amplicon 16S rRNA sequencing and analysis method for improved taxonomic profiling of bacterial communities.,Journal of microbiological methods,Mus musculus,NCBITaxon:10090,,feces,UBERON:0001988,,,,,,16S,Yes,No
+29564487,2018,Gut Microbial Dysbiosis in Indian Children with Autism Spectrum Disorders.,Microbial ecology,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,,,,16S,Yes,No
+30115996,2018,Pulmonary immunization with a recombinant influenza A virus vaccine induces lung-resident CD4,Mucosal immunology,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
+30153231,2018,Pneumococcal Colonization and the Nasopharyngeal Microbiota of Children in Botswana.,The Pediatric infectious disease journal,,,,,,,,,,,16S,Yes,No
+29353409,2018,16S rRNA gene sequencing reveals altered composition of gut microbiota in individuals with kidney stones.,Urolithiasis,Homo sapiens,NCBITaxon:9606,,,,,healthy,,,13,16S,Yes,No
+30365522,2018,Distinct mucosal microbial communities in infants with surgical necrotizing enterocolitis correlate with age and antibiotic exposure.,PloS one,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,Yes,No
+30356965,2018,Fungal dysbiosis predicts the diagnosis of pediatric Crohn's disease.,World journal of gastroenterology,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,Crohn disease,MONDO:0005011,,20,,Yes,No
+30332459,2018,Diversified gut microbiota in newborns of mothers with gestational diabetes mellitus.,PloS one,Homo sapiens,NCBITaxon:9606,,,,,diabetes mellitus,EFO:0000400,,,16S,Yes,No
+30300382,2018,Carious status and supragingival plaque microbiota in hemodialysis patients.,PloS one,Homo sapiens,NCBITaxon:9606,,,,,chronic kidney disease,MONDO:0005300,,30,16S,No,No
+30290831,2018,Evaluation of patient- versus provider-collected vaginal swabs for microbiome analysis during pregnancy.,BMC research notes,Homo sapiens,NCBITaxon:9606,,,,,,,,47,16S,Yes,No
+30279249,2018,Miliary tuberculosis and herpes pharyngitis after a trip to a developing country: dangers of biologics.,BMJ case reports,,,,,,,,,,,,No,No
+29997110,2018,Characterisation of the nasal microbiota in granulomatosis with polyangiitis.,Annals of the rheumatic diseases,Homo sapiens,NCBITaxon:9606,,,,,healthy,,,60,16S,Yes,No
+29808442,2018,High frequency of Polio-like Enterovirus C strains with differential clustering of CVA-13 and EV-C99 subgenotypes in a cohort of Malawian children.,Archives of virology,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,,No,No
+29876777,2018,"Probiotics Ameliorate Stool Consistency in Patients with Chronic Constipation: A Randomized, Double-Blind, Placebo-Controlled Study.",Digestive diseases and sciences,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,irritable bowel syndrome,MONDO:0005052,,88,,Yes,No
+30006660,2018,Intestinal microbiome as a risk factor for urinary tract infections in children.,European journal of clinical microbiology & infectious diseases : official publication of the European Society of Clinical Microbiology,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,Yes,No
+30118374,2018,Cystic fibrosis respiratory microbiota: unraveling complexity to inform clinical practice.,Expert review of respiratory medicine,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
+29665102,2018,Antibiotic-Associated Disruption of Microbiota Composition and Function in Cirrhosis Is Restored by Fecal Transplant.,"Hepatology (Baltimore, Md.)",Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,,Yes,No
+30174010,2018,Paired analysis of the microbiota between surface tissue swabs and biopsies from pediatric patients undergoing adenotonsillectomy.,International journal of pediatric otorhinolaryngology,Homo sapiens,NCBITaxon:9606,,,,,,,,28,other,Yes,No
+30174001,2018,The bacterial community and local lymphocyte response are markedly different in patients with recurrent tonsillitis compared to obstructive sleep apnoea.,International journal of pediatric otorhinolaryngology,Homo sapiens,NCBITaxon:9606,,,,,,,,24,,Yes,No
+30143589,2018,Differential Induction of IFN-α and Modulation of CD112 and CD54 Expression Govern the Magnitude of NK Cell IFN-γ Response to Influenza A Viruses.,"Journal of immunology (Baltimore, Md. : 1950)",Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
+29753031,2018,"Antiseptic Agents Elicit Short-Term, Personalized, and Body Site-Specific Shifts in Resident Skin Bacterial Communities.",The Journal of investigative dermatology,Homo sapiens,NCBITaxon:9606,,skin,UBERON:0002097,,,,,,,No,No
+29908759,2018,Cutibacterium acnes and the shoulder microbiome.,Journal of shoulder and elbow surgery,Homo sapiens,NCBITaxon:9606,,skin,UBERON:0002097,,,,,23,16S,No,No
+30244778,2018,Influence of gender and menopausal status on gut microbiota.,Maturitas,Homo sapiens,NCBITaxon:9606,,,,,,,,20,,No,No
+30313111,2018,The characteristics analysis of intestinal microecology on cerebral infarction patients and its correlation with apolipoprotein E.,Medicine,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,10,other,Yes,No
+30261008,2018,Association of metformin administration with gut microbiome dysbiosis in healthy volunteers.,PloS one,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,diabetes mellitus,EFO:0000400,,,16S,Yes,No
+30248149,2018,NLRP6 negatively regulates pulmonary host defense in Gram-positive bacterial infection through modulating neutrophil recruitment and function.,PLoS pathogens,Mus musculus,NCBITaxon:10090,,,,,,,,,,Yes,No
+30237489,2018,Meconium microbiome associates with the development of neonatal jaundice.,Clinical and translational gastroenterology,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,Yes,No
+30235351,2018,Expansion of commensal fungus Wallemia mellicola in the gastrointestinal mycobiota enhances the severity of allergic airway disease in mice.,PLoS pathogens,Mus musculus,NCBITaxon:10090,,,,,,,,,other,Yes,No
+30187897,2018,Effects of different levels of methionine on sow health and plasma metabolomics during late gestation.,Food & function,,,,feces,UBERON:0001988,,,,,,,Yes,No
+30099890,2018,Gut bacterial composition in a mouse model of Parkinson's disease.,Beneficial microbes,Mus musculus,NCBITaxon:10090,,saliva,UBERON:0001836,,Parkinson disease,MONDO:0005180,,,,Yes,No
+29888657,2018,Oral administration of Bifidobacterium bifidum TMC3115 to neonatal mice may alleviate IgE-mediated allergic risk in adulthood.,Beneficial microbes,Mus musculus,NCBITaxon:10090,,feces,UBERON:0001988,,,,,54,16S,Yes,No
+30227892,2018,Predicting recurrence of Clostridium difficile infection following encapsulated fecal microbiota transplantation.,Microbiome,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,89,,Yes,No
+30208875,2018,A metagenome-wide association study of gut microbiota in asthma in UK adults.,BMC microbiology,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,,,,,Yes,No
+30208950,2018,Dichotomous development of the gut microbiome in preterm infants.,Microbiome,,,,feces,UBERON:0001988,,,,,,16S,Yes,No
+30204780,2018,Chronic fatigue syndrome patients have alterations in their oral microbiome composition and function.,PloS one,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,healthy,,,,16S,Yes,No
+30201048,2018,Quantification of variation and the impact of biomass in targeted 16S rRNA gene sequencing studies.,Microbiome,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,244,16S,Yes,No
+30202057,2018,Gut fungal dysbiosis correlates with reduced efficacy of fecal microbiota transplantation in Clostridium difficile infection.,Nature communications,Mus musculus,NCBITaxon:10090,,feces,UBERON:0001988,,,,,,,No,No
+30189859,2018,Reliability of a participant-friendly fecal collection method for microbiome analyses: a step towards large sample size investigation.,BMC microbiology,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,,Yes,No
+30068076,2018,"Chemical Compositions of Cold-Pressed Broccoli, Carrot, and Cucumber Seed Flours and Their in Vitro Gut Microbiota Modulatory, Anti-inflammatory, and Free Radical Scavenging Properties.",Journal of agricultural and food chemistry,,,,,,,,,,,,No,No
+29862523,2018,Family-based study reveals decreased abundance of sputum Granulicatella in asthmatics.,Allergy,Homo sapiens,NCBITaxon:9606,,,,,,,,14,,No,No
+30373876,2018,PCR Based Fecal Pathogen Panel Testing Should Be Interpreted with Caution at Diagnosis of Pediatric Inflammatory Bowel Diseases.,Annals of clinical and laboratory science,,,,feces,UBERON:0001988,,inflammatory bowel disease,MONDO:0005265,,,,Yes,No
+29976769,2018,Gut Microbiota-Dependent Trimethylamine N-Oxide Predicts Risk of Cardiovascular Events in Patients With Stroke and Is Related to Proinflammatory Monocytes.,"Arteriosclerosis, thrombosis, and vascular biology",Homo sapiens,NCBITaxon:9606,,,,,diabetes mellitus,EFO:0000400,,78,,Yes,No
+29945689,2018,Different latent class models were used and evaluated for assessing the accuracy of campylobacter diagnostic tests: overcoming imperfect reference standards?,Epidemiology and infection,Homo sapiens,NCBITaxon:9606,,,,,,,,623,,No,No
+30010747,2018,Gut microbial and metabolomic profiles after fecal microbiota transplantation in pediatric ulcerative colitis patients.,FEMS microbiology ecology,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,ulcerative colitis,MONDO:0005101,,,16S,Yes,No
+29532420,2018,"Detection of Streptococcus pyogenes virulence genes in Streptococcus dysgalactiae subsp. equisimilis from Vellore, India.",Folia microbiologica,Homo sapiens,NCBITaxon:9606,,,,,,,,,other,Yes,No
+29791788,2018,Shift in skin microbiota of Western European women across aging.,Journal of applied microbiology,Homo sapiens,NCBITaxon:9606,,skin,UBERON:0002097,,,,,,16S,Yes,No
+29548797,2018,Isolation and Identification of the Follicular Microbiome: Implications for Acne Research.,The Journal of investigative dermatology,Homo sapiens,NCBITaxon:9606,,skin,UBERON:0002097,,,,,,16S,No,No
+29985123,2018,Accuracy of a commercial multiplex PCR for the diagnosis of bacterial vaginosis.,Journal of medical microbiology,Homo sapiens,NCBITaxon:9606,,,,,,,,185,16S,Yes,No
+29873593,2018,Variation in the Plasma Levels of Polyunsaturated Fatty Acids in Control vis-à-vis Nonalcoholic Fatty Liver Disease Subjects and Its Possible Association with Gut Microbiome.,Metabolic syndrome and related disorders,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,,,,16S,Yes,No
+30165830,2018,Temporal instability of the post-surgical maxillary sinus microbiota.,BMC infectious diseases,Homo sapiens,NCBITaxon:9606,,,,,,,,35,16S,No,No
+29859693,2018,Short communication: A countrywide survey of antimicrobial-resistant indicator bacteria in Kosovo's dairy farms.,Journal of dairy science,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,165,,Yes,No
+29923815,2018,Streptococcus and Prevotella are associated with the prognosis of oesophageal squamous cell carcinoma.,Journal of medical microbiology,Homo sapiens,NCBITaxon:9606,,,,,cancer,MONDO:0004992,,45,16S,Yes,No
+29982534,2018,Inulin-Type Fructan Supplementation of 3- to 6-Year-Old Children Is Associated with Higher Fecal Bifidobacterium Concentrations and Fewer Febrile Episodes Requiring Medical Attention.,The Journal of nutrition,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,,Yes,No
+30552302,2018,Microbial patterns in patients with histamine intolerance.,Journal of physiology and pharmacology : an official journal of the Polish Physiological Society,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,,,64,16S,Yes,No
+29412464,2018,Effects of bentonite Bgp35b-p on the gut microbiota of mice fed a high-fat diet.,Journal of the science of food and agriculture,Mus musculus,NCBITaxon:10090,,feces,UBERON:0001988,,obesity disorder,MONDO:0011122,,,16S,Yes,No
+29408012,2018,Biomarkers in idiopathic pulmonary fibrosis.,Matrix biology : journal of the International Society for Matrix Biology,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
+29760502,2018,Infant colic: mechanisms and management.,Nature reviews. Gastroenterology & hepatology,,,,,,,,,,,,No,No
+30010849,2018,Mycobacterium tuberculosis H37Rv expresses differential proteome during intracellular survival within alveolar epithelial cells compared with macrophages.,Pathogens and disease,,,,,,,,,,,,Yes,No
+29624747,2018,Fecal microbiome signatures are different in food-allergic children compared to siblings and healthy children.,Pediatric allergy and immunology : official publication of the European Society of Pediatric Allergy and Immunology,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,22,16S,Yes,No
+30064419,2018,Predicting oral malodour based on the microbiota in saliva samples using a deep learning approach.,BMC oral health,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,,,,90,16S,No,No
+30053882,2018,Decreased microbiome diversity in the HIV small airway epithelium.,Respiratory research,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,Yes,No
+30029674,2018,Functional intraepithelial lymphocyte changes in inflammatory bowel disease and spondyloarthritis have disease specific correlations with intestinal microbiota.,Arthritis research & therapy,Homo sapiens,NCBITaxon:9606,,,,,healthy,,,,16S,Yes,No
+29984576,2018,Consumption of Black Legumes Glycine soja and Glycine max Lowers Serum Lipids and Alters the Gut Microbiome Profile in Mice Fed a High-Fat Diet.,Journal of agricultural and food chemistry,Mus musculus,NCBITaxon:10090,,feces,UBERON:0001988,,obesity disorder,MONDO:0011122,,,16S,No,No
+29895146,2018,Camellia Oil ( Camellia oleifera Abel.) Modifies the Composition of Gut Microbiota and Alleviates Acetic Acid-Induced Colitis in Rats.,Journal of agricultural and food chemistry,Rattus norvegicus,NCBITaxon:10116,,feces,UBERON:0001988,,inflammatory bowel disease,MONDO:0005265,,,16S,Yes,No
+30020932,2018,Diurnal oscillations in human salivary microRNA and microbial transcription: Implications for human health and disease.,PloS one,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,,,,77,other,No,No
+29974116,2018,Mannan-oligosaccharide modulates the obesity and gut microbiota in high-fat diet-fed mice.,Food & function,Mus musculus,NCBITaxon:10090,,,,,obesity disorder,MONDO:0011122,,,other,No,No
+29909134,2018,The influence of the intestinal microbiome on vaccine responses.,Vaccine,,,,feces,UBERON:0001988,,,,,,other,No,No
+30050871,2018,,Frontiers in cellular and infection microbiology,,,,,,,,,,,16S,No,No
+30002355,2018,"SunGold Kiwifruit Supplementation of Individuals with Prediabetes Alters Gut Microbiota and Improves Vitamin C Status, Anthropometric and Clinical Markers.",Nutrients,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,diabetes mellitus,EFO:0000400,,,16S,Yes,No
+30002323,2018,A Vegetarian Diet Is a Major Determinant of Gut Microbiota Composition in Early Pregnancy.,Nutrients,Homo sapiens,NCBITaxon:9606,,,,,diabetes mellitus,EFO:0000400,,,16S,No,No
+29973274,2018,Maternal diet during pregnancy is related with the infant stool microbiome in a delivery mode-dependent manner.,Microbiome,,,,feces,UBERON:0001988,,,,,,16S,Yes,No
+29517944,2018,Concurrent gut transcriptome and microbiota profiling following chronic ethanol consumption in nonhuman primates.,Gut microbes,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,cancer,MONDO:0004992,,4,16S,No,No
+29969462,2018,Dysbiosis of oral microbiota and its association with salivary immunological biomarkers in autoimmune liver disease.,PloS one,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,,,56,16S,Yes,No
+29965986,2018,The presence of genetic risk variants within PTPN2 and PTPN22 is associated with intestinal microbiota alterations in Swiss IBD cohort patients.,PloS one,Homo sapiens,NCBITaxon:9606,,,,,lung disease severity measurement,EFO:0007744,,,16S,Yes,No
+29318631,2018,Early-life gut microbiome and egg allergy.,Allergy,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,No,No
+29785502,2018,Comparative persistence of human sewage-specific enterococcal bacteriophages in freshwater and seawater.,Applied microbiology and biotechnology,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,7,,No,No
+29767712,2018,Limited influence of hospital wastewater on the microbiome and resistome of wastewater in a community sewerage system.,FEMS microbiology ecology,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,No,No
+29468742,2018,Dog introduction alters the home dust microbiota.,Indoor air,,,,,,,,,,,16S,Yes,No
+29452199,2018,Establishment of the nasal microbiota in the first 18 months of life: Correlation with early-onset rhinitis and wheezing.,The Journal of allergy and clinical immunology,Homo sapiens,NCBITaxon:9606,,,,,healthy,,,28,16S,Yes,No
+29515164,2018,Activation of Notch-1 in oral epithelial cells by P. gingivalis triggers the expression of the antimicrobial protein PLA,Mucosal immunology,,,,saliva,UBERON:0001836,,,,,,,No,No
+29948900,2018,Characteristics of fecal microbiota in non-alcoholic fatty liver disease patients.,Science China. Life sciences,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,non-alcoholic fatty liver disease severity measurement,EFO:0008421,,,16S,Yes,No
+29988504,2018,Detection of Pulmonary Infectious Pathogens From Lung Biopsy Tissues by Metagenomic Next-Generation Sequencing.,Frontiers in cellular and infection microbiology,Homo sapiens,NCBITaxon:9606,,,,,pulmonary disorders indicating possible infection,,,20,metagenomics,No,No
+29877551,2018,Ethanol extract of Ganoderma lucidum ameliorates lipid metabolic disorders and modulates the gut microbiota composition in high-fat diet fed rats.,Food & function,Rattus norvegicus,NCBITaxon:10116,,saliva,UBERON:0001836,,,,,,,Yes,No
+29971220,2018,Association Between Gut Microbiota and ,Frontiers in cellular and infection microbiology,,,,,,,,,,,,No,No
+29885665,2018,Bacterial biogeography of adult airways in atopic asthma.,Microbiome,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,healthy,,,45,16S,Yes,No
+29884786,2018,Individuality and convergence of the infant gut microbiota during the first year of life.,Nature communications,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,,No,No
+29679417,2018,A probiotic modulates the microbiome and immunity in multiple sclerosis.,Annals of neurology,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,,,9,16S,Yes,No
+29863827,2018,Exposures Related to House Dust Microbiota in a U.S. Farming Population.,Environmental health perspectives,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,Yes,No
+29869736,2018,Composition and richness of the serum microbiome differ by age and link to systemic inflammation.,GeroScience,,,,,,,,,,24,,Yes,No
+28578302,2018,Fungal dysbiosis in cirrhosis.,Gut,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,26,,Yes,No
+29726951,2018,"Walnut Consumption Alters the Gastrointestinal Microbiota, Microbially Derived Secondary Bile Acids, and Health Markers in Healthy Adults: A Randomized Controlled Trial.",The Journal of nutrition,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,cancer,MONDO:0004992,,18,,Yes,No
+29858350,2018,The Microbiome in Psoriasis and Psoriatic Arthritis: The Skin Perspective.,The Journal of rheumatology. Supplement,Homo sapiens,NCBITaxon:9606,,skin,UBERON:0002097,,,,,,,No,No
+29704918,2018,Microbiota-drug interactions: Impact on metabolism and efficacy of therapeutics.,Maturitas,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
+28483533,2018,Berry anthocyanin intake and cardiovascular health.,Molecular aspects of medicine,,,,,,,,,,,,Yes,No
+29710405,2018,In Vitro Fermentation Behavior of Isomalto/Malto-Polysaccharides Using Human Fecal Inoculum Indicates Prebiotic Potential.,Molecular nutrition & food research,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,,Yes,No
+29857583,2018,Changes of Colonic Bacterial Composition in Parkinson's Disease and Other Neurodegenerative Diseases.,Nutrients,Homo sapiens,NCBITaxon:9606,,,,,Parkinson disease,MONDO:0005180,,,,No,No
+29762733,2018,The effect of vaginal microbial communities on colonization by Staphylococcus aureus with the gene for toxic shock syndrome toxin 1 (TSST-1): a case-control study.,Pathogens and disease,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,Yes,No
+29388394,2018,Composition of gut microbiota in obese and normal-weight Mexican school-age children and its association with metabolic traits.,Pediatric obesity,,,,,,,obesity disorder,MONDO:0011122,,,16S,Yes,No
+29256975,2018,Gene Expression Profiling of Bronchoalveolar Lavage Cells During Aspergillus Colonization of the Lung Allograft.,Transplantation,Homo sapiens,NCBITaxon:9606,,,,,,,,12,,Yes,No
+29574656,2018,Differences in Type I interferon response in human lung epithelial cells infected by highly pathogenic H5N1 and low pathogenic H11N1 avian influenza viruses.,Virus genes,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
+28705725,2018,Assessing the impact of protein extraction methods for human gut metaproteomics.,Journal of proteomics,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,metagenomics,Yes,No
+29799027,2018,Differential metabolic effects of oral butyrate treatment in lean versus metabolic syndrome subjects.,Clinical and translational gastroenterology,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,diabetes mellitus,EFO:0000400,,9,,Yes,No
+29788934,2018,The lung microbiome in children with HIV-bronchiectasis: a cross-sectional pilot study.,BMC pulmonary medicine,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,No,No
+29764499,2018,Gestational diabetes is associated with change in the gut microbiota composition in third trimester of pregnancy and postpartum.,Microbiome,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,diabetes mellitus,EFO:0000400,,50,16S,Yes,No
+29763437,2018,"Postnatal colonization with human ""infant-type"" Bifidobacterium species alters behavior of adult gnotobiotic mice.",PloS one,Mus musculus,NCBITaxon:10090,,,,,,,,,16S,Yes,No
+29593031,2018,Central Role of the NF-κB Pathway in the ,Journal of virology,,,,,,,,,,,,No,No
+29965539,2018,[Influence of Different Patterns of Discharge on Microbial Diffusion in Municipal Treated Wastewater].,Huan jing ke xue= Huanjing kexue,,,,,,,,,,,other,No,No
+29767701,2018,Microbiome-Mediated Effects of the Mediterranean Diet on Inflammation.,"Advances in nutrition (Bethesda, Md.)",Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
+29713027,2018,Evaluation of chronic diarrhea and irritable bowel syndrome with diarrhea in adults in the era of precision medicine.,The American journal of gastroenterology,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
+29571898,2018,Differential immune responses and microbiota profiles in children with autism spectrum disorders and co-morbid gastrointestinal symptoms.,"Brain, behavior, and immunity",,,,,,,,,,,metagenomics,No,No
+29401402,2018,"Potential of Lactobacillus plantarum ZDY2013 and Bifidobacterium bifidum WBIN03 in relieving colitis by gut microbiota, immune, and anti-oxidative stress.",Canadian journal of microbiology,,,,feces,UBERON:0001988,,ulcerative colitis,MONDO:0005101,,,,No,No
+29097439,2018,Mucosa-associated invariant T cells link intestinal immunity with antibacterial immune defects in alcoholic liver disease.,Gut,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,,,,,Yes,No
+28341746,2018,Leveraging sequence-based faecal microbial community survey data to identify a composite biomarker for colorectal cancer.,Gut,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,cancer,MONDO:0004992,,509,16S,Yes,No
+29525681,2018,Gut microbiota dysbiosis is associated with Henoch-Schönlein Purpura in children.,International immunopharmacology,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,155,16S,Yes,No
+29721826,2018,"Importance of differential identification of Mycobacterium tuberculosis strains for understanding differences in their prevalence, treatment efficacy, and vaccine development.","Journal of microbiology (Seoul, Korea)",,,,,,,,,,,,No,No
+29610517,2018,Differential bacterial capture and transport preferences facilitate co-growth on dietary xylan in the human gut.,Nature microbiology,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
+28263087,2018,Protein-losing enteropathy in an infant with rotavirus infection.,Paediatrics and international child health,,,,feces,UBERON:0001988,,,,,,,Yes,No
+29618180,2018,Comparative Analysis of Gut Microbial Communities in Children under 5 Years Old with Diarrhea.,Journal of microbiology and biotechnology,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,,,,16S,No,No
+29633639,2018,"Stool and urine trefoil factor 3 levels: associations with symptoms, intestinal permeability, and microbial diversity in irritable bowel syndrome.",Beneficial microbes,,,,feces,UBERON:0001988,,,,,,16S,Yes,No
+29482339,2018,Gut microbiota characterisation in obese patients before and after bariatric surgery.,Beneficial microbes,Homo sapiens,NCBITaxon:9606,,,,,obesity disorder,MONDO:0011122,,,,No,No
+29482338,2018,Effect of Bacillus subtilis C-3102 on loose stools in healthy volunteers.,Beneficial microbes,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,,Yes,No
+29740427,2018,Intestinal Microbiota at Engraftment Influence Acute Graft-Versus-Host Disease ,Frontiers in immunology,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
+29669883,2018,Impact of Long-Term Erythromycin Therapy on the Oropharyngeal Microbiome and Resistance Gene Reservoir in Non-Cystic Fibrosis Bronchiectasis.,mSphere,,,,,,,,,,,16S,Yes,No
+29668720,2018,Do we treat our patients or rather periodontal microbes with adjunctive antibiotics in periodontal therapy? A 16S rDNA microbial community analysis.,PloS one,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,,,,89,16S,Yes,No
+29666288,2018,Microbiota and Metatranscriptome Changes Accompanying the Onset of Gingivitis.,mBio,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,,,,,16S,Yes,No
+29642940,2018,Multi-cohort analysis of colorectal cancer metagenome identified altered bacteria across populations and universal bacterial markers.,Microbiome,Homo sapiens,NCBITaxon:9606,,,,,cancer,MONDO:0004992,,,metagenomics,Yes,No
+29355542,2018,No appendix necessary: Fecal transplants and antibiotics can resolve Clostridium difficile infection.,Journal of theoretical biology,,,,feces,UBERON:0001988,,,,,,,Yes,No
+29632427,2018,Fecal microbial dysbiosis in Chinese patients with inflammatory bowel disease.,World journal of gastroenterology,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,inflammatory bowel disease,MONDO:0005265,,15,16S,Yes,No
+29681906,2018,Infection of ,Frontiers in immunology,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
+29623445,2018,Role of the Microbiome in Food Allergy.,Current allergy and asthma reports,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,,,,,,Yes,No
+29615108,2018,Phages infecting Faecalibacterium prausnitzii belong to novel viral genera that help to decipher intestinal viromes.,Microbiome,Mus musculus,NCBITaxon:10090,,,,,healthy,,,,metagenomics,Yes,No
+29127623,2018,Differences in bacterial composition between men's and women's restrooms and other common areas within a public building.,Antonie van Leeuwenhoek,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,Yes,No
+29524863,2018,The gut microbiome and elevated cardiovascular risk in obesity and autoimmunity.,Atherosclerosis,Homo sapiens,NCBITaxon:9606,,,,,obesity disorder,MONDO:0011122,,,,Yes,No
+29393577,2018,Adhesion and invasion attributes of Burkholderia pseudomallei are dependent on airway surface liquid and glucose concentrations in lung epithelial cells.,Environmental microbiology reports,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
+29233857,2018,"Timing of food intake impacts daily rhythms of human salivary microbiota: a randomized, crossover study.",FASEB journal : official publication of the Federation of American Societies for Experimental Biology,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,,Yes,No
+29083504,2018,The circulating microbiome signature and inferred functional metagenomics in alcoholic hepatitis.,"Hepatology (Baltimore, Md.)",Homo sapiens,NCBITaxon:9606,,,,,,,,18,16S,Yes,No
+29531366,2018,Towards predicting the environmental metabolome from metagenomics with a mechanistic model.,Nature microbiology,,,,,,,,,,,,No,No
+29405661,2018,"In children, the microbiota of the nasopharynx and bronchoalveolar lavage fluid are both similar and different.",Pediatric pulmonology,Homo sapiens,NCBITaxon:9606,,,,,,,,72,16S,Yes,No
+29444477,2018,The microbiome in chronic kidney disease patients undergoing hemodialysis and peritoneal dialysis.,Pharmacological research,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
+29424773,2018,Vaginal microbiota and susceptibility to HIV.,"AIDS (London, England)",Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
+29636752,2018,Autoantibodies in Autoimmune Liver Disease-Clinical and Diagnostic Relevance.,Frontiers in immunology,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
+29426044,2018,Dysbiosis of Inferior Turbinate Microbiota Is Associated with High Total IgE Levels in Patients with Allergic Rhinitis.,Infection and immunity,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
+29522532,2018,Fluctuations in airway bacterial communities associated with clinical states and disease stages in cystic fibrosis.,PloS one,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,No,No
+29447975,2018,Profiling of novel microRNAs elicited by EV71 and CA16 infection in human bronchial epithelial cells using high-throughput sequencing.,Virus research,Homo sapiens,NCBITaxon:9606,,,,,,,,,other,Yes,No
+29052232,2018,Different functional genes of upper airway microbiome associated with natural course of childhood asthma.,Allergy,Homo sapiens,NCBITaxon:9606,,,,,healthy,,,,other,No,No
+29486796,2018,Differential human gut microbiome assemblages during soil-transmitted helminth infections in Indonesia and Liberia.,Microbiome,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
+29489859,2018,Emollient use alters skin barrier and microbes in infants at risk for developing atopic dermatitis.,PloS one,Homo sapiens,NCBITaxon:9606,,skin,UBERON:0002097,,,,,11,16S,No,No
+29264969,2018,Effects of fermented soymilk with Lactobacillus casei Shirota on skin condition and the gut microbiota: a randomised clinical pilot trial.,Beneficial microbes,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,Yes,No
+29124969,2018,The gut mycobiome composition is linked to carotid atherosclerosis.,Beneficial microbes,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
+29486761,2018,Impaired diversity of the lung microbiome predicts progression of idiopathic pulmonary fibrosis.,Respiratory research,Mus musculus,NCBITaxon:10090,,,,,,,,,16S,Yes,No
+29470389,2018,"A Walnut-Enriched Diet Affects Gut Microbiome in Healthy Caucasian Subjects: A Randomized, Controlled Trial.",Nutrients,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,135,16S,Yes,No
+29458413,2018,Gut microbiota trajectory in early life may predict development of celiac disease.,Microbiome,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,10,16S,Yes,No
+29483715,2018,[Salivary microbiome in people with obesity: a pilot study].,Beijing da xue xue bao. Yi xue ban = Journal of Peking University. Health sciences,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,obesity disorder,MONDO:0011122,,,,Yes,No
+29453431,2018,Delayed gut microbiota development in high-risk for asthma infants is temporarily modifiable by Lactobacillus supplementation.,Nature communications,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,,Yes,No
+29040451,2018,An omnibus test for differential distribution analysis of microbiome sequencing data.,"Bioinformatics (Oxford, England)",Homo sapiens,NCBITaxon:9606,,,,,,,,,other,Yes,No
+29378945,2018,Adaptation of commensal proliferating ,Proceedings of the National Academy of Sciences of the United States of America,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
+29363966,2018,"Arabinoxylo-Oligosaccharides and Inulin Impact Inter-Individual Variation on Microbial Metabolism and Composition, Which Immunomodulates Human Cells.",Journal of agricultural and food chemistry,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,Yes,No
+29468143,2018,Metagenomic Characterization of the Human Intestinal Microbiota in Fecal Samples from STEC-Infected Patients.,Frontiers in cellular and infection microbiology,Homo sapiens,NCBITaxon:9606,,,,,,,,,metagenomics,No,No
+29343501,2018,Sequential BMP7/TGF-β1 signaling and microbiota instruct mucosal Langerhans cell differentiation.,The Journal of experimental medicine,,,,,,,,,,,,Yes,No
+29273643,2018,Plasmacytoid dendritic cells protect from viral bronchiolitis and asthma through semaphorin 4a-mediated T reg expansion.,The Journal of experimental medicine,,,,,,,,,,,,No,No
+29394894,2018,Differential effects of innate immune variants of surfactant protein-A1 (SFTPA1) and SP-A2 (SFTPA2) in airway function after Klebsiella pneumoniae infection and sex differences.,Respiratory research,Mus musculus,NCBITaxon:10090,,,,,,,,,,Yes,No
+29394957,2018,Individual and household attributes influence the dynamics of the personal skin microbiota and its association network.,Microbiome,,,,skin,UBERON:0002097,,,,,,,Yes,No
+29394954,2018,Crawling-induced floor dust resuspension affects the microbiota of the infant breathing zone.,Microbiome,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,Yes,No
+29128130,2018,Spanish Guidelines on the Evaluation and Diagnosis of Bronchiectasis in Adults.,Archivos de bronconeumologia,,,,,,,,,,,,No,No
+29092015,2018,MetaCherchant: analyzing genomic context of antibiotic resistance genes in gut microbiota.,"Bioinformatics (Oxford, England)",Homo sapiens,NCBITaxon:9606,,,,,,,,,metagenomics,Yes,No
+27872184,2018,Functional variants in the sucrase-isomaltase gene associate with increased risk of irritable bowel syndrome.,Gut,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,,Yes,No
+29438602,2018,International Consensus Statement on Allergy and Rhinology: Allergic Rhinitis.,International forum of allergy & rhinology,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
+29161417,2018,"Bolus Weekly Vitamin D3 Supplementation Impacts Gut and Airway Microbiota in Adults With Cystic Fibrosis: A Double-Blind, Randomized, Placebo-Controlled Clinical Trial.",The Journal of clinical endocrinology and metabolism,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,23,16S,Yes,No
+29248229,2018,"Breastfeeding-associated microbiota in human milk following supplementation with Lactobacillus rhamnosus GG, Lactobacillus acidophilus La-5, and Bifidobacterium animalis ssp. lactis Bb-12.",Journal of dairy science,Homo sapiens,NCBITaxon:9606,,,,,,,,142,16S,Yes,No
+29353387,2018,Inter-individual variation in health and disease associated with pulmonary infectious agents.,Mammalian genome : official journal of the International Mammalian Genome Society,Mus musculus,NCBITaxon:10090,,,,,,,,,,Yes,No
+29384870,2018,Diversity analysis of subgingival microbial bacteria in peri-implantitis in Uygur population.,Medicine,Homo sapiens,NCBITaxon:9606,,,,,,,,40,16S,Yes,No
+29105287,2018,"Gut Microbiota Interacts with Markers of Adipose Tissue Browning, Insulin Action and Plasma Acetate in Morbid Obesity.",Molecular nutrition & food research,Homo sapiens,NCBITaxon:9606,,,,,,,,34,,No,No
+29432061,2018,Atorvastatin Treatment Modulates the Gut Microbiota of the Hypercholesterolemic Patients.,Omics : a journal of integrative biology,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,No,No
+28618237,2018,Effect of Sweetened Dried Cranberry Consumption on Urinary Proteome and Fecal Microbiome in Healthy Human Subjects.,Omics : a journal of integrative biology,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,No,No
+29471566,2018,Mucosal-Associated Invariant T Cells in Chronic Inflammatory Liver Disease.,Seminars in liver disease,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
+29168036,2018,"The gut microbiome, symptoms, and targeted interventions in children with cancer: a systematic review.",Supportive care in cancer : official journal of the Multinational Association of Supportive Care in Cancer,Homo sapiens,NCBITaxon:9606,,,,,healthy,,,,,Yes,No
+29434076,2018,Differences in Gut Microbiota Profiles between Autoimmune Pancreatitis and Chronic Pancreatitis.,The Tohoku journal of experimental medicine,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,12,other,Yes,No
+29196292,2018,Gut Microbiota in Human Systemic Lupus Erythematosus and a Mouse Model of Lupus.,Applied and environmental microbiology,Mus musculus,NCBITaxon:10090,,,,,arthritis disease activity score measurement,EFO:0009435,,,,No,No
+29385143,2018,Longitudinal microbiome analysis of single donor fecal microbiota transplantation in patients with recurrent Clostridium difficile infection and/or ulcerative colitis.,PloS one,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,ulcerative colitis,MONDO:0005101,,,16S,Yes,No
+29382366,2018,Age and fecal microbial strain-specific differences in patients with spondyloarthritis.,Arthritis research & therapy,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,,,11,16S,Yes,No
+28969444,2018,Different physiological properties of human-residential and non-human-residential bifidobacteria in human health.,Beneficial microbes,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
+29081087,2018,Biotransformation of ,Journal of microbiology and biotechnology,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,,No,No
+29361936,2018,"Vaginal dysbiosis increases risk of preterm fetal membrane rupture, neonatal sepsis and is exacerbated by erythromycin.",BMC medicine,Homo sapiens,NCBITaxon:9606,,,,,,,,,16S,Yes,No
+29362454,2018,Nonalcoholic fatty liver disease is associated with dysbiosis independent of body mass index and insulin resistance.,Scientific reports,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,,,,,No,No
+29351278,2018,Analysis of the tonsillar microbiome in young adults with sore throat reveals a high relative abundance of Fusobacterium necrophorum with low diversity.,PloS one,Homo sapiens,NCBITaxon:9606,,,,,,,,9,,Yes,No
+29361092,2018,"Safety, Clinical Response, and Microbiome Findings Following Fecal Microbiota Transplant in Children With Inflammatory Bowel Disease.",Inflammatory bowel diseases,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,inflammatory bowel disease,MONDO:0005265,,,,Yes,No
+29348587,2018,"Comparative analyses of fecal microbiota in Chinese isolated Yao population, minority Zhuang and rural Han by 16sRNA sequencing.",Scientific reports,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,Yes,No
+29682571,2018,The Association of Gut Microbiota with Nonalcoholic Steatohepatitis in Thais.,BioMed research international,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,diabetes mellitus,EFO:0000400,,,16S,Yes,No
+29269393,2018,Structural basis for the regulation of β-glucuronidase expression by human gut Enterobacteriaceae.,Proceedings of the National Academy of Sciences of the United States of America,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
+29302014,2018,The commensal microbiome is associated with anti-PD-1 efficacy in metastatic melanoma patients.,"Science (New York, N.Y.)",Mus musculus,NCBITaxon:10090,,feces,UBERON:0001988,,cancer,MONDO:0004992,,,,Yes,No
+29097494,2018,Gut microbiome influences efficacy of PD-1-based immunotherapy against epithelial tumors.,"Science (New York, N.Y.)",Mus musculus,NCBITaxon:10090,,feces,UBERON:0001988,,colorectal cancer,MONDO:0005575,,,metagenomics,No,No
+29097493,2018,Gut microbiome modulates response to anti-PD-1 immunotherapy in melanoma patients.,"Science (New York, N.Y.)",Mus musculus,NCBITaxon:10090,,saliva,UBERON:0001836,,cancer,MONDO:0004992,,,,No,No
+28767339,2018,Assessing gut microbiota perturbations during the early phase of infectious diarrhea in Vietnamese children.,Gut microbes,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,54,16S,Yes,No
+29052237,2018,The taxonomic composition of the donor intestinal microbiota is a major factor influencing the efficacy of faecal microbiota transplantation in therapy refractory ulcerative colitis.,Alimentary pharmacology & therapeutics,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,ulcerative colitis,MONDO:0005101,,17,16S,No,No
+28829923,2018,High intake of dairy during energy restriction does not affect energy balance or the intestinal microflora compared with low dairy intake in overweight individuals in a randomized controlled trial.,"Applied physiology, nutrition, and metabolism = Physiologie appliquee, nutrition et metabolisme",Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,69,,No,No
+30793576,2018,"[Simplified Protocols for Cholera Diagnosis in the National Public Health Laboratory, Port-au-Prince, Haiti].",Bulletin de la Societe de pathologie exotique (1990),,,,feces,UBERON:0001988,,,,,,,Yes,No
+27149343,2018,Nodular tracheobronchitis in a patient with lymphoma: an unusual presentation of viridans streptococcal respiratory tract infection.,The clinical respiratory journal,Homo sapiens,NCBITaxon:9606,,,,,,,,,,No,No
+29049037,2018,Fractures and the gut microbiome.,Current opinion in HIV and AIDS,Mus musculus,NCBITaxon:10090,,,,,,,,,,Yes,No
+29084074,2018,Clinical and symptom scores are significantly correlated with fecal microbiota features in patients with symptomatic uncomplicated diverticular disease: a pilot study.,European journal of gastroenterology & hepatology,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,,,,,16S,Yes,No
+28636759,2018,Rosacea and its association with enteral microbiota in Korean females.,Experimental dermatology,Homo sapiens,NCBITaxon:9606,,,,,,,,251,16S,No,No
+30535609,2018,Microbiome and Gut Dysbiosis.,Experientia supplementum (2012),Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,obesity disorder,MONDO:0011122,,,,No,No
+29161377,2018,Transmission and persistence of IncF conjugative plasmids in the gut microbiota of full-term infants.,FEMS microbiology ecology,Homo sapiens,NCBITaxon:9606,,,,,,,,,,Yes,No
+27742762,2018,Human oral microbiome and prospective risk for pancreatic cancer: a population-based nested case-control study.,Gut,Homo sapiens,NCBITaxon:9606,,saliva,UBERON:0001836,,cancer,MONDO:0004992,,,16S,No,No
+29543544,2018,Abundant production of exopolysaccharide by EAEC strains enhances the formation of bacterial biofilms in contaminated sprouts.,Gut microbes,,,,,,,,,,,,Yes,No
+29469650,2018,Prenatal androgen exposure causes hypertension and gut microbiota dysbiosis.,Gut microbes,Rattus norvegicus,NCBITaxon:10116,,feces,UBERON:0001988,,,,,,,No,No
+29494275,2018,The gut microbiota and immune checkpoint inhibitors.,Human vaccines & immunotherapeutics,Homo sapiens,NCBITaxon:9606,,,,,cancer,MONDO:0004992,,,metagenomics,Yes,No
+29478734,2018,Lupus: The microbiome angle.,Immunobiology,,,,,,,,,,,,No,No
+28479329,2018,Inflammatory phenotypes in patients with severe asthma are associated with distinct airway microbiology.,The Journal of allergy and clinical immunology,Homo sapiens,NCBITaxon:9606,,,,,,,,84,16S,Yes,No
+29045349,2018,Male-specific Association Between Fat-Free Mass Index and Fecal Microbiota in 2- to 3-Year-Old Australian Children.,Journal of pediatric gastroenterology and nutrition,,,,feces,UBERON:0001988,,obesity disorder,MONDO:0011122,,18,16S,Yes,No
+28561276,2018,Intestinal microbiota in patients with chronic hepatitis C with and without cirrhosis compared with healthy controls.,Liver international : official journal of the International Association for the Study of the Liver,Homo sapiens,NCBITaxon:9606,,,,,healthy,,,57,,Yes,No
+30298261,2018,Analyzing Metabolic Pathways in Microbiomes.,"Methods in molecular biology (Clifton, N.J.)",,,,,,,,,,,other,Yes,No
+30298256,2018,From RNA-seq to Biological Inference: Using Compositional Data Analysis in Meta-Transcriptomics.,"Methods in molecular biology (Clifton, N.J.)",Homo sapiens,NCBITaxon:9606,,,,,,,,,other,Yes,No
+29195140,2018,"Are the decrease in circulating anti-α1,3-Gal IgG and the lower content of galactosyl transferase A1 in the microbiota of patients with multiple sclerosis a novel environmental risk factor for the disease?",Molecular immunology,Homo sapiens,NCBITaxon:9606,,,,,multiple sclerosis,MONDO:0005301,,,,Yes,No
+28843021,2018,The nasal and gut microbiome in Parkinson's disease and idiopathic rapid eye movement sleep behavior disorder.,Movement disorders : official journal of the Movement Disorder Society,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,healthy,,,,16S,Yes,No
+28612844,2018,NLRP3 inflammasome pathway has a critical role in the host immunity against clinically relevant Acinetobacter baumannii pulmonary infection.,Mucosal immunology,Mus musculus,NCBITaxon:10090,,,,,,,,,,No,No
+29689651,2018,High relative abundance of firmicutes and increased TNF-α levels correlate with obesity in children.,Salud publica de Mexico,,,,feces,UBERON:0001988,,obesity disorder,MONDO:0011122,,,,No,No
+28888753,2018,"The Role of Gut Microbiome in the Pathogenesis of Prostate Cancer: A Prospective, Pilot Study.",Urology,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,cancer,MONDO:0004992,,8,,Yes,No
+24316595,2013,Human gut microbiome and risk for colorectal cancer.,Journal of the National Cancer Institute,Homo sapiens,NCBITaxon:9606,,feces,UBERON:0001988,,cancer,MONDO:0004992,,94,16S,Yes,No
