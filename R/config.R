@@ -1,6 +1,3 @@
-# Schema and options (aligned with curator_table/app.py)
-# Used for normalization, feedback column names, and UI options.
-# Config: env overrides (same as Python CONFIG)
 CONFIG <- list(
   feedback_dir = Sys.getenv("FEEDBACK_DIR", "results"),
   curator_id_default = Sys.getenv("USER", ""),
@@ -14,10 +11,6 @@ dir.create(CONFIG$feedback_dir, showWarnings = FALSE, recursive = TRUE)
 FEEDBACK_CSV <- file.path(CONFIG$feedback_dir, "curator_feedback.csv")
 FEEDBACK_PARQUET <- file.path(CONFIG$feedback_dir, "curator_feedback.parquet")
 
-# Simplified curator-desk schema (per Levi Waldron review): plain value per
-# field, plus an ontology ID for the 3 fields that map to an external
-# ontology. No PRESENT/PARTIALLY_PRESENT/ABSENT Status, Mapping Confidence,
-# or Priority columns - see docs/CURATOR_DESK_CSV_FORMAT.md in the parent repo.
 VALUE_COLUMNS <- c(
   "Host Species",
   "Body Site",
