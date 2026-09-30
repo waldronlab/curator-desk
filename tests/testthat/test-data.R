@@ -185,3 +185,13 @@ test_that("normalize_dataset builds a PubMed Link column from PMID", {
   expect_true(grepl("12345678", result$`PubMed Link`))
   expect_true(grepl("pubmed.ncbi.nlm.nih.gov", result$`PubMed Link`))
 })
+
+test_that("sample.csv only uses BugSigDB's Sequencing type values", {
+  path <- file.path("..", "..", "data", "sample.csv")
+  skip_if_not(file.exists(path))
+  df <- load_data(path)
+  values <- unlist(strsplit(as.character(df[["Sequencing Type"]]), "; ", fixed = TRUE))
+  values <- values[!is.na(values) & nzchar(values)]
+  expect_gt(length(values), 0)
+  expect_true(all(values %in% SEQUENCING_TYPE_VALUES))
+})

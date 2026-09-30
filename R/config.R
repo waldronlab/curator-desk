@@ -38,6 +38,9 @@ BOOLEAN_COLUMNS <- c(
   "In bsgdb"
 )
 
+# BugSigDB's own "Sequencing type" values - the only ones BioAnalyzer emits.
+SEQUENCING_TYPE_VALUES <- c("16S", "18S", "WMS", "ITS / ITS2", "PCR")
+
 COL_FEEDBACK_OPTIONS <- c("Not reviewed", "Correct", "Incorrect", "Unclear")
 
 FEEDBACK_BASE_COLS <- c(
@@ -49,6 +52,19 @@ TRUE_PREFIX <- "true__"
 COL_FB_PREFIX <- "col_feedback__"
 
 safe_col <- function(col) gsub(" ", "_", col, fixed = TRUE)
+
+#' Curator value control for a field: a text box, except Sequencing Type,
+#' which gets a checkbox per BugSigDB value (a paper can use several).
+curator_value_input_html <- function(col) {
+  s <- safe_col(col)
+  if (col != "Sequencing Type") {
+    return(sprintf('<input type="text" id="true_%s" class="form-control">', s))
+  }
+  boxes <- vapply(SEQUENCING_TYPE_VALUES, function(v) {
+    sprintf('<label class="cd-choice"><input type="checkbox" value="%s"> %s</label>', v, v)
+  }, character(1))
+  sprintf('<div id="true_%s" class="cd-choice-group">%s</div>', s, paste(boxes, collapse = ""))
+}
 
 #' Full feedback column schema (dynamic from VALUE_COLUMNS + ONTOLOGY_ID_COLUMNS).
 #'

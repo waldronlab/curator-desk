@@ -199,6 +199,9 @@ div.dataTables_paginate .paginate_button { font-size: 0.78rem; border-radius: 3p
   max-width: none;
   margin: 0;
 }
+.feedback-field .cd-choice-group { display: flex; flex-wrap: wrap; gap: 0.35rem 1.1rem; }
+.feedback-field .cd-choice { display: inline-flex; align-items: center; gap: 0.35rem; margin: 0; cursor: pointer; }
+.feedback-field .cd-choice input { accent-color: var(--cd-3); }
 @media (min-width: 768px) {
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.5rem; }
 }

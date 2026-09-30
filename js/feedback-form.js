@@ -84,6 +84,25 @@
     return "";
   }
 
+  // Sequencing Type's curator value is a group of checkboxes (BugSigDB's
+  // values, joined as "16S; WMS"); every other field is a text box.
+  function curatorValue(el) {
+    if (!el) return "";
+    if (el.classList.contains("cd-choice-group")) {
+      return Array.from(el.querySelectorAll("input:checked")).map(cb => cb.value).join("; ");
+    }
+    return el.value.trim();
+  }
+
+  function clearCuratorValue(el) {
+    if (!el) return;
+    if (el.classList.contains("cd-choice-group")) {
+      el.querySelectorAll("input").forEach(cb => { cb.checked = false; });
+    } else {
+      el.value = "";
+    }
+  }
+
   // Parse the compact "label|ontology_id; label|ontology_id" candidates
   // string (see scripts/cli_rendering.py::_field_ontology_candidates).
   function parseCandidates(raw) {
@@ -142,8 +161,7 @@
         const val = getPredictionValue(row, col);
         predEl.textContent = val ? "BioAnalyzer predicted: " + val : predictionPlaceholder;
       }
-      const trueEl = document.getElementById("true_" + s);
-      if (trueEl && trueEl.tagName === "INPUT") trueEl.value = "";
+      clearCuratorValue(document.getElementById("true_" + s));
       populateOntologySelect(col, row);
     });
   }
@@ -222,8 +240,7 @@
     valueCols.forEach(col => {
       const s = safeCol(col);
       rowObj["pred__" + s] = (pred[col] !== undefined && pred[col] !== null) ? pred[col] : "";
-      const trueEl = document.getElementById("true_" + s);
-      rowObj["true__" + s] = trueEl ? trueEl.value.trim() : "";
+      rowObj["true__" + s] = curatorValue(document.getElementById("true_" + s));
       rowObj["col_feedback__" + s] = (document.getElementById("col_fb_" + s) || {}).value || "Not reviewed";
     });
     ontologyIdCols.forEach(ontoCol => {
@@ -241,9 +258,8 @@
     if (commentEl) commentEl.value = "";
     valueCols.forEach(col => {
       const s = safeCol(col);
-      const t = document.getElementById("true_" + s);
+      clearCuratorValue(document.getElementById("true_" + s));
       const c = document.getElementById("col_fb_" + s);
-      if (t) t.value = "";
       if (c) c.value = "Not reviewed";
     });
     ontologyIdCols.forEach(ontoCol => {

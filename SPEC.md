@@ -367,7 +367,7 @@ curator-desk aligns with **BugSigDB's ontology standards** for structured curati
 
 **Sequencing Type**: BugSigDB Controlled Vocabulary
 - Not a full ontology; predefined list of sequencing methods
-- Values: `16S`, `shotgun`, `WGS`, `metagenomics`, `RNA-seq`, `ITS`, `amplicon`, `other`
+- Values: `16S`, `18S`, `WMS` (whole-metagenome shotgun), `ITS / ITS2`, `PCR` (targeted qPCR/PCR); a paper that used several is listed as e.g. `16S; WMS`
 - Source: https://bugsigdb.org/Help:Admin
 - BugSigDB stores as text string in the `Sequencing type` field
 
