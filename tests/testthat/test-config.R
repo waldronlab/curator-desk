@@ -38,3 +38,24 @@ test_that("feedback_schema produces base + 3 value blocks + 2 ontology blocks", 
 test_that("feedback_schema never includes a Taxa Level column", {
   expect_false(any(grepl("Taxa", feedback_schema())))
 })
+
+test_that("SEQUENCING_TYPE_VALUES are BugSigDB's own Sequencing type values", {
+  expect_equal(SEQUENCING_TYPE_VALUES, c("16S", "18S", "WMS", "ITS / ITS2", "PCR"))
+})
+
+test_that("curator_value_input_html gives Sequencing Type a checkbox per BugSigDB value", {
+  html <- curator_value_input_html("Sequencing Type")
+  expect_match(html, 'id="true_Sequencing_Type" class="cd-choice-group"', fixed = TRUE)
+  values <- regmatches(html, gregexpr('(?<=type="checkbox" value=")[^"]+', html, perl = TRUE))[[1]]
+  expect_equal(values, SEQUENCING_TYPE_VALUES)
+  expect_false(grepl('type="text"', html, fixed = TRUE))
+})
+
+test_that("curator_value_input_html keeps a text box for every other field", {
+  for (col in setdiff(VALUE_COLUMNS, "Sequencing Type")) {
+    expect_equal(
+      curator_value_input_html(col),
+      sprintf('<input type="text" id="true_%s" class="form-control">', safe_col(col))
+    )
+  }
+})

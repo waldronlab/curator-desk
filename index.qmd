@@ -426,7 +426,7 @@ if (nrow(df) > 0 && "PMID" %in% names(df)) {
 
 ### Field-by-field validation (ground truth) {#field-validation-section}
 
-For each field, review **BioAnalyzer's predicted value** and correct it if needed. For Host Species, Body Site, and Condition, also confirm or pick the **ontology mapping** &mdash; a dropdown of BioAnalyzer's suggested candidates appears when a field's mapping wasn't auto-applied (see the **Ontology ID** column in the table above); otherwise enter one manually.
+For each field, review **BioAnalyzer's predicted value** and correct it if needed (for Sequencing Type, tick one or more of BugSigDB's values). For Host Species, Body Site, and Condition, also confirm or pick the **ontology mapping** &mdash; a dropdown of BioAnalyzer's suggested candidates appears when a field's mapping wasn't auto-applied (see the **Ontology ID** column in the table above); otherwise enter one manually.
 
 ::: {.grid}
 
@@ -459,7 +459,7 @@ for (col in VALUE_COLUMNS) {
 <strong>%s</strong>
 <p class="bioanalyzer-pred-line"><span id="pred_%s" class="bioanalyzer-pred text-muted">Select a PMID above and click Load row to see BioAnalyzer&rsquo;s prediction.</span></p>
 <small>Curator value for %s:</small>
-<input type="text" id="true_%s" class="form-control">
+%s
 <small>Was BioAnalyzer correct for %s?</small>
 <select id="col_fb_%s">
 <option value="Not reviewed">Not reviewed</option>
@@ -468,7 +468,7 @@ for (col in VALUE_COLUMNS) {
 <option value="Unclear">Unclear</option>
 </select>
 %s</div>
-', col, s, col, s, col, s, onto_block))
+', col, s, col, curator_value_input_html(col), col, s, onto_block))
 }
 ```
 
