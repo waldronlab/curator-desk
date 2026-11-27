@@ -195,3 +195,47 @@ test_that("sample.csv only uses BugSigDB's Sequencing type values", {
   expect_gt(length(values), 0)
   expect_true(all(values %in% SEQUENCING_TYPE_VALUES))
 })
+
+# ---- load_curator_data: configured source, else sample, with fallback ----
+
+# testthat runs from tests/testthat, so point at the project's sample explicitly.
+sample_csv <- normalizePath(test_path("..", "..", "data", "sample.csv"))
+
+test_that("load_curator_data uses the sample when nothing is configured", {
+  res <- load_curator_data(url = "", path = "", sample = sample_csv)
+  expect_equal(res$source, sample_csv)
+  expect_null(res$fallback_from)
+  expect_gt(nrow(res$df), 0)
+})
+
+test_that("load_curator_data prefers the URL over the path", {
+  csv <- tempfile(fileext = ".csv")
+  write.csv(data.frame(PMID = 111, Title = "From path"), csv, row.names = FALSE)
+  # A private-host URL is refused, so it loads nothing and falls back to the
+  # sample - the path, which would have loaded, was never used.
+  res <- suppressMessages(
+    load_curator_data(url = "http://127.0.0.1/p.csv", path = csv, sample = sample_csv)
+  )
+  expect_equal(res$fallback_from, "http://127.0.0.1/p.csv")
+  expect_false(111L %in% res$df$PMID)
+})
+
+test_that("load_curator_data loads a configured file", {
+  csv <- tempfile(fileext = ".csv")
+  write.csv(data.frame(PMID = c(111, 222), Title = c("A", "B")), csv, row.names = FALSE)
+  res <- load_curator_data(url = "", path = csv, sample = sample_csv)
+  expect_equal(res$source, csv)
+  expect_null(res$fallback_from)
+  expect_equal(sort(res$df$PMID), c(111L, 222L))
+})
+
+test_that("load_curator_data falls back to the sample when the source has no rows", {
+  missing <- file.path(tempdir(), "no-such-predictions.csv")
+  expect_message(
+    res <- load_curator_data(url = "", path = missing, sample = sample_csv),
+    "showing"
+  )
+  expect_equal(res$fallback_from, missing)
+  expect_equal(res$source, sample_csv)
+  expect_gt(nrow(res$df), 0)
+})

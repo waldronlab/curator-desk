@@ -5,7 +5,14 @@ on:
     branches: [main]
   schedule:
     - cron: "0 4 * * *"
+  # Also triggered by bioanalyzer-backend's notify-curator-desk workflow when
+  # its data/curator_predictions.csv changes, with the commit to read it from.
   workflow_dispatch:
+    inputs:
+      predictions_ref:
+        description: bioanalyzer-backend branch or commit SHA to read predictions from
+        required: false
+        default: main
 
 permissions:
   contents: read
@@ -44,6 +51,19 @@ jobs:
         uses: quarto-dev/quarto-actions/setup@v2
         with:
           version: release
+
+      # BioAnalyzer's published predictions. A commit SHA (sent by the notify
+      # workflow) gives a URL raw.githubusercontent.com hasn't cached yet, so a
+      # rebuild right after a push can't pick up the previous file.
+      - name: Point the site at BioAnalyzer predictions
+        env:
+          PREDICTIONS_REF: ${{ github.event.inputs.predictions_ref || 'main' }}
+        run: |
+          if ! [[ "$PREDICTIONS_REF" =~ ^[A-Za-z0-9._/-]+$ ]]; then
+            echo "::error::Invalid predictions_ref: $PREDICTIONS_REF"
+            exit 1
+          fi
+          echo "CURATOR_DATA_URL=https://raw.githubusercontent.com/waldronlab/bioanalyzer-backend/${PREDICTIONS_REF}/data/curator_predictions.csv" >> "$GITHUB_ENV"
 
       - name: Render Quarto site
         env:

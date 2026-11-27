@@ -142,3 +142,28 @@ normalize_dataset <- function(df) {
   )
   df
 }
+
+
+#' Load the table's dataset: CURATOR_DATA_URL, else CURATOR_DATA_PATH, else
+#' the bundled sample. If the configured source yields no rows (e.g. the
+#' BioAnalyzer predictions file hasn't been published yet, or the fetch
+#' failed), fall back to the sample so the site isn't blank; `fallback_from`
+#' records what failed so the page can say so.
+load_curator_data <- function(url = Sys.getenv("CURATOR_DATA_URL", ""),
+                              path = Sys.getenv("CURATOR_DATA_PATH", ""),
+                              sample = file.path("data", "sample.csv")) {
+  source <- trimws(url)
+  if (!nzchar(source)) source <- trimws(path)
+  if (!nzchar(source)) source <- sample
+  df <- normalize_dataset(load_data(source))
+  if (nrow(df) == 0 && !identical(source, sample)) {
+    message("No rows loaded from ", source, "; showing ", sample, " instead")
+    return(list(
+      df = normalize_dataset(load_data(sample)),
+      source = sample,
+      fallback_from = source
+    ))
+  }
+  list(df = df, source = source, fallback_from = NULL)
+}
+
