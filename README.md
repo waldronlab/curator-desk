@@ -45,7 +45,14 @@ CI runs this before rendering, in both `ci.yml` and `quarto-publish.yml`.
 
 The table is built from a single dataset at **render time**:
 
-- **Default:** `data/sample.csv` (minimal example).
+- **Published site:** BioAnalyzer's predictions,
+  `https://raw.githubusercontent.com/waldronlab/bioanalyzer-backend/main/data/curator_predictions.csv`
+  (set as `CURATOR_DATA_URL` in `.github/workflows/quarto-publish.yml`). The site
+  rebuilds daily at 04:00 UTC, and right away when bioanalyzer-backend's
+  `notify-curator-desk` workflow triggers it after the predictions file changes.
+- **Fallback:** if the configured source can't be loaded (e.g. before the
+  predictions file exists), the page shows `data/sample.csv` with a note saying so.
+- **Local default:** `data/sample.csv` (minimal example).
 - **Custom:** Set one of:
   - `CURATOR_DATA_PATH` — path to a local CSV/Parquet (e.g. `../results/analysis_results.csv`).
   - `CURATOR_DATA_URL` — URL to a CSV/Parquet (e.g. raw GitHub URL).

@@ -14,21 +14,10 @@ source("R/config.R")
 source("R/data.R")
 source("R/feedback.R")
 
-# ---- Resolve data source ----
+# ---- Load dataset (CURATOR_DATA_URL / CURATOR_DATA_PATH / sample) ----
 
-resolve_data_path <- function() {
-  path <- Sys.getenv("CURATOR_DATA_URL", "")
-  if (!nzchar(trimws(path))) path <- Sys.getenv("CURATOR_DATA_PATH", "")
-  if (!nzchar(trimws(path))) path <- "data/sample.csv"
-  path
-}
-
-data_path <- resolve_data_path()
-
-# ---- Load and normalize dataset ----
-
-raw_df <- load_data(data_path)
-df <- normalize_dataset(raw_df)
+loaded <- load_curator_data()
+df <- loaded$df
 
 # ---- Validate expected value columns ----
 
@@ -149,6 +138,14 @@ The system reads `data/sample.csv` by default. To use a different source, set th
 library(dplyr)
 
 cat('<div class="cd-table-wrap">')
+
+if (!is.null(loaded$fallback_from)) {
+  cat(
+    "<div class='cd-card-body'><strong>Showing sample data.</strong> ",
+    "The configured dataset could not be loaded: <code>",
+    htmltools::htmlEscape(loaded$fallback_from), "</code></div>"
+  )
+}
 
 if (nrow(df) == 0) {
 
